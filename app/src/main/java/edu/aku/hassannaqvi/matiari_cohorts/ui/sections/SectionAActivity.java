@@ -5,17 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
@@ -41,13 +37,12 @@ public class SectionAActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_section_a);
         bi.setCallback(this);
         setupSkips();
-
     }
 
 
     private void setupSkips() {
 
-        bi.s1q2.addTextChangedListener(new TextWatcher() {
+       /* bi.s1q2.addTextChangedListener(new TextWatcher() {
 
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -70,19 +65,13 @@ public class SectionAActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
 
             }
-        });
+        });*/
 
-        bi.s1q18.setOnCheckedChangeListener((group, checkedId) -> {
+        /*bi.s1q18.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == bi.s1q1802.getId()) {
                 Clear.clearAllFields(bi.llGrpsec31);
             }
-        });
-
-        bi.s1q20.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId != bi.s1q2002.getId()) {
-                Clear.clearAllFields(bi.fldGrpCVs1q21);
-            }
-        });
+        });*/
 
     }
 
@@ -136,93 +125,105 @@ public class SectionAActivity extends AppCompatActivity {
 
         setGPS(this);
 
-        formsEN.setS1q1(bi.s1q1.getText().toString().trim().isEmpty() ? "-1" : bi.s1q1.getText().toString());
+       /* form.setMc01(bi.mc01.getText().toString().trim().isEmpty() ? "-1" : bi.mc01.getText().toString());
 
-        formsEN.setS1q2(bi.s1q2.getText().toString().trim().isEmpty() ? "-1" : bi.s1q2.getText().toString());
+        form.setMc02( bi.mc0201.isChecked() ? "1"
+                : bi.mc0202.isChecked() ? "2"
+                : bi.mc0203.isChecked() ? "3"
+                : bi.mc0204.isChecked() ? "4"
+                :  "-1");
 
-        formsEN.setS1q3(bi.s1q3.getText().toString().trim().isEmpty() ? "-1" : bi.s1q3.getText().toString());
+        form.setMc03(bi.mc03.getText().toString().trim().isEmpty() ? "-1" : bi.mc03.getText().toString());
 
-        formsEN.setS1q4(bi.s1q401.isChecked() ? "1"
-                : bi.s1q402.isChecked() ? "2"
-                : "-1");
+        form.setMc04(bi.mc04.getText().toString().trim().isEmpty() ? "-1" : bi.mc04.getText().toString());
 
-        formsEN.setS1q501(bi.s1q501.getText().toString().trim().isEmpty() ? "-1" : bi.s1q501.getText().toString());
-        formsEN.setS1q502(bi.s1q502.getText().toString().trim().isEmpty() ? "-1" : bi.s1q502.getText().toString());
+        form.setMc05(bi.mc05.getText().toString().trim().isEmpty() ? "-1" : bi.mc05.getText().toString());
 
-        formsEN.setS1q6(bi.s1q6.getText().toString().trim().isEmpty() ? "-1" : bi.s1q6.getText().toString());
+        form.setMc06(bi.mc06.getText().toString().trim().isEmpty() ? "-1" : bi.mc06.getText().toString());
 
-        formsEN.setS1q7(bi.s1q7.getText().toString().trim().isEmpty() ? "-1" : bi.s1q7.getText().toString());
+        form.setMc07(bi.mc07.getText().toString().trim().isEmpty() ? "-1" : bi.mc07.getText().toString());
 
-        formsEN.setS1q8(bi.s1q8.getText().toString().trim().isEmpty() ? "-1" : bi.s1q8.getText().toString());
+        form.setMc08(bi.mc08.getText().toString().trim().isEmpty() ? "-1" : bi.mc08.getText().toString());
 
-        formsEN.setS1q9(bi.s1q9.getText().toString().trim().isEmpty() ? "-1" : bi.s1q9.getText().toString());
+        form.setMc09(bi.mc09.getText().toString().trim().isEmpty() ? "-1" : bi.mc09.getText().toString());
 
-        formsEN.setS1q10(bi.s1q10.getText().toString().trim().isEmpty() ? "-1" : bi.s1q10.getText().toString());
+        form.setMc10(bi.mc10.getText().toString().trim().isEmpty() ? "-1" : bi.mc10.getText().toString());
 
-        formsEN.setS1q11(bi.s1q11.getText().toString().trim().isEmpty() ? "-1" : bi.s1q11.getText().toString());
+        form.setMc11(bi.mc11.getText().toString().trim().isEmpty() ? "-1" : bi.mc11.getText().toString());
 
-        formsEN.setS1q12(bi.s1q12.getText().toString().trim().isEmpty() ? "-1" : bi.s1q12.getText().toString());
+        form.setMc12(bi.mc12.getText().toString().trim().isEmpty() ? "-1" : bi.mc12.getText().toString());
 
-        formsEN.setS1q13(bi.s1q13.getText().toString().trim().isEmpty() ? "-1" : bi.s1q13.getText().toString());
+        form.setMc1301(bi.mc1301.getText().toString().trim().isEmpty() ? "-1" : bi.mc1301.getText().toString());
+        form.setMc1302(bi.mc1302.getText().toString().trim().isEmpty() ? "-1" : bi.mc1302.getText().toString());
 
-        formsEN.setS1q14(bi.s1q14.getText().toString().trim().isEmpty() ? "-1" : bi.s1q14.getText().toString());
+        form.setMc14( bi.mc1401.isChecked() ? "1"
+                : bi.mc1402.isChecked() ? "2"
+                :  "-1");
 
-        formsEN.setS1q15(bi.s1q15.getText().toString().trim().isEmpty() ? "-1" : bi.s1q15.getText().toString());
+        form.setMc15( bi.mc1501.isChecked() ? "1"
+                : bi.mc1502.isChecked() ? "2"
+                :  "-1");
 
-        formsEN.setS1q16(bi.s1q1601.isChecked() ? "1"
-                : bi.s1q1602.isChecked() ? "2"
-                : "-1");
+        form.setMc16(bi.mc16.getText().toString().trim().isEmpty() ? "-1" : bi.mc16.getText().toString());
 
-        formsEN.setS1q17(bi.s1q1701.isChecked() ? "1"
-                : bi.s1q1702.isChecked() ? "2"
-                : "-1");
+        form.setMc17( bi.mc1701.isChecked() ? "1"
+                : bi.mc1702.isChecked() ? "2"
+                :  "-1");
 
-        formsEN.setS1q18(bi.s1q1801.isChecked() ? "1"
-                : bi.s1q1802.isChecked() ? "2"
-                : "-1");
+        form.setMc18( bi.mc1801.isChecked() ? "1"
+                : bi.mc1802.isChecked() ? "2"
+                : bi.mc1898.isChecked() ? "98"
+                :  "-1");
+        form.setMc1898x(bi.mc1898x.getText().toString().trim().isEmpty() ? "-1" : bi.mc1898x.getText().toString());
 
-        formsEN.setS1q1802x(bi.s1q1802x.getText().toString().trim().isEmpty() ? "-1" : bi.s1q1802x.getText().toString());
+        form.setMc19( bi.mc1901.isChecked() ? "1"
+                : bi.mc1902.isChecked() ? "2"
+                :  "-1");
 
-        formsEN.setS1q1901(bi.s1q1901.getText().toString().trim().isEmpty() ? "-1" : bi.s1q1901.getText().toString());
-        formsEN.setS1q1902(bi.s1q1902.getText().toString().trim().isEmpty() ? "-1" : bi.s1q1902.getText().toString());
+        form.setMc2001(bi.mc2001.getText().toString().trim().isEmpty() ? "-1" : bi.mc2001.getText().toString());
+        form.setMc2002(bi.mc2002.getText().toString().trim().isEmpty() ? "-1" : bi.mc2002.getText().toString());
 
-        formsEN.setS1q20(bi.s1q2001.isChecked() ? "1"
-                : bi.s1q2002.isChecked() ? "2"
-                : "-1");
+        form.setMc21(bi.mc21.getText().toString());
 
-        formsEN.setS1q21(bi.s1q2101.isChecked() ? "1"
-                : bi.s1q2102.isChecked() ? "2"
-                : bi.s1q2103.isChecked() ? "3"
-                : bi.s1q2104.isChecked() ? "4"
-                : "-1");
+        form.setMc22( bi.mc2201.isChecked() ? "1"
+                : bi.mc2202.isChecked() ? "2"
+                :  "-1");
 
-        //    formsEN.setS1q22(bi.s1q22.getText().toString().trim().isEmpty() ? "-1" : bi.s1q22.getText().toString());
+        form.setMc23(bi.mc23.getText().toString().trim().isEmpty() ? "-1" : bi.mc23.getText().toString());
 
-        formsEN.setS1q2301(bi.s1q2301.getText().toString().trim().isEmpty() ? "-1" : bi.s1q2301.getText().toString());
-        formsEN.setS1q2302(bi.s1q2302.getText().toString().trim().isEmpty() ? "-1" : bi.s1q2302.getText().toString());
+        form.setMc24(bi.mc24.getText().toString().trim().isEmpty() ? "-1" : bi.mc24.getText().toString());
+
+        form.setMc25( bi.mc2501.isChecked() ? "1"
+                : bi.mc2502.isChecked() ? "2"
+                : bi.mc2503.isChecked() ? "3"
+                : bi.mc2504.isChecked() ? "4"
+                : bi.mc2505.isChecked() ? "5"
+                : bi.mc2506.isChecked() ? "6"
+                :  "-1");
+
+        form.setMc26(bi.mc26.getText().toString().trim().isEmpty() ? "-1" : bi.mc26.getText().toString());
+
+        form.setMcrem(bi.mcrem.getText().toString().trim().isEmpty() ? "-1" : bi.mcrem.getText().toString());*/
 
     }
 
 
     private boolean formValidation() {
-        if (!Validator.emptyCheckingContainer(this, bi.GrpName))
-            return false;
+        return Validator.emptyCheckingContainer(this, bi.GrpName);
 
-        if (!bi.s1q8.getText().toString().isEmpty()) {
+        /*if (!bi.s1q8.getText().toString().isEmpty()) {
 
             if (bi.s1q8.getText().toString().equals(bi.s1q2.getText().toString())) {
                 return Validator.emptyCustomTextBox(this, bi.s1q8, "S1Q2 & S1Q8\ncould not be the SAME");
             }
-        }
+        }*/
 
-        if (!bi.s1q15.getText().toString().isEmpty()) {
+        /*if (!bi.s1q15.getText().toString().isEmpty()) {
 
             if (Integer.parseInt(bi.s1q15.getText().toString()) >= Integer.parseInt(bi.s1q14.getText().toString())) {
                 return Validator.emptyCustomTextBox(this, bi.s1q15, "S1Q15 could not be the \n greater or equals to then S1Q14");
             }
-        }
-
-        return true;
+        }*/
 
     }
 
