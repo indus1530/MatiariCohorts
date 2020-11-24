@@ -8,7 +8,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.blf_screening.adapter.FormsAdapter" />
+            type="edu.aku.hassannaqvi.matiari_cohorts.adapter.FormsAdapter" />
     </data>
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="edu.aku.hassannaqvi.blf_screening">
+    package="edu.aku.hassannaqvi.matiari_cohorts">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> <!-- Needed only if your app targets Android 5.0 (API level 21) or higher. -->
     <uses-feature android:name="android.hardware.location.gps" />
@@ -19,7 +19,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name=".core.MainApp"
+        android:name="edu.aku.hassannaqvi.matiari_cohorts.core.MainApp"
         android:allowBackup="false"
         android:icon="@drawable/app_icon"
         android:label="@string/app_name"
@@ -29,79 +29,19 @@
         tools:replace="android:allowBackup">
 
         <activity
-            android:name=".ui.list_activity.FormsReportCluster"
+            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.list_activity.FormsReportCluster"
             android:label="Forms Report"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.list_activity.FormsReportDate"
+            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.list_activity.FormsReportDate"
             android:label="Forms Report"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.sections.SectionSLActivity"
-            android:label="@string/sl_title2"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionSFActivity"
-            android:label="@string/sf_title2"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionEN01Activity"
+            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.sections.SectionAActivity"
             android:label="@string/section1_mainheading"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.sections.SectionEN02Activity"
-            android:label="@string/section2newbornexamination_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionEN03Activity"
-            android:label="@string/section3careofbaby_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFA01Activity"
-            android:label="@string/sectionai_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFA02Activity"
-            android:label="@string/sectionaii_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFA03Activity"
-            android:label="@string/sectionaiii_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFA04Activity"
-            android:label="@string/sectionaiv_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFA05Activity"
-            android:label="@string/sectionav_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFB01Activity"
-            android:label="@string/sectionbi_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFB02Activity"
-            android:label="@string/sectionbii_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFCActivity"
-            android:label="@string/sectionci_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFDActivity"
-            android:label="@string/sectiondi_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFEActivity"
-            android:label="@string/sectionei_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionWFFActivity"
-            android:label="@string/sectionfi_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.other.SplashscreenActivity"
+            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.SplashscreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -111,24 +51,24 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.other.LoginActivity"
+            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.other.MainActivity" />
+        <activity android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity" />
         <activity
-            android:name=".ui.other.EndingActivity"
+            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu" />
         <activity
-            android:name=".core.AndroidDatabaseManager"
-            android:parentActivityName=".ui.other.MainActivity"
+            android:name="edu.aku.hassannaqvi.matiari_cohorts.core.AndroidDatabaseManager"
+            android:parentActivityName="edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".ui.other.SyncActivity"
-            android:parentActivityName=".ui.other.MainActivity"
+            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.SyncActivity"
+            android:parentActivityName="edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity"
             android:screenOrientation="portrait" />
 
-        <service android:name=".utils.DownloadFileService" />
+        <service android:name="edu.aku.hassannaqvi.matiari_cohorts.utils.DownloadFileService" />
     </application>
 
 </manifest>

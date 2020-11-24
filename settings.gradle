@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "BLF_Screening"
+rootProject.name = "Matiari_Cohorts"

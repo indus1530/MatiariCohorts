@@ -9,7 +9,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.blf_screening.ui.other.SyncActivity" />
+            type="edu.aku.hassannaqvi.matiari_cohorts.ui.other.SyncActivity" />
     </data>
 
     <ScrollView
