@@ -768,7 +768,8 @@
             <!-- mc16  Input   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc16"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1501.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -809,7 +810,8 @@
             <!-- mc17  Radio   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc17"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1502.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -868,7 +870,8 @@
             <!-- mc18  Radio   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc18"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1501.checked || mc1701.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -937,7 +940,8 @@
             <!-- mc19  Radio   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc19"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1502.checked || mc1702.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -990,7 +994,8 @@
             <!-- mc20  Title   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc20"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1502.checked || mc1702.checked || mc1901.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1086,7 +1091,8 @@
             <!-- mc21  Input   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc21"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1502.checked || mc1702.checked || mc1901.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1127,7 +1133,8 @@
             <!-- mc22  Radio   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc22"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1502.checked || mc1702.checked || mc1902.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1186,7 +1193,8 @@
             <!-- mc23  Input   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc23"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1502.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1227,7 +1235,8 @@
             <!-- mc24  Input-Numeric   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc24"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1502.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1269,7 +1278,8 @@
             <!-- mc25  Radio   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc25"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{mc1502.checked ? View.GONE : View.VISIBLE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1307,30 +1317,35 @@
                             android:id="@+id/mc2501"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:enabled='@{mc1702.checked? false : true}'
                             android:text="@string/mc2501" />
 
                         <RadioButton
                             android:id="@+id/mc2502"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:enabled='@{mc1702.checked? false : true}'
                             android:text="@string/mc2502" />
 
                         <RadioButton
                             android:id="@+id/mc2503"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:enabled='@{mc1702.checked? false : true}'
                             android:text="@string/mc2503" />
 
                         <RadioButton
                             android:id="@+id/mc2504"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:enabled='@{mc1702.checked? false : true}'
                             android:text="@string/mc2504" />
 
                         <RadioButton
                             android:id="@+id/mc2505"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:enabled='@{mc1702.checked? false : true}'
                             android:text="@string/mc2505" />
 
                         <RadioButton
@@ -1338,8 +1353,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/mc2506" />
+
                     </RadioGroup>
+
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
 
@@ -1381,6 +1399,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/mc26" />
                 </LinearLayout>
+
             </androidx.cardview.widget.CardView>
 
 

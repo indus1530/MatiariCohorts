@@ -32,11 +32,11 @@ import java.util.List;
 import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS;
 import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.SyncListAdapter;
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.FormsSLContract;
+import edu.aku.hassannaqvi.matiari_cohorts.contracts.FormsContract;
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivitySyncBinding;
-import edu.aku.hassannaqvi.matiari_cohorts.models.FormsSL;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.models.SyncModel;
 import edu.aku.hassannaqvi.matiari_cohorts.sync.GetAllData;
 import edu.aku.hassannaqvi.matiari_cohorts.sync.SyncAllData;
@@ -156,10 +156,10 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                     this,
                     "Forms",
                     "updateSyncedForms",
-                    FormsSL.class,
+                    Forms.class,
                     MainApp._HOST_URL + MainApp._SERVER_URL,
-                    FormsSLContract.FormsSLTable.TABLE_NAME,
-                    db.getUnsyncedFormsSL(), 0, syncListAdapter, uploadlist
+                    FormsContract.FormsTable.TABLE_NAME,
+                    db.getUnsyncedForms(), 0, syncListAdapter, uploadlist
             ).execute();
 
             bi.noDataItem.setVisibility(View.GONE);

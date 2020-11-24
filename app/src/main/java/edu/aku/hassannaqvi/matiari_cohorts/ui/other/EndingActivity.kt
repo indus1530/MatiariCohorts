@@ -66,7 +66,7 @@ class EndingActivity : AppCompatActivity() {
 
     private fun updateDB(): Boolean {
         val db = appInfo.dbHelper
-        val updcount = db.updateEndingSF()
+        val updcount = db.updateEndingWF()
         return if (updcount == 1) {
             true
         } else {

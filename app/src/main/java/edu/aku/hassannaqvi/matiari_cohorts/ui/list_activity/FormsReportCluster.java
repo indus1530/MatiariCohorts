@@ -13,12 +13,12 @@ import java.util.Date;
 
 import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
-import edu.aku.hassannaqvi.matiari_cohorts.models.FormsSL;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 
 
 public class FormsReportCluster extends AppCompatActivity {
     DatabaseHelper db;
-    Collection<FormsSL> form;
+    Collection<Forms> form;
     String sysdateToday = new SimpleDateFormat("dd-MM-yy").format(new Date());
     TextView dtFilter;
     private RecyclerView recyclerView;

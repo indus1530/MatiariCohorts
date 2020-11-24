@@ -14,7 +14,7 @@ import java.util.List;
 
 import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
-import edu.aku.hassannaqvi.matiari_cohorts.models.FormsSL;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 
 /**
  * Created by hassan.naqvi on 8/1/2016.
@@ -22,10 +22,10 @@ import edu.aku.hassannaqvi.matiari_cohorts.models.FormsSL;
 public class FormsAdapter extends RecyclerView.Adapter<FormsAdapter.ViewHolder> {
     Context c;
     DatabaseHelper db;
-    private List<FormsSL> form = Collections.emptyList();
+    private List<Forms> form = Collections.emptyList();
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public FormsAdapter(List<FormsSL> form, Context c) {
+    public FormsAdapter(List<Forms> form, Context c) {
         this.form = form;
         this.c = c;
         Log.d("TAG:count", String.valueOf(getItemCount()));

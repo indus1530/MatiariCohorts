@@ -13,7 +13,7 @@
 
         <variable
             name="form"
-            type="edu.aku.hassannaqvi.matiari_cohorts.models.FormsSL" />
+            type="edu.aku.hassannaqvi.matiari_cohorts.models.Forms" />
     </data>
 
     <ScrollView

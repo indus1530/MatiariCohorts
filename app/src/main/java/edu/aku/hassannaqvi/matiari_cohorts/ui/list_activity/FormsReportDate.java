@@ -17,12 +17,12 @@ import java.util.List;
 import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.FormsAdapter;
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
-import edu.aku.hassannaqvi.matiari_cohorts.models.FormsSL;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 
 
 public class FormsReportDate extends AppCompatActivity {
     DatabaseHelper db;
-    Collection<FormsSL> form;
+    Collection<Forms> form;
     String sysdateToday = new SimpleDateFormat("dd-MM-yy").format(new Date());
     TextView dtFilter;
     private RecyclerView recyclerView;
@@ -47,14 +47,14 @@ public class FormsReportDate extends AppCompatActivity {
 //        form = db.getTodayForms(sysdateToday);
 
         // specify an adapter (see also next example)
-        formsAdapter = new FormsAdapter((List<FormsSL>) form, this);
+        formsAdapter = new FormsAdapter((List<Forms>) form, this);
         recyclerView.setAdapter(formsAdapter);
     }
 
     public void filterForms(View view) {
         Toast.makeText(this, "updated", Toast.LENGTH_SHORT).show();
 //        form = db.getTodayForms(dtFilter.getText().toString());
-        formsAdapter = new FormsAdapter((List<FormsSL>) form, this);
+        formsAdapter = new FormsAdapter((List<Forms>) form, this);
         formsAdapter.notifyDataSetChanged();
         recyclerView.setAdapter(formsAdapter);
 

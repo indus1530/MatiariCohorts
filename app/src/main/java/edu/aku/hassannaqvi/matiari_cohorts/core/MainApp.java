@@ -28,10 +28,7 @@ import org.json.JSONObject;
 
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.UsersContract;
 import edu.aku.hassannaqvi.matiari_cohorts.location.LocationLiveData;
-import edu.aku.hassannaqvi.matiari_cohorts.models.FormsEN;
-import edu.aku.hassannaqvi.matiari_cohorts.models.FormsSF;
-import edu.aku.hassannaqvi.matiari_cohorts.models.FormsSL;
-import edu.aku.hassannaqvi.matiari_cohorts.models.FormsWF;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity;
 
 
@@ -78,14 +75,11 @@ public class MainApp extends Application {
     public static OnItemClick countItemClick;
     public static AppInfo appInfo;
     public static Boolean admin = false;
-    public static LiveData<FormsSL> liveForms = new MutableLiveData<>();
+    public static LiveData<Forms> liveForms = new MutableLiveData<>();
 
     public static String userName = "0000";
     public static UsersContract user;
-    public static FormsSL formsSL;
-    public static FormsSF formsSF;
-    public static FormsEN formsEN;
-    public static FormsWF formsWF;
+    public static Forms forms;
     public static JSONObject jsonSL;
 
     public static String DeviceURL = "devices.php";

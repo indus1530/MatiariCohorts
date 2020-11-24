@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import java.text.SimpleDateFormat;
@@ -21,10 +22,10 @@ import java.util.Locale;
 import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivitySectionABinding;
-import edu.aku.hassannaqvi.matiari_cohorts.models.FormsEN;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity;
 
-import static edu.aku.hassannaqvi.matiari_cohorts.core.MainApp.formsEN;
+import static edu.aku.hassannaqvi.matiari_cohorts.core.MainApp.forms;
 
 public class SectionAActivity extends AppCompatActivity {
 
@@ -42,36 +43,41 @@ public class SectionAActivity extends AppCompatActivity {
 
     private void setupSkips() {
 
-       /* bi.s1q2.addTextChangedListener(new TextWatcher() {
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //         Log.d(this.getClass().getSimpleName(), "onTextChanged: S " + start + " A " + after + " C " + count);
-
+        bi.mc15.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == bi.mc1501.getId()) {
+                Clear.clearAllFields(bi.fldGrpCVmc16);
+                Clear.clearAllFields(bi.fldGrpCVmc18);
+            } else if (checkedId == bi.mc1502.getId()) {
+                Clear.clearAllFields(bi.fldGrpCVmc17);
+                Clear.clearAllFields(bi.fldGrpCVmc19);
+                Clear.clearAllFields(bi.fldGrpCVmc20);
+                Clear.clearAllFields(bi.fldGrpCVmc21);
+                Clear.clearAllFields(bi.fldGrpCVmc22);
+                Clear.clearAllFields(bi.fldGrpCVmc23);
+                Clear.clearAllFields(bi.fldGrpCVmc24);
+                Clear.clearAllFields(bi.fldGrpCVmc25);
             }
+        });
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-                if (bi.llGrpName03.getVisibility() == View.VISIBLE) {
-                    bi.llGrpName03.setVisibility(View.GONE);
-                    bi.btnContinue.setVisibility(View.GONE);
-                    Clear.clearAllFields(bi.llGrpName03);
-                }
-
+        bi.mc17.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == bi.mc1701.getId()) {
+                Clear.clearAllFields(bi.fldGrpCVmc18);
+            } else if (checkedId == bi.mc1702.getId()) {
+                Clear.clearAllFields(bi.fldGrpCVmc19);
+                Clear.clearAllFields(bi.fldGrpCVmc20);
+                Clear.clearAllFields(bi.fldGrpCVmc21);
+                Clear.clearAllFields(bi.fldGrpCVmc22);
             }
+        });
 
-            @Override
-            public void afterTextChanged(Editable s) {
-
+        bi.mc19.setOnCheckedChangeListener((group, checkedId) -> {
+            if (checkedId == bi.mc1901.getId()) {
+                Clear.clearAllFields(bi.fldGrpCVmc20);
+                Clear.clearAllFields(bi.fldGrpCVmc21);
+            } else if (checkedId == bi.mc1902.getId()) {
+                Clear.clearAllFields(bi.fldGrpCVmc22);
             }
-        });*/
-
-        /*bi.s1q18.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == bi.s1q1802.getId()) {
-                Clear.clearAllFields(bi.llGrpsec31);
-            }
-        });*/
+        });
 
     }
 
@@ -116,12 +122,12 @@ public class SectionAActivity extends AppCompatActivity {
 
     private void SaveDraft() {
 
-        formsEN = new FormsEN();
-        formsEN.setSysdate(new SimpleDateFormat("dd-MM-yy HH:mm", Locale.getDefault()).format(new Date().getTime()));
-        formsEN.setDeviceID(MainApp.appInfo.getDeviceID());
-        formsEN.setDevicetagID(MainApp.appInfo.getTagName());
-        formsEN.setAppversion(MainApp.appInfo.getAppVersion());
-        formsEN.setUsername(MainApp.userName);
+        forms = new Forms();
+        forms.setSysdate(new SimpleDateFormat("dd-MM-yy HH:mm", Locale.getDefault()).format(new Date().getTime()));
+        forms.setDeviceID(MainApp.appInfo.getDeviceID());
+        forms.setDevicetagID(MainApp.appInfo.getTagName());
+        forms.setAppversion(MainApp.appInfo.getAppVersion());
+        forms.setUsername(MainApp.userName);
 
         setGPS(this);
 
@@ -251,11 +257,11 @@ public class SectionAActivity extends AppCompatActivity {
 
             String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
 
-            MainApp.formsEN.setGpsLat(GPSPref.getString("Latitude", "0"));
-            MainApp.formsEN.setGpsLng(GPSPref.getString("Longitude", "0"));
-            MainApp.formsEN.setGpsAcc(GPSPref.getString("Accuracy", "0"));
+            MainApp.forms.setGpsLat(GPSPref.getString("Latitude", "0"));
+            MainApp.forms.setGpsLng(GPSPref.getString("Longitude", "0"));
+            MainApp.forms.setGpsAcc(GPSPref.getString("Accuracy", "0"));
 //            MainApp.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
-            MainApp.formsEN.setGpsDT(date); // Timestamp is converted to date above
+            MainApp.forms.setGpsDT(date); // Timestamp is converted to date above
 
         } catch (Exception e) {
             Log.e("GPS", "setGPS: " + e.getMessage());

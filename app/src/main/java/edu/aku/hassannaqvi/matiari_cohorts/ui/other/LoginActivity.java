@@ -17,7 +17,6 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.method.PasswordTransformationMethod;
@@ -28,16 +27,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
-import androidx.work.Constraints;
-import androidx.work.NetworkType;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.WorkInfo;
-import androidx.work.WorkManager;
 
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.Target;
@@ -57,7 +49,6 @@ import edu.aku.hassannaqvi.matiari_cohorts.core.AppInfo;
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityLoginBinding;
-import edu.aku.hassannaqvi.matiari_cohorts.workers.FetchUsersWorker;
 
 import static edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS.MINIMUM_DISTANCE_CHANGE_FOR_UPDATES;
 import static edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS.MINIMUM_TIME_BETWEEN_UPDATES;
@@ -115,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         if (!db.checkUsers()) {
             bi.btnSignin.setVisibility(View.GONE);
             bi.syncData.setVisibility(View.VISIBLE);
-            callUsersWorker();
+          //  callUsersWorker();
         }
 
         bi.txtinstalldate.setText(MainApp.appInfo.getAppInfo());
@@ -132,7 +123,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // populateAutoComplete();
-        gettingDeviceIMEI();
+        // gettingDeviceIMEI();
         Target viewTarget = new ViewTarget(bi.syncData.getId(), this);
 
         new ShowcaseView.Builder(this)
@@ -162,7 +153,7 @@ public class LoginActivity extends AppCompatActivity {
         dbBackup();
     }
 
-    private void callUsersWorker() {
+    /*private void callUsersWorker() {
 
 
         Constraints mConstraints = new Constraints
@@ -193,7 +184,7 @@ public class LoginActivity extends AppCompatActivity {
                     public void onChanged(@Nullable WorkInfo workInfo) {
 
 
-                       /* WorkManager.getInstance().enqueue(usersWorkRequest1);
+                       *//* WorkManager.getInstance().enqueue(usersWorkRequest1);
 
                         WorkManager.getInstance().getWorkInfoByIdLiveData(WorkRequest.getId())
                                 .observe(this, new Observer<WorkInfo>() {
@@ -220,7 +211,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                             }
                                         }
-                                );*/
+                                );*//*
 
                         if (workInfo.getState() != null &&
                                 workInfo.getState() == WorkInfo.State.SUCCEEDED) {
@@ -247,7 +238,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
-    }
+    }*/
 
     /*private void setListeners() {
         provinceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, SplashscreenActivity.provinces);
@@ -284,13 +275,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 */
-    private void gettingDeviceIMEI() {
+    /*private void gettingDeviceIMEI() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
 
-    }
+    }*/
 
     private boolean checkAndRequestPermissions() {
         if (!getPermissionsList(this).isEmpty()) {
@@ -360,9 +351,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void onSyncDataClick(View view) {
+   /* public void onSyncDataClick(View view) {
         callUsersWorker();
-    }
+    }*/
 
 /*    private void populateAutoComplete() {
         getLoaderManager().initLoader(0, null, this);
@@ -571,7 +562,7 @@ public class LoginActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+        //   MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
 
     }
 
