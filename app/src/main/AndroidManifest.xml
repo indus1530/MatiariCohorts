@@ -21,7 +21,7 @@
     <application
         android:name="edu.aku.hassannaqvi.matiari_cohorts.core.MainApp"
         android:allowBackup="false"
-        android:icon="@drawable/app_icon"
+        android:icon="@drawable/agakhan"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"

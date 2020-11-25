@@ -201,6 +201,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_PROJECT_NAME, form.getProjectName());
         values.put(FormsTable.COLUMN_UID, form.get_UID());
         values.put(FormsTable.COLUMN_SYSDATE, form.getSysdate());
+        values.put(FormsTable.COLUMN_USERNAME, form.getUsername());
     /*    values.put(FormsWFTable.COLUMN_ISTATUS, formSF.getIstatus());
         values.put(FormsWFTable.COLUMN_ISTATUS96x, formSF.getIstatus96x());*/
 //        values.put(FormsTable.COLUMN_ENDINGDATETIME, formSF.getEndingdatetime());
@@ -230,6 +231,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_SYSDATE,
+                FormsTable.COLUMN_USERNAME,
 /*
                 FormsTable.COLUMN_ISTATUS,
 */
@@ -285,6 +287,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_SYSDATE,
+                FormsTable.COLUMN_USERNAME,
 //              FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_SA,
                 FormsTable.COLUMN_GPSLAT,
@@ -338,6 +341,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_SYSDATE,
+                FormsTable.COLUMN_USERNAME,
 //                FormsTable.COLUMN_ISTATUS,
                 //               FormsTable.COLUMN_ISTATUS96x,
 //                FormsTable.COLUMN_ENDINGDATETIME,
@@ -399,6 +403,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable._ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_SYSDATE,
+                FormsTable.COLUMN_USERNAME,
 //                FormsTable.COLUMN_ISTATUS,
                 FormsTable.COLUMN_SYNCED,
 
@@ -428,6 +433,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 forms.set_ID(c.getString(c.getColumnIndex(FormsTable.COLUMN_ID)));
                 forms.set_UID(c.getString(c.getColumnIndex(FormsTable.COLUMN_UID)));
                 forms.setSysdate(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYSDATE)));
+                forms.setUsername(c.getString(c.getColumnIndex(FormsTable.COLUMN_USERNAME)));
                 //               formsWF.setIstatus(c.getString(c.getColumnIndex(FormsTable.COLUMN_ISTATUS)));
                 forms.setSynced(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYNCED)));
                 allForms.add(forms);

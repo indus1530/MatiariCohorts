@@ -21,6 +21,7 @@ public final class CreateTable {
             + FormsTable.COLUMN_DEVICEID + " TEXT,"
             + FormsTable.COLUMN_DEVICETAGID + " TEXT,"
             + FormsTable.COLUMN_SYSDATE + " TEXT,"
+            + FormsTable.COLUMN_USERNAME + " TEXT,"
             + FormsTable.COLUMN_UID + " TEXT,"
             + FormsTable.COLUMN_GPSLAT + " TEXT,"
             + FormsTable.COLUMN_GPSLNG + " TEXT,"

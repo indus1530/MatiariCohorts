@@ -4,6 +4,7 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -13,10 +14,13 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.method.PasswordTransformationMethod;
@@ -27,7 +31,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.databinding.DataBindingUtil;
 
@@ -44,6 +47,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
+import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS;
 import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.core.AppInfo;
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
@@ -61,7 +65,7 @@ import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.DB_NAME;
 import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.PROJECT_NAME;
 import static java.lang.Thread.sleep;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends Activity {
 
     protected static LocationManager locationManager;
 
@@ -100,20 +104,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_login);
         bi.setCallback(this);
+
+
         MainApp.appInfo = new AppInfo(this);
-
-        DatabaseHelper db = MainApp.appInfo.getDbHelper();
-        if (!db.checkUsers()) {
-            bi.btnSignin.setVisibility(View.GONE);
-            bi.syncData.setVisibility(View.VISIBLE);
-          //  callUsersWorker();
-        }
-
         bi.txtinstalldate.setText(MainApp.appInfo.getAppInfo());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkAndRequestPermissions()) {
-                //   populateAutoComplete();const
+                //   populateAutoComplete();
                 loadIMEI();
             }
         } else {
@@ -123,7 +121,7 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         // populateAutoComplete();
-        // gettingDeviceIMEI();
+        gettingDeviceIMEI();
         Target viewTarget = new ViewTarget(bi.syncData.getId(), this);
 
         new ShowcaseView.Builder(this)
@@ -152,93 +150,6 @@ public class LoginActivity extends AppCompatActivity {
 //        DB backup
         dbBackup();
     }
-
-    /*private void callUsersWorker() {
-
-
-        Constraints mConstraints = new Constraints
-                .Builder()
-                .setRequiredNetworkType(NetworkType.CONNECTED)
-                .build();
-
-        final OneTimeWorkRequest usersWorkRequest1 = new OneTimeWorkRequest
-                .Builder(FetchUsersWorker.class)
-                .setConstraints(mConstraints)
-                .build();
-
-        WorkManager.getInstance().enqueue(usersWorkRequest1);
-
-
-        WorkManager.getInstance().getWorkInfoByIdLiveData(usersWorkRequest1.getId())
-                .observe(this, new Observer<WorkInfo>() {
-                            @Override
-                            public void onChanged(WorkInfo workInfo) {
-
-                            }
-                        }
-                );
-
-        WorkManager.getInstance().getWorkInfoByIdLiveData(usersWorkRequest1.getId())
-                .observe(this, new Observer<WorkInfo>() {
-                    @Override
-                    public void onChanged(@Nullable WorkInfo workInfo) {
-
-
-                       *//* WorkManager.getInstance().enqueue(usersWorkRequest1);
-
-                        WorkManager.getInstance().getWorkInfoByIdLiveData(WorkRequest.getId())
-                                .observe(this, new Observer<WorkInfo>() {
-                                            @Override
-                                            public void onChanged(WorkInfo workInfo) {
-
-                                                switch (workInfo.getState()) {
-                                                    case ENQUEUED:
-                                                        // TODO: Show alert here
-                                                        break;
-                                                    case RUNNING:
-                                                        // TODO: Remove alert, if running
-                                                        break;
-                                                    case SUCCEEDED:
-                                                        // TODO: after complete
-                                                        break;
-                                                    case FAILED:
-                                                        break;
-                                                    case BLOCKED:
-                                                        break;
-                                                    case CANCELLED:
-                                                        break;
-                                                }
-
-                                            }
-                                        }
-                                );*//*
-
-                        if (workInfo.getState() != null &&
-                                workInfo.getState() == WorkInfo.State.SUCCEEDED) {
-
-                            //updateDB();
-
-                            bi.pbarMR.setVisibility(View.GONE);
-                            bi.btnSignin.setVisibility(View.VISIBLE);
-                            bi.syncData.setVisibility(View.GONE);
-
-                        }
-                        if (workInfo.getState() != null &&
-                                workInfo.getState() == WorkInfo.State.FAILED) {
-                            bi.pbarMR.setVisibility(View.GONE);
-                            bi.syncData.setVisibility(View.VISIBLE);
-
-                        }
-                        if (workInfo.getState() != null &&
-                                workInfo.getState() == WorkInfo.State.RUNNING) {
-                            bi.pbarMR.setVisibility(View.VISIBLE);
-                            bi.btnSignin.setVisibility(View.GONE);
-                            bi.syncData.setVisibility(View.GONE);
-
-                        }
-                    }
-                });
-    }*/
 
     /*private void setListeners() {
         provinceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, SplashscreenActivity.provinces);
@@ -275,13 +186,13 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 */
-    /*private void gettingDeviceIMEI() {
+    private void gettingDeviceIMEI() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
 
-    }*/
+    }
 
     private boolean checkAndRequestPermissions() {
         if (!getPermissionsList(this).isEmpty()) {
@@ -351,9 +262,19 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-   /* public void onSyncDataClick(View view) {
-        callUsersWorker();
-    }*/
+    public void onSyncDataClick(View view) {
+        //TODO implement
+
+        // Require permissions INTERNET & ACCESS_NETWORK_STATE
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            startActivity(new Intent(this, SyncActivity.class).putExtra(CONSTANTS.SYNC_LOGIN, true));
+        } else {
+            Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 /*    private void populateAutoComplete() {
         getLoaderManager().initLoader(0, null, this);
@@ -562,7 +483,7 @@ public class LoginActivity extends AppCompatActivity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        //   MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+        MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
 
     }
 
@@ -824,8 +745,4 @@ public class LoginActivity extends AppCompatActivity {
             showProgress(false);
         }
     }
-
-
 }
-
-

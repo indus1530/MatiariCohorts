@@ -4,12 +4,15 @@
     <data>
 
         <import type="android.view.View" />
-        <!--<variable
+
+        <variable
             name="form"
-            type="edu.aku.hassannaqvi.trackingofmatiaricohorts.models.Form" />-->
+            type="edu.aku.hassannaqvi.matiari_cohorts.models.Forms" />
+
         <variable
             name="callback"
             type="edu.aku.hassannaqvi.matiari_cohorts.ui.sections.SectionAActivity" />
+
     </data>
 
     <ScrollView

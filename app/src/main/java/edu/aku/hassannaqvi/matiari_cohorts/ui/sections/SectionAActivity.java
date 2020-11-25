@@ -20,6 +20,8 @@ import java.util.Date;
 import java.util.Locale;
 
 import edu.aku.hassannaqvi.matiari_cohorts.R;
+import edu.aku.hassannaqvi.matiari_cohorts.contracts.FormsContract;
+import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivitySectionABinding;
 import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
@@ -104,18 +106,18 @@ public class SectionAActivity extends AppCompatActivity {
 
 
     private boolean UpdateDB() {
-        /*DatabaseHelper db = MainApp.appInfo.getDbHelper();
-        long updcount = db.addFormS3(formsEN);
-        formsEN.set_ID(String.valueOf(updcount));
+        DatabaseHelper db = MainApp.appInfo.getDbHelper();
+        long updcount = db.addForm(forms);
+        forms.set_ID(String.valueOf(updcount));
         if (updcount > 0) {
-            formsEN.set_UID(formsEN.getDeviceID() + formsEN.get_ID());
-            db.updatesFormsS3Column(FormsENContract.FormsS3Table.COLUMN_UID, formsEN.get_UID());
+            forms.set_UID(forms.getDeviceID() + forms.get_ID());
+            db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_UID, forms.get_UID());
+            db.updatesFormsColumn(FormsContract.FormsTable.COLUMN_SA, forms.sAtoString());
             return true;
         } else {
             Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
             return false;
-        }*/
-        return true;
+        }
 
     }
 
@@ -131,85 +133,85 @@ public class SectionAActivity extends AppCompatActivity {
 
         setGPS(this);
 
-       /* form.setMc01(bi.mc01.getText().toString().trim().isEmpty() ? "-1" : bi.mc01.getText().toString());
+        forms.setMc01(bi.mc01.getText().toString().trim().isEmpty() ? "-1" : bi.mc01.getText().toString());
 
-        form.setMc02( bi.mc0201.isChecked() ? "1"
+        forms.setMc02(bi.mc0201.isChecked() ? "1"
                 : bi.mc0202.isChecked() ? "2"
                 : bi.mc0203.isChecked() ? "3"
                 : bi.mc0204.isChecked() ? "4"
-                :  "-1");
+                : "-1");
 
-        form.setMc03(bi.mc03.getText().toString().trim().isEmpty() ? "-1" : bi.mc03.getText().toString());
+        forms.setMc03(bi.mc03.getText().toString().trim().isEmpty() ? "-1" : bi.mc03.getText().toString());
 
-        form.setMc04(bi.mc04.getText().toString().trim().isEmpty() ? "-1" : bi.mc04.getText().toString());
+        forms.setMc04(bi.mc04.getText().toString().trim().isEmpty() ? "-1" : bi.mc04.getText().toString());
 
-        form.setMc05(bi.mc05.getText().toString().trim().isEmpty() ? "-1" : bi.mc05.getText().toString());
+        forms.setMc05(bi.mc05.getText().toString().trim().isEmpty() ? "-1" : bi.mc05.getText().toString());
 
-        form.setMc06(bi.mc06.getText().toString().trim().isEmpty() ? "-1" : bi.mc06.getText().toString());
+        forms.setMc06(bi.mc06.getText().toString().trim().isEmpty() ? "-1" : bi.mc06.getText().toString());
 
-        form.setMc07(bi.mc07.getText().toString().trim().isEmpty() ? "-1" : bi.mc07.getText().toString());
+        forms.setMc07(bi.mc07.getText().toString().trim().isEmpty() ? "-1" : bi.mc07.getText().toString());
 
-        form.setMc08(bi.mc08.getText().toString().trim().isEmpty() ? "-1" : bi.mc08.getText().toString());
+        forms.setMc08(bi.mc08.getText().toString().trim().isEmpty() ? "-1" : bi.mc08.getText().toString());
 
-        form.setMc09(bi.mc09.getText().toString().trim().isEmpty() ? "-1" : bi.mc09.getText().toString());
+        forms.setMc09(bi.mc09.getText().toString().trim().isEmpty() ? "-1" : bi.mc09.getText().toString());
 
-        form.setMc10(bi.mc10.getText().toString().trim().isEmpty() ? "-1" : bi.mc10.getText().toString());
+        forms.setMc10(bi.mc10.getText().toString().trim().isEmpty() ? "-1" : bi.mc10.getText().toString());
 
-        form.setMc11(bi.mc11.getText().toString().trim().isEmpty() ? "-1" : bi.mc11.getText().toString());
+        forms.setMc11(bi.mc11.getText().toString().trim().isEmpty() ? "-1" : bi.mc11.getText().toString());
 
-        form.setMc12(bi.mc12.getText().toString().trim().isEmpty() ? "-1" : bi.mc12.getText().toString());
+        forms.setMc12(bi.mc12.getText().toString().trim().isEmpty() ? "-1" : bi.mc12.getText().toString());
 
-        form.setMc1301(bi.mc1301.getText().toString().trim().isEmpty() ? "-1" : bi.mc1301.getText().toString());
-        form.setMc1302(bi.mc1302.getText().toString().trim().isEmpty() ? "-1" : bi.mc1302.getText().toString());
+        forms.setMc1301(bi.mc1301.getText().toString().trim().isEmpty() ? "-1" : bi.mc1301.getText().toString());
+        forms.setMc1302(bi.mc1302.getText().toString().trim().isEmpty() ? "-1" : bi.mc1302.getText().toString());
 
-        form.setMc14( bi.mc1401.isChecked() ? "1"
+        forms.setMc14(bi.mc1401.isChecked() ? "1"
                 : bi.mc1402.isChecked() ? "2"
-                :  "-1");
+                : "-1");
 
-        form.setMc15( bi.mc1501.isChecked() ? "1"
+        forms.setMc15(bi.mc1501.isChecked() ? "1"
                 : bi.mc1502.isChecked() ? "2"
-                :  "-1");
+                : "-1");
 
-        form.setMc16(bi.mc16.getText().toString().trim().isEmpty() ? "-1" : bi.mc16.getText().toString());
+        forms.setMc16(bi.mc16.getText().toString().trim().isEmpty() ? "-1" : bi.mc16.getText().toString());
 
-        form.setMc17( bi.mc1701.isChecked() ? "1"
+        forms.setMc17(bi.mc1701.isChecked() ? "1"
                 : bi.mc1702.isChecked() ? "2"
-                :  "-1");
+                : "-1");
 
-        form.setMc18( bi.mc1801.isChecked() ? "1"
+        forms.setMc18(bi.mc1801.isChecked() ? "1"
                 : bi.mc1802.isChecked() ? "2"
                 : bi.mc1898.isChecked() ? "98"
-                :  "-1");
-        form.setMc1898x(bi.mc1898x.getText().toString().trim().isEmpty() ? "-1" : bi.mc1898x.getText().toString());
+                : "-1");
+        forms.setMc1898x(bi.mc1898x.getText().toString().trim().isEmpty() ? "-1" : bi.mc1898x.getText().toString());
 
-        form.setMc19( bi.mc1901.isChecked() ? "1"
+        forms.setMc19(bi.mc1901.isChecked() ? "1"
                 : bi.mc1902.isChecked() ? "2"
-                :  "-1");
+                : "-1");
 
-        form.setMc2001(bi.mc2001.getText().toString().trim().isEmpty() ? "-1" : bi.mc2001.getText().toString());
-        form.setMc2002(bi.mc2002.getText().toString().trim().isEmpty() ? "-1" : bi.mc2002.getText().toString());
+        forms.setMc2001(bi.mc2001.getText().toString().trim().isEmpty() ? "-1" : bi.mc2001.getText().toString());
+        forms.setMc2002(bi.mc2002.getText().toString().trim().isEmpty() ? "-1" : bi.mc2002.getText().toString());
 
-        form.setMc21(bi.mc21.getText().toString());
+        forms.setMc21(bi.mc21.getText().toString());
 
-        form.setMc22( bi.mc2201.isChecked() ? "1"
+        forms.setMc22(bi.mc2201.isChecked() ? "1"
                 : bi.mc2202.isChecked() ? "2"
-                :  "-1");
+                : "-1");
 
-        form.setMc23(bi.mc23.getText().toString().trim().isEmpty() ? "-1" : bi.mc23.getText().toString());
+        forms.setMc23(bi.mc23.getText().toString().trim().isEmpty() ? "-1" : bi.mc23.getText().toString());
 
-        form.setMc24(bi.mc24.getText().toString().trim().isEmpty() ? "-1" : bi.mc24.getText().toString());
+        forms.setMc24(bi.mc24.getText().toString().trim().isEmpty() ? "-1" : bi.mc24.getText().toString());
 
-        form.setMc25( bi.mc2501.isChecked() ? "1"
+        forms.setMc25(bi.mc2501.isChecked() ? "1"
                 : bi.mc2502.isChecked() ? "2"
                 : bi.mc2503.isChecked() ? "3"
                 : bi.mc2504.isChecked() ? "4"
                 : bi.mc2505.isChecked() ? "5"
                 : bi.mc2506.isChecked() ? "6"
-                :  "-1");
+                : "-1");
 
-        form.setMc26(bi.mc26.getText().toString().trim().isEmpty() ? "-1" : bi.mc26.getText().toString());
+        forms.setMc26(bi.mc26.getText().toString().trim().isEmpty() ? "-1" : bi.mc26.getText().toString());
 
-        form.setMcrem(bi.mcrem.getText().toString().trim().isEmpty() ? "-1" : bi.mcrem.getText().toString());*/
+        forms.setMcrem(bi.mcrem.getText().toString().trim().isEmpty() ? "-1" : bi.mcrem.getText().toString());
 
     }
 
@@ -231,12 +233,6 @@ public class SectionAActivity extends AppCompatActivity {
             }
         }*/
 
-    }
-
-
-    @Override
-    public void onBackPressed() {
-        Toast.makeText(this, "You can't go back", Toast.LENGTH_SHORT).show();
     }
 
 
