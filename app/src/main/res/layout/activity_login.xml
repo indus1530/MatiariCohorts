@@ -207,13 +207,12 @@
 
                                 <androidx.appcompat.widget.AppCompatButton
                                     android:id="@+id/btnSignin"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="150dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="16dp"
                                     android:layout_marginBottom="16dp"
-                                    android:background="@drawable/outline_btn"
-
+                                    android:background="@drawable/buttonshapewhitebg"
                                     android:paddingStart="12dp"
                                     android:paddingEnd="12dp"
                                     android:text="Login"

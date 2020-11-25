@@ -1,9 +1,9 @@
 <resources>
 
-<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:typeface">sans</item>
+    <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+            <item name="android:typeface">sans</item>
 
-    </style>-->
+        </style>-->
 
     <!-- Base application theme. -->
     <style name="AppThemeEnglish1" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -15,7 +15,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-
         <item name="android:textSize">18sp</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -39,7 +38,6 @@
     </style>
 
     <style name="AppThemeUrdu" parent="Theme.AppCompat.Light.DarkActionBar">
-
         <item name="android:textSize">18sp</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -60,7 +58,6 @@
         <item name="android:exitFadeDuration">200</item>
         <item name="android:layoutDirection">ltr</item>
         <item name="android:animateLayoutChanges">false</item>
-
     </style>
 
 
@@ -73,7 +70,6 @@
         <item name="android:background">@color/colorPrimary</item>
         <item name="android:typeface">sans</item>
         <item name="android:fontFamily">fonts/JameelNooriNastaleeq</item>
-
     </style>
 
     <style name="labels" parent="@android:style/TextAppearance.Widget.TextView">
@@ -89,11 +85,9 @@
         <item name="android:minHeight">52dp</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
         <item name="android:textStyle">bold</item>
-
         <!--
                         <item name="android:background">@color/colorPrimary_overlay</item>
         -->
-
     </style>
 
     <style name="textInput">
@@ -121,15 +115,11 @@
     </style>
 
     <style name="radiobutton" parent="Widget.AppCompat.CompoundButton.RadioButton">
-
         <item name="android:gravity">center_vertical</item>
         <item name="android:elevation">1dp</item>
         <item name="android:radius">2dp</item>
         <item name="android:drawablePadding">8dp</item>
-
-        <!--
-                <item name="android:paddingStart">24dp</item>
-        -->
+        <item name="android:paddingStart">12dp</item>
         <item name="android:paddingEnd">8dp</item>
         <item name="android:paddingTop">8dp</item>
         <item name="android:paddingBottom">8dp</item>
@@ -146,9 +136,7 @@
         <item name="android:paddingBottom">8dp</item>
         <item name="android:minHeight">52dp</item>
         <item name="android:clickable">true</item>
-
         <item name="android:background">@drawable/options_separator</item>
-
     </style>
 
     <style name="button" parent="Widget.AppCompat.Button">
@@ -171,7 +159,6 @@
         <item name="android:background">#efefef</item>
         <item name="android:spinnerItemStyle">@style/spinnerItemStyle</item>
         <item name="android:spinnerDropDownItemStyle">@style/spinnerDropDownItemStyle</item>
-
     </style>
 
     <style name="spinnerDropDownItemStyle">
@@ -226,7 +213,6 @@
         <item name="android:layout_marginTop">4dp</item>
         <item name="android:layout_marginBottom">4dp</item>
         <item name="android:background">@color/gray_overlay</item>
-
         <!--<item name="android:layout_marginRight">10dp</item>-->
         <!--<item name="android:layout_marginLeft">10dp</item>-->
         <item name="cardCornerRadius">7dp</item>
@@ -256,9 +242,7 @@
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
         <item name="android:radius">8dp</item>
-
         <!--        <item name="android:textDirection">ltr</item>-->
-
         <item name="android:focusableInTouchMode">true</item>
     </style>
 
@@ -284,8 +268,6 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textStyle">normal</item>
         <item name="android:letterSpacing">0.04</item>
-
-
     </style>
 
     <style name="heading">
@@ -312,4 +294,5 @@
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
+
 </resources>

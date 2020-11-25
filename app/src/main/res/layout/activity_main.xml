@@ -138,11 +138,11 @@
                         android:layout_width="220dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
-                        android:background="@color/colorPrimaryDark"
+                        android:background="@drawable/buttonshapewhitebg1"
                         android:drawableStart="@drawable/open_form"
                         android:onClick="@{callback::openSpecificActivity}"
                         android:padding="8dp"
-                        android:text="Open Form"
+                        android:text="OPEN FORM"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"
                         android:textColor="@color/white" />
 
