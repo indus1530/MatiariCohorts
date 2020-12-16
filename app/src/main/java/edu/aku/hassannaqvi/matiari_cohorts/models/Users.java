@@ -34,7 +34,7 @@ public class Users {
     }
 
     public void setId(int id) {
-        this.id = Long.valueOf(id);
+        this.id = (long) id;
     }
 
     public String getUserName() {

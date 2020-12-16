@@ -19,15 +19,11 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,15 +33,6 @@ import androidx.databinding.DataBindingUtil;
 import com.github.amlcurran.showcaseview.ShowcaseView;
 import com.github.amlcurran.showcaseview.targets.Target;
 import com.github.amlcurran.showcaseview.targets.ViewTarget;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Objects;
 
 import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS;
 import edu.aku.hassannaqvi.matiari_cohorts.R;
@@ -59,44 +46,15 @@ import static edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS.MINIMUM_TIME_BETWEEN
 import static edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_CONTACTS;
 import static edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_PHONE_STATE;
 import static edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS.TWO_MINUTES;
+import static edu.aku.hassannaqvi.matiari_cohorts.utils.AppUtilsKt.dbBackup;
 import static edu.aku.hassannaqvi.matiari_cohorts.utils.AppUtilsKt.getPermissionsList;
-import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.DATABASE_NAME;
-import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.DB_NAME;
-import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.PROJECT_NAME;
 import static java.lang.Thread.sleep;
 
 public class LoginActivity extends Activity {
 
-    protected static LocationManager locationManager;
-
-    // UI references.
-  /*  @BindView(R.id.bi.loginProgress)
-    ProgressBar bi.loginProgress;
-    @BindView(R.id.login_form)
-    ScrollView bi.loginForm;
-    @BindView(R.id.username)
-    EditText bi.username;
-    @BindView(R.id.password)
-    EditText bi.password;
-    @BindView(R.id.txtinstalldate)
-    TextView txtinstalldate;
-    @BindView(R.id.username_sign_in_button)
-    AppCompatButton bi.btnSignin;
-    @BindView(R.id.syncData)
-    Button syncData;
-    @BindView(R.id.spinnerProvince)
-    Spinner spinnerProvince;
-    @BindView(R.id.spinners)
-    LinearLayout spinners;
-    @BindView(R.id.spinnerDistrict)*/
-    ActivityLoginBinding bi;
-    Spinner spinnerDistrict;
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
-    String DirectoryName;
-    DatabaseHelper db;
-    ArrayAdapter<String> provinceAdapter;
-    int attemptCounter = 0;
+    private static LocationManager locationManager;
+    private ActivityLoginBinding bi;
+    private int attemptCounter = 0;
     private UserLoginTask mAuthTask = null;
 
     @Override
@@ -104,7 +62,6 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         bi = DataBindingUtil.setContentView(this, R.layout.activity_login);
         bi.setCallback(this);
-
 
         MainApp.appInfo = new AppInfo(this);
         bi.txtinstalldate.setText(MainApp.appInfo.getAppInfo());
@@ -131,61 +88,11 @@ public class LoginActivity extends Activity {
                 .singleShot(42)
                 .build();
 
-//        bi.password = findViewById(R.id.password);
-/*
-        bi.password.setOnEditorActionListener((textView, id, keyEvent) -> {
-            if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                attemptLogin();
-                return true;
-            }
-            return false;
-        });
-*/
-
         bi.btnSignin.setOnClickListener(view -> attemptLogin());
-
-        //setListeners();
-
-        db = new DatabaseHelper(this);
 //        DB backup
-        dbBackup();
+        dbBackup(this);
     }
 
-    /*private void setListeners() {
-        provinceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, SplashscreenActivity.provinces);
-        spinnerProvince.setAdapter(provinceAdapter);
-        spinnerProvince.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) return;
-                List<String> districts = new ArrayList<>(Collections.singletonList("...."));
-                for (Map.Entry<String, Pair<String, EnumBlockContract>> entry : SplashscreenActivity.districtsMap.entrySet()) {
-                    if (entry.getValue().getFirst().equals(spinnerProvince.getSelectedItem().toString()))
-                        districts.add(entry.getKey());
-                }
-                spinnerDistrict.setAdapter(new ArrayAdapter<>(LoginActivity.this, android.R.layout.simple_list_item_1
-                        , districts));
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        spinnerDistrict.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) return;
-                MainApp.DIST_ID = Objects.requireNonNull(SplashscreenActivity.districtsMap.get(spinnerDistrict.getSelectedItem().toString())).getSecond().getDist_code();
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-*/
     private void gettingDeviceIMEI() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -204,64 +111,6 @@ public class LoginActivity extends Activity {
         return true;
     }
 
-    public void dbBackup() {
-
-        sharedPref = getSharedPreferences("dss01", MODE_PRIVATE);
-        editor = sharedPref.edit();
-
-        if (sharedPref.getBoolean("flag", false)) {
-
-            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
-
-            if (!dt.equals(new SimpleDateFormat("dd-MM-yy").format(new Date()))) {
-                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
-                editor.apply();
-            }
-
-            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
-            boolean success = true;
-            if (!folder.exists()) {
-                success = folder.mkdirs();
-            }
-            if (success) {
-
-                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
-                folder = new File(DirectoryName);
-                if (!folder.exists()) {
-                    success = folder.mkdirs();
-                }
-                if (success) {
-
-                    try {
-                        File dbFile = new File(this.getDatabasePath(DATABASE_NAME).getPath());
-                        FileInputStream fis = new FileInputStream(dbFile);
-                        String outFileName = DirectoryName + File.separator + DB_NAME;
-                        // Open the empty db as the output stream
-                        OutputStream output = new FileOutputStream(outFileName);
-
-                        // Transfer bytes from the inputfile to the outputfile
-                        byte[] buffer = new byte[1024];
-                        int length;
-                        while ((length = fis.read(buffer)) > 0) {
-                            output.write(buffer, 0, length);
-                        }
-                        // Close the streams
-                        output.flush();
-                        output.close();
-                        fis.close();
-                    } catch (IOException e) {
-                        Log.e("dbBackup:", Objects.requireNonNull(e.getMessage()));
-                    }
-
-                }
-
-            } else {
-                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-    }
-
     public void onSyncDataClick(View view) {
         //TODO implement
 
@@ -275,10 +124,6 @@ public class LoginActivity extends Activity {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
     }
-
-/*    private void populateAutoComplete() {
-        getLoaderManager().initLoader(0, null, this);
-    }*/
 
     private void attemptLogin() {
 
@@ -361,7 +206,6 @@ public class LoginActivity extends Activity {
             }
         });
     }
-
 
     public void onShowPasswordClick(View view) {
         //TODO implement
@@ -471,7 +315,6 @@ public class LoginActivity extends Activity {
         }
     }
 
-
     private void doPermissionGrantedStuffs() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -562,7 +405,6 @@ public class LoginActivity extends Activity {
 
     }
 
-
     public class GPSLocationListener implements LocationListener {
         public void onLocationChanged(Location location) {
 
@@ -611,44 +453,6 @@ public class LoginActivity extends Activity {
         }
 
     }
-
-/*    @Override
-    protected void onResume() {
-        super.onResume();
-        if (getIntent().getBooleanExtra(LOGIN_SPLASH_FLAG, false))
-            callingCoroutine();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CONSTANTS.LOGIN_RESULT_CODE) {
-            if (resultCode == RESULT_OK) {
-                callingCoroutine();
-            }
-        }
-    }*/
-
-/*    private void callingCoroutine() {
-        //To call coroutine here
-        populatingSpinners(getApplicationContext(), provinceAdapter, new SplashscreenActivity.Continuation<Unit>() {
-            @Override
-            public void resume(Unit value) {
-
-            }
-
-            @Override
-            public void resumeWithException(@NotNull Throwable exception) {
-
-            }
-
-            @NotNull
-            @Override
-            public CoroutineContext getContext() {
-                return null;
-            }
-        });
-    }*/
 
     /**
      * Represents an asynchronous login/registration task used to authenticate

@@ -19,12 +19,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.ActivityCompat;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
-
-import org.json.JSONObject;
 
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.UsersContract;
 import edu.aku.hassannaqvi.matiari_cohorts.location.LocationLiveData;
@@ -45,51 +41,26 @@ public class MainApp extends Application {
     public static final String _SERVER_URL = "sync.php";
     public static final String _SERVER_GET_URL = "getData.php";
     public static final String _PHOTO_UPLOAD_URL = MainApp._IP + "/blf/api/uploads.php";
-
     public static final String _UPDATE_URL = MainApp._IP + "/blf/app/";
-    public static final Integer MONTHS_LIMIT = 11;
-    public static final Integer DAYS_LIMIT = 29;
     // Location settings
     public static final int INTERVAL_BETWEEN_LOCATION_UPDATE = 200;
     public static final int INTERVAL_FASTEST_BETWEEN_LOCATION_UPDATE = 1000;
-    //public static final long MILLISECONDS_IN_5YEAR = (MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR + MILLISECONDS_IN_YEAR);
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
-    private static final int TWENTY_MINUTES = 1000 * 60 * 20;
     private static final int TWO_MINUTES = 1000 * 60 * 2;
-    private static final long MILLIS_IN_SECOND = 1000;
-    private static final long SECONDS_IN_MINUTE = 60;
-    private static final long MINUTES_IN_HOUR = 60;
-    private static final long HOURS_IN_DAY = 24;
-    public static final long MILLISECONDS_IN_DAY = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY;
-    private static final long DAYS_IN_YEAR = 365;
-    public static final long MILLISECONDS_IN_YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_YEAR;
-    private static final long DAYS_IN_5_YEAR = 365 * 5;
-    public static final long MILLISECONDS_IN_5Years = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_5_YEAR;
-    private static final long DAYS_IN_MONTH = 30;
-    public static final long MILLISECONDS_IN_MONTH = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_MONTH;
-    private static final long DAYS_IN_2_YEAR = 365 * 2;
-    public static final long MILLISECONDS_IN_2Years = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_2_YEAR;
     public static String deviceId;
     public static OnItemClick itemClick;
-    public static OnItemClick countItemClick;
     public static AppInfo appInfo;
     public static Boolean admin = false;
-    public static LiveData<Forms> liveForms = new MutableLiveData<>();
 
     public static String userName = "0000";
     public static UsersContract user;
     public static Forms forms;
-    public static JSONObject jsonSL;
 
     public static String DeviceURL = "devices.php";
     public static String IMEI;
     public static SharedPreferences sharedPref;
     public static String DIST_ID;
-    public static String sf2;
-    public static String s1q2;
-    public static String scrdt;
-    public static long childAgeinHours;
     protected static LocationManager locationManager;
     private LocationLiveData locationlivedata;
 
@@ -168,9 +139,7 @@ public class MainApp extends Application {
         //TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "@fonts/JameelNooriNastaleeq.ttf");
 
         //TypefaceUtil.overrideFont(getApplicationContext(), "SANS_SERIF", "fonts/JameelNooriNastaleeq.ttf");
-        deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-
+        deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
         locationlivedata = new LocationLiveData(this);
         // Requires Permission for GPS -- android.permission.ACCESS_FINE_LOCATION
         // Requires Additional permission for 5.0 -- android.hardware.location.gps
@@ -183,9 +152,7 @@ public class MainApp extends Application {
                 MINIMUM_TIME_BETWEEN_UPDATES,
                 MINIMUM_DISTANCE_CHANGE_FOR_UPDATES,
                 new GPSLocationListener() // Implement this class from code
-
         );
-
 
 //        Initialize Dead Member List
 //        deadMembers = new ArrayList<String>();

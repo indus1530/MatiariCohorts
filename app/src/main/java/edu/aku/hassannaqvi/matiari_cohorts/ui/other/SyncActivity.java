@@ -20,14 +20,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS;
 import edu.aku.hassannaqvi.matiari_cohorts.R;
@@ -43,17 +40,14 @@ import edu.aku.hassannaqvi.matiari_cohorts.sync.SyncAllData;
 import edu.aku.hassannaqvi.matiari_cohorts.sync.SyncAllPhotos;
 import edu.aku.hassannaqvi.matiari_cohorts.sync.SyncDevice;
 
-import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.DATABASE_NAME;
-import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.DB_NAME;
+import static edu.aku.hassannaqvi.matiari_cohorts.utils.AppUtilsKt.dbBackup;
 import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.PROJECT_NAME;
 
 public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDeviceInterface {
     SharedPreferences.Editor editor;
     SharedPreferences sharedPref;
-    String DirectoryName;
     DatabaseHelper db;
     SyncListAdapter syncListAdapter;
-    //UploadListAdapter uploadListAdapter;
     ActivitySyncBinding bi;
     SyncModel model;
     SyncModel uploadmodel;
@@ -78,7 +72,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         sharedPref = getSharedPreferences("src", MODE_PRIVATE);
         editor = sharedPref.edit();
         db = new DatabaseHelper(this);
-        dbBackup();
+        dbBackup(this);
 
         sync_flag = getIntent().getBooleanExtra(CONSTANTS.SYNC_LOGIN, false);
 
@@ -102,20 +96,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
         }
     }
-
-/*    void setAdapter() {
-        syncListAdapter = new SyncListAdapter(list);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
-        bi.rvSyncList.setLayoutManager(mLayoutManager);
-        bi.rvSyncList.setItemAnimator(new DefaultItemAnimator());
-        bi.rvSyncList.setAdapter(syncListAdapter);
-        syncListAdapter.notifyDataSetChanged();
-        if (syncListAdapter.getItemCount() > 0) {
-            bi.noItem.setVisibility(View.GONE);
-        } else {
-            bi.noItem.setVisibility(View.VISIBLE);
-        }
-    }*/
 
     void setUploadAdapter() {
         syncListAdapter = new SyncListAdapter(uploadlist);
@@ -174,64 +154,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();
-        }
-
-    }
-
-
-    public void dbBackup() {
-
-
-        if (sharedPref.getBoolean("flag", false)) {
-
-            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
-
-            if (!dt.equals(new SimpleDateFormat("dd-MM-yy").format(new Date()))) {
-                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
-                editor.apply();
-            }
-
-            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
-            boolean success = true;
-            if (!folder.exists()) {
-                success = folder.mkdirs();
-            }
-            if (success) {
-                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
-                folder = new File(DirectoryName);
-                if (!folder.exists()) {
-                    success = folder.mkdirs();
-                }
-                if (success) {
-
-                    try {
-                        File dbFile = new File(this.getDatabasePath(DATABASE_NAME).getPath());
-                        FileInputStream fis = new FileInputStream(dbFile);
-
-                        String outFileName = DirectoryName + File.separator + DB_NAME;
-
-                        // Open the empty db as the output stream
-                        OutputStream output = new FileOutputStream(outFileName);
-
-                        // Transfer bytes from the inputfile to the outputfile
-                        byte[] buffer = new byte[1024];
-                        int length;
-                        while ((length = fis.read(buffer)) > 0) {
-                            output.write(buffer, 0, length);
-                        }
-                        // Close the streams
-                        output.flush();
-                        output.close();
-                        fis.close();
-                    } catch (IOException e) {
-                        Log.e("dbBackup:", e.getMessage());
-                    }
-
-                }
-
-            } else {
-                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
-            }
         }
 
     }
@@ -299,8 +221,8 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
     private class SyncData extends AsyncTask<Boolean, String, String> {
 
-        private Context mContext;
-        private String distID;
+        private final Context mContext;
+        private final String distID;
 
         private SyncData(Context mContext, String districtId) {
             this.mContext = mContext;
@@ -347,13 +269,8 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         @Override
         protected void onPostExecute(String s) {
             new Handler().postDelayed(() -> {
-                editor.putString("LastDataDownload", new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
+                editor.putString("LastDataDownload", new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH).format(new Date()));
                 editor.apply();
-                editor.putBoolean("flag", true);
-                editor.commit();
-
-                dbBackup();
-
             }, 1200);
         }
     }

@@ -1,236 +1,202 @@
-package edu.aku.hassannaqvi.matiari_cohorts.utils;
+package edu.aku.hassannaqvi.matiari_cohorts.utils
 
-import android.util.Log;
+import android.util.Log
+import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.TimeUnit;
-
-import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS;
-
-public class DateUtils {
-
-    public static int monthsBetweenDates(Date startDate, Date endDate) {
-
-        Calendar start = Calendar.getInstance();
-        start.setTime(startDate);
-
-        Calendar end = Calendar.getInstance();
-        end.setTime(endDate);
-
-        int monthsBetween = 0;
-        int dateDiff = end.get(Calendar.DAY_OF_MONTH) - start.get(Calendar.DAY_OF_MONTH);
-
-        if (dateDiff < 0) {
-            int borrrow = end.getActualMaximum(Calendar.DAY_OF_MONTH);
-            dateDiff = (end.get(Calendar.DAY_OF_MONTH) + borrrow) - start.get(Calendar.DAY_OF_MONTH);
-            monthsBetween--;
-
-            if (dateDiff > 0) {
-                monthsBetween++;
-            }
+fun monthsBetweenDates(startDate: Date, endDate: Date): Int {
+    val start = Calendar.getInstance()
+    start.time = startDate
+    val end = Calendar.getInstance()
+    end.time = endDate
+    var monthsBetween = 0
+    var dateDiff = end[Calendar.DAY_OF_MONTH] - start[Calendar.DAY_OF_MONTH]
+    if (dateDiff < 0) {
+        val borrrow = end.getActualMaximum(Calendar.DAY_OF_MONTH)
+        dateDiff = end[Calendar.DAY_OF_MONTH] + borrrow - start[Calendar.DAY_OF_MONTH]
+        monthsBetween--
+        if (dateDiff > 0) {
+            monthsBetween++
         }
-
-        monthsBetween += end.get(Calendar.MONTH) - start.get(Calendar.MONTH);
-        monthsBetween += (end.get(Calendar.YEAR) - start.get(Calendar.YEAR)) * 12;
-        return monthsBetween;
     }
+    monthsBetween += end[Calendar.MONTH] - start[Calendar.MONTH]
+    monthsBetween += (end[Calendar.YEAR] - start[Calendar.YEAR]) * 12
+    return monthsBetween
+}
 
-    public static String ageInYears(int day, int month, int year) {
-        Calendar dob = Calendar.getInstance();
-        Calendar today = Calendar.getInstance();
+fun ageInYears(day: Int, month: Int, year: Int): String {
+    val dob = Calendar.getInstance()
+    val today = Calendar.getInstance()
+    if (year < CONSTANTS.MINYEAR) return "0"
+    dob[year, month] = day
+    var age = today[Calendar.YEAR] - dob[Calendar.YEAR]
+    val age_month = today[Calendar.MONTH] - dob[Calendar.MONTH]
+    if (today[Calendar.DAY_OF_YEAR] < dob[Calendar.DAY_OF_YEAR]) {
+        age--
+    }
+    val ageInt = age
+    return Integer.toString(ageInt)
+}
 
-        if (year < CONSTANTS.MINYEAR) return "0";
+fun ageInMonths(year: String, month: String): Long {
+    return (year.toInt() * 12 + month.toInt()).toLong()
+}
 
-        dob.set(year, month, day);
+fun convertDateFormat(dateStr: String): String {
+    val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+    try {
+        val d = sdf.parse(dateStr)
+        return SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH).format(d)
+    } catch (ex: ParseException) {
+        ex.printStackTrace()
+    }
+    return ""
+}
 
+fun getYearsBack(format: String, year: Int): String {
+    val cal = Calendar.getInstance()
+    cal.time = cal.time
+    cal.add(Calendar.YEAR, year)
+    return SimpleDateFormat(format, Locale.ENGLISH).format(cal.time) //"dd-MM-yyyy HH:mm"
+}
 
-        int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-        int age_month = today.get(Calendar.MONTH) - dob.get(Calendar.MONTH);
+fun addYearsByDate(cal: Calendar, format: String, year: Int): String {
+    cal.time = cal.time
+    cal.add(Calendar.YEAR, year)
+    return SimpleDateFormat(format, Locale.ENGLISH).format(cal.time) //"dd-MM-yyyy HH:mm"
+}
 
-        if (today.get(Calendar.DAY_OF_YEAR) < dob.get(Calendar.DAY_OF_YEAR)) {
-            age--;
+fun getMonthsBack(format: String, month: Int): String {
+    val cal = Calendar.getInstance()
+    cal.time = cal.time
+    cal.add(Calendar.MONTH, month)
+    return SimpleDateFormat(format, Locale.ENGLISH).format(cal.time) //"dd-MM-yyyy HH:mm"
+}
+
+fun getDaysBack(format: String, day: Int): String {
+    val cal = Calendar.getInstance()
+    cal.time = cal.time
+    cal.add(Calendar.DAY_OF_YEAR, day)
+    return SimpleDateFormat(format, Locale.ENGLISH).format(cal.time) //"dd-MM-yyyy HH:mm"
+}
+
+fun calculatedDate(date: String, dateFormat: String, q: Int, period: String): String? {
+    // q = quantity or add (substract)
+    // p = period :: d=day, m=month, y=year
+    val cal = Calendar.getInstance()
+    val s = SimpleDateFormat(dateFormat, Locale.ENGLISH)
+    try {
+        cal.time = s.parse(date)
+        when (period) {
+            "d" -> cal.add(Calendar.DAY_OF_YEAR, q)
+            "m" -> cal.add(Calendar.MONTH, q)
+            "y" -> cal.add(Calendar.YEAR, q)
         }
-
-        int ageInt = age;
-
-        return Integer.toString(ageInt);
+        return s.format(cal.time) //"dd-MM-yyyy HH:mm"
+    } catch (e: ParseException) {
+        Log.e("TAG", "Error in Parsing Date : " + e.message)
     }
+    return null
+}
 
-    public static long ageInMonths(String year, String month) {
-        return (Integer.parseInt(year) * 12) + Integer.parseInt(month);
+fun getDOB(format: String, year: Int, month: Int, day: Int): String {
+    val totalmonths = year * 12 + month
+    val cal = Calendar.getInstance()
+    cal.time = cal.time
+    cal.add(Calendar.MONTH, -totalmonths)
+    cal.add(Calendar.DAY_OF_MONTH, -day)
+    return SimpleDateFormat(format, Locale.ENGLISH).format(cal.time)
+}
+
+fun getAgeInYears(year: Int): Int {
+    val cal = Calendar.getInstance()
+    val currentYear = cal[Calendar.YEAR]
+    return currentYear - year
+}
+
+fun getCalendarDate(value: String): Calendar {
+    val sdf = SimpleDateFormat("yyyy/MM/dd", Locale.ENGLISH)
+    val calendar = Calendar.getInstance()
+    try {
+        val date = sdf.parse(value)
+        calendar.time = date
+        return calendar
+    } catch (e: ParseException) {
+        e.printStackTrace()
     }
+    return calendar
+}
 
-    public static String convertDateFormat(String dateStr) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        try {
-            Date d = sdf.parse(dateStr);
-            return new SimpleDateFormat("dd/MM/yyyy").format(d);
-        } catch (ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        return "";
+fun getDate(value: String): Calendar {
+    val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+    val calendar = Calendar.getInstance()
+    try {
+        val date = sdf.parse(value)
+        calendar.time = date
+        return calendar
+    } catch (e: ParseException) {
+        e.printStackTrace()
     }
+    return calendar
+}
 
-    public static String getYearsBack(String format, int year) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(cal.getTime());
-        cal.add(Calendar.YEAR, year);
-        return new SimpleDateFormat(format).format(cal.getTime()); //"dd-MM-yyyy HH:mm"
+fun ageInYearByDOB(dateStr: String): Long {
+    val cal = getCalendarDate(dateStr)
+    val dob = cal.time
+    val today = Date()
+    val diff = today.time - dob.time
+    return diff / (24 * 60 * 60 * 1000) / 365
+}
+
+fun getDateDiff(date1: Date, date2: Date, timeUnit: TimeUnit): Long {
+    val diffInMillies = date2.time - date1.time
+    return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS)
+}
+
+fun ageInMonthsByDOB(cal: Calendar): Long {
+    val dob = cal.time
+    val today = Date()
+    val diff = (today.time - dob.time).toFloat()
+    val ageInMonths = diff / (24 * 60 * 60 * 1000) / 30.4375
+    return Math.floor(ageInMonths).toLong()
+}
+
+fun dobDiff(cal: Calendar, cal2: Calendar): Long {
+    val dob = cal.time
+    val visitDate = cal2.time
+    val diff = (visitDate.time - dob.time).toFloat()
+    val ageInMonths = diff / (24 * 60 * 60 * 1000) / 30.4375
+    return Math.floor(ageInMonths).toLong()
+}
+
+fun ageInDaysByDOB(dateStr: String): Long {
+    val cal = getCalDate(dateStr)
+    val dob = cal.time
+    val today = Date()
+    val diff = today.time - dob.time
+    return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS)
+}
+
+fun getCalDate(value: String): Calendar {
+    val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+    val calendar = Calendar.getInstance()
+    try {
+        val date = sdf.parse(value)
+        calendar.time = date
+        return calendar
+    } catch (e: ParseException) {
+        e.printStackTrace()
     }
+    return calendar
+}
 
-    public static String addYearsByDate(Calendar cal, String format, int year) {
-        cal.setTime(cal.getTime());
-        cal.add(Calendar.YEAR, year);
-        return new SimpleDateFormat(format).format(cal.getTime()); //"dd-MM-yyyy HH:mm"
-    }
-
-    public static String getMonthsBack(String format, int month) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(cal.getTime());
-        cal.add(Calendar.MONTH, month);
-        return new SimpleDateFormat(format).format(cal.getTime()); //"dd-MM-yyyy HH:mm"
-    }
-
-    public static String getDaysBack(String format, int day) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(cal.getTime());
-        cal.add(Calendar.DAY_OF_YEAR, day);
-        return new SimpleDateFormat(format).format(cal.getTime()); //"dd-MM-yyyy HH:mm"
-    }
-
-    public static String calculatedDate(String date, String dateFormat, int q, String period) {
-        // q = quantity or add (substract)
-        // p = period :: d=day, m=month, y=year
-        Calendar cal = Calendar.getInstance();
-        SimpleDateFormat s = new SimpleDateFormat(dateFormat);
-
-        try {
-            cal.setTime(s.parse(date));
-
-            switch (period) {
-                case "d":
-                    cal.add(Calendar.DAY_OF_YEAR, q);
-                    break;
-                case "m":
-                    cal.add(Calendar.MONTH, q);
-                    break;
-                case "y":
-                    cal.add(Calendar.YEAR, q);
-                    break;
-            }
-            return s.format(cal.getTime()); //"dd-MM-yyyy HH:mm"
-        } catch (ParseException e) {
-            Log.e("TAG", "Error in Parsing Date : " + e.getMessage());
-        }
-        return null;
-    }
-
-    public static String getDOB(String format, int year, int month, int day) {
-
-        int totalmonths = (year * 12) + month;
-
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(cal.getTime());
-        cal.add(Calendar.MONTH, -totalmonths);
-        cal.add(Calendar.DAY_OF_MONTH, -day);
-
-        return new SimpleDateFormat(format).format(cal.getTime());
-    }
-
-    public static int getAgeInYears(int year) {
-        Calendar cal = Calendar.getInstance();
-        int currentYear = cal.get(Calendar.YEAR);
-
-        return currentYear - year;
-    }
-
-    public static Calendar getCalendarDate(String value) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-        Calendar calendar = Calendar.getInstance();
-        try {
-            Date date = sdf.parse(value);
-            calendar.setTime(date);
-            return calendar;
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return calendar;
-    }
-
-    public static Calendar getDate(String value) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar calendar = Calendar.getInstance();
-        try {
-            Date date = sdf.parse(value);
-            calendar.setTime(date);
-            return calendar;
-
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return calendar;
-    }
-
-    public static long ageInYearByDOB(String dateStr) {
-        Calendar cal = getCalendarDate(dateStr);
-        Date dob = cal.getTime();
-        Date today = new Date();
-        long diff = today.getTime() - dob.getTime();
-        return (diff / (24 * 60 * 60 * 1000)) / 365;
-    }
-
-    public static long getDateDiff(Date date1, Date date2, TimeUnit timeUnit) {
-        long diffInMillies = date2.getTime() - date1.getTime();
-        return timeUnit.convert(diffInMillies, TimeUnit.MILLISECONDS);
-    }
-
-    public static long ageInMonthsByDOB(Calendar cal) {
-        Date dob = cal.getTime();
-        Date today = new Date();
-        long diff = today.getTime() - dob.getTime();
-        double ageInMonths = (diff / (24 * 60 * 60 * 1000)) / 30.4375;
-        return (long) Math.floor(ageInMonths);
-    }
-
-    public static long dobDiff(Calendar cal, Calendar cal2) {
-        Date dob = cal.getTime();
-        Date visitDate = cal2.getTime();
-        long diff = visitDate.getTime() - dob.getTime();
-        double ageInMonths = (diff / (24 * 60 * 60 * 1000)) / 30.4375;
-        return (long) Math.floor(ageInMonths);
-    }
-
-    public static long ageInDaysByDOB(String dateStr) {
-        Calendar cal = getCalDate(dateStr);
-        Date dob = cal.getTime();
-        Date today = new Date();
-        long diff = today.getTime() - dob.getTime();
-        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-    }
-
-    public static Calendar getCalDate(String value) {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        Calendar calendar = Calendar.getInstance();
-        try {
-            Date date = sdf.parse(value);
-            calendar.setTime(date);
-            return calendar;
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return calendar;
-    }
-
-    public static String getYearsAndMonthsBack(String format, int month, int year) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(cal.getTime());
-        cal.add(Calendar.YEAR, year);
-        cal.add(Calendar.MONTH, month);
-        return new SimpleDateFormat(format).format(cal.getTime()); //"dd-MM-yyyy HH:mm"
-    }
+fun getYearsAndMonthsBack(format: String, month: Int, year: Int): String {
+    val cal = Calendar.getInstance()
+    cal.time = cal.time
+    cal.add(Calendar.YEAR, year)
+    cal.add(Calendar.MONTH, month)
+    return SimpleDateFormat(format, Locale.ENGLISH).format(cal.time)
 }

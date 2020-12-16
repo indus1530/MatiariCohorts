@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.datecollection
+package edu.aku.hassannaqvi.matiari_cohorts.utils.datecollection
 
 import org.threeten.bp.DateTimeException
 import org.threeten.bp.LocalDate

@@ -70,9 +70,6 @@ public class Forms extends LiveData<Forms> {
     private String appversion = "";
     private String sA = "";
 
-    //For section selection
-    private SectionSelection secSelection;
-
 
     public Forms() {
     }
@@ -316,15 +313,6 @@ public class Forms extends LiveData<Forms> {
 
     public void setMcrem(String mcrem) {
         this.mcrem = mcrem;
-    }
-
-
-    public SectionSelection getSecSelection() {
-        return secSelection;
-    }
-
-    public void setSecSelection(SectionSelection secSelection) {
-        this.secSelection = secSelection;
     }
 
 

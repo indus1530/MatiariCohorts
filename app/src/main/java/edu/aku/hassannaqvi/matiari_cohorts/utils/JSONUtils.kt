@@ -1,25 +1,23 @@
-package edu.aku.hassannaqvi.matiari_cohorts.utils;
+package edu.aku.hassannaqvi.matiari_cohorts.utils
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.json.JSONException
+import org.json.JSONObject
 
-import java.util.Iterator;
-
-public class JSONUtils {
-    public static JSONObject mergeJSONObjects(JSONObject Obj1, JSONObject Obj2) {
-        JSONObject merged = new JSONObject();
-        JSONObject[] objs = new JSONObject[]{Obj1, Obj2};
-        for (JSONObject obj : objs) {
-            Iterator it = obj.keys();
+object JSONUtils {
+    fun mergeJSONObjects(Obj1: JSONObject, Obj2: JSONObject): JSONObject {
+        val merged = JSONObject()
+        val objs = arrayOf(Obj1, Obj2)
+        for (obj in objs) {
+            val it: Iterator<*> = obj.keys()
             while (it.hasNext()) {
-                String key = (String) it.next();
+                val key = it.next() as String
                 try {
-                    merged.put(key, obj.get(key));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    merged.put(key, obj[key])
+                } catch (e: JSONException) {
+                    e.printStackTrace()
                 }
             }
         }
-        return merged;
+        return merged
     }
 }
