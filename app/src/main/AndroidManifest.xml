@@ -20,7 +20,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
-        android:name="edu.aku.hassannaqvi.matiari_cohorts.core.MainApp"
+        android:name=".core.MainApp"
         android:allowBackup="false"
         android:icon="@drawable/agakhan"
         android:label="@string/app_name"
@@ -28,21 +28,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-
+        <activity android:name=".ui.sections.dashboardActivity.DashboardActivity"></activity>
         <activity
-            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.list_activity.FormsReportCluster"
+            android:name=".ui.list_activity.FormsReportCluster"
             android:label="Forms Report"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.list_activity.FormsReportDate"
+            android:name=".ui.list_activity.FormsReportDate"
             android:label="Forms Report"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.sections.SectionAActivity"
+            android:name=".ui.sections.SectionAActivity"
             android:label="@string/section1_mainheading"
             android:screenOrientation="portrait" />
         <activity
-            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.SplashscreenActivity"
+            android:name=".ui.other.SplashscreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -52,21 +52,21 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.LoginActivity"
+            android:name=".ui.other.LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity" />
+        <activity android:name=".ui.other.MainActivity" />
         <activity
-            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity"
+            android:name=".ui.other.EndingActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu" />
         <activity
-            android:name="edu.aku.hassannaqvi.matiari_cohorts.core.AndroidDatabaseManager"
-            android:parentActivityName="edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity"
+            android:name=".core.AndroidDatabaseManager"
+            android:parentActivityName=".ui.other.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name="edu.aku.hassannaqvi.matiari_cohorts.ui.other.SyncActivity"
-            android:parentActivityName="edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity"
+            android:name=".ui.other.SyncActivity"
+            android:parentActivityName=".ui.other.MainActivity"
             android:screenOrientation="portrait" />
     </application>
 
