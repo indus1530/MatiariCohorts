@@ -31,7 +31,7 @@ import edu.aku.hassannaqvi.matiari_cohorts.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityMainBinding;
 import edu.aku.hassannaqvi.matiari_cohorts.models.VersionApp;
-import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.SectionAActivity;
+import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity;
 import edu.aku.hassannaqvi.matiari_cohorts.utils.AndroidUtilityKt;
 import edu.aku.hassannaqvi.matiari_cohorts.utils.AppUtilsKt;
 import edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable;
@@ -311,7 +311,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         Intent oF = null;
         switch (v.getId()) {
             case R.id.formA:
-                oF = new Intent(this, SectionAActivity.class);
+                oF = new Intent(this, DashboardActivity.class);
                 break;
             case R.id.databaseBtn:
                 oF = new Intent(this, AndroidDatabaseManager.class);

@@ -3,12 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.sections.dashboardActivity.fragments.ChildListFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/multiStateView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        app:msv_animateViewChanges="true"
+        app:msv_emptyView="@layout/empty_view"
+        app:msv_loadingView="@layout/loading_view"
+        app:msv_viewState="content">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/hhList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/light_gray"
+            app:layout_constraintTop_toBottomOf="@+id/checkLayout2"
+            tools:listitem="@layout/item_hh_layout">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+    </com.kennyc.view.MultiStateView>
 
 </FrameLayout>
