@@ -234,8 +234,7 @@
                                     android:paddingStart="12dp"
                                     android:paddingEnd="12dp"
                                     android:text="Download User Data"
-                                    android:textColor="@color/colorPrimaryDark"
-                                    android:visibility="gone" />
+                                    android:textColor="@color/colorPrimaryDark" />
                             </LinearLayout>
 
                             <LinearLayout

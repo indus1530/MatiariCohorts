@@ -28,7 +28,7 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
             //multiStateView.viewState = MultiStateView.ViewState.EMPTY
             val worker: ScheduledExecutorService = Executors.newSingleThreadScheduledExecutor()
             worker.schedule(Runnable {
-                Toast.makeText(this.activity, "No Content", Toast.LENGTH_SHORT).show()
+                Toast.makeText(view.context, "No Content", Toast.LENGTH_SHORT).show()
             }, 3500, TimeUnit.MILLISECONDS)
         }, 2000L)
 

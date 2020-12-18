@@ -25,8 +25,11 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
         _villageResponse.value = ResponseStatusCallbacks.loading(null)
         viewModelScope.launch {
             try {
-                _villageResponse.value =
-                        ResponseStatusCallbacks.success(repository.getVillages(), "Villages found")
+                val villages = repository.getVillages()
+                _villageResponse.value = if (villages.size > 0)
+                    ResponseStatusCallbacks.success(villages, "Villages found")
+                else
+                    ResponseStatusCallbacks.error(data = null, message = "No village found!")
             } catch (e: Exception) {
                 _villageResponse.value =
                         ResponseStatusCallbacks.error(data = null, message = "No village found!")

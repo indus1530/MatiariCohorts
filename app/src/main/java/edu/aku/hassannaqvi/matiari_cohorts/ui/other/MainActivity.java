@@ -14,6 +14,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -243,22 +245,22 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
 
     }
 
-  /*  @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = null;
         switch (item.getItemId()) {
             case R.id.onSync:
                 intent = new Intent(MainActivity.this, SyncActivity.class);
                 break;
-          *//*  case R.id.checkOpenForms:
+            /*case R.id.checkOpenForms:
                 intent = new Intent(MainActivity.this, PendingFormsActivity.class);
-                break;*//*
+                break;
             case R.id.formsReportDate:
                 intent = new Intent(MainActivity.this, FormsReportDate.class);
                 break;
             case R.id.formsReportCluster:
                 intent = new Intent(MainActivity.this, FormsReportCluster.class);
-                break;
+                break;*/
         }
         startActivity(intent);
         return super.onOptionsItemSelected(item);
@@ -268,7 +270,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.item_menu, menu);
         return super.onCreateOptionsMenu(menu);
-    }*/
+     }
 
     @Override
     public void callWarningActivity() {
