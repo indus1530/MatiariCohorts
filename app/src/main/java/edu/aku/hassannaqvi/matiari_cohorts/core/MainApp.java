@@ -23,9 +23,9 @@ import androidx.core.app.ActivityCompat;
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.UsersContract;
-import edu.aku.hassannaqvi.matiari_cohorts.location.LocationLiveData;
 import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity;
+import edu.aku.hassannaqvi.matiari_cohorts.utils.LocationUtils;
 
 
 /**
@@ -62,7 +62,7 @@ public class MainApp extends Application {
     public static SharedPreferences sharedPref;
     public static String DIST_ID;
     protected static LocationManager locationManager;
-    private LocationLiveData locationlivedata;
+    private LocationUtils locationlivedata;
 
     public static void setItemClick(OnItemClick itemClick) {
         MainApp.itemClick = itemClick;
@@ -140,7 +140,7 @@ public class MainApp extends Application {
 
         //TypefaceUtil.overrideFont(getApplicationContext(), "SANS_SERIF", "fonts/JameelNooriNastaleeq.ttf");
         deviceId = Settings.Secure.getString(getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
-        locationlivedata = new LocationLiveData(this);
+        locationlivedata = new LocationUtils(this);
         // Requires Permission for GPS -- android.permission.ACCESS_FINE_LOCATION
         // Requires Additional permission for 5.0 -- android.hardware.location.gps
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);

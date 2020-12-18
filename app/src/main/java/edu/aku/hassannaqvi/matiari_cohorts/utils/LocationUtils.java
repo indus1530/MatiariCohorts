@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.location;
+package edu.aku.hassannaqvi.matiari_cohorts.utils;
 
 import android.content.Context;
 import android.location.Location;
@@ -15,11 +15,11 @@ import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.models.LocationModel;
 
 
-public class LocationLiveData extends LiveData<LocationModel> {
-    private FusedLocationProviderClient fusedLocationClient;
+public class LocationUtils extends LiveData<LocationModel> {
+    private final FusedLocationProviderClient fusedLocationClient;
 
 
-    private LocationCallback locationCallback = new LocationCallback() {
+    private final LocationCallback locationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult result) {
             if (result == null)
@@ -31,7 +31,7 @@ public class LocationLiveData extends LiveData<LocationModel> {
         }
     };
 
-    public LocationLiveData(Context context) {
+    public LocationUtils(Context context) {
         this.fusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
     }
 

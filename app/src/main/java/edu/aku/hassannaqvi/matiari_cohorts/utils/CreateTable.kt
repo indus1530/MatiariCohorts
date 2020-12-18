@@ -1,10 +1,10 @@
 package edu.aku.hassannaqvi.matiari_cohorts.utils
 
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.BLRandomContract.BLRandomTable
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.DistrictsContract.DistrictsTable
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.FormsContract.FormsTable
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.UsersContract.UsersTable
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.VersionAppContract.VersionAppTable
+import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel.ChildTable
+import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel.VillageTable
 
 object CreateTable {
     const val DATABASE_NAME = "matiari_cohorts.db"
@@ -38,31 +38,30 @@ object CreateTable {
             + UsersTable.COLUMN_PASSWORD + " TEXT,"
             + UsersTable.COLUMN_FULLNAME + " TEXT"
             + " );")
-    const val SQL_CREATE_DISTRICTS = ("CREATE TABLE " + DistrictsTable.TABLE_NAME + "("
-            + DistrictsTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
-            + DistrictsTable.COLUMN_DIST_ID + " TEXT,"
-            + DistrictsTable.COLUMN_ADMIN_UNIT + " TEXT,"
-            + DistrictsTable.COLUMN_PROV + " TEXT"
-            + " );")
     const val SQL_CREATE_VERSIONAPP = "CREATE TABLE " + VersionAppTable.TABLE_NAME + " (" +
             VersionAppTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             VersionAppTable.COLUMN_VERSION_CODE + " TEXT, " +
             VersionAppTable.COLUMN_VERSION_NAME + " TEXT, " +
             VersionAppTable.COLUMN_PATH_NAME + " TEXT " +
             ");"
-    const val SQL_CREATE_BL_RANDOM = ("CREATE TABLE " + BLRandomTable.TABLE_NAME + "("
-            + BLRandomTable.COLUMN_ID + " TEXT,"
-            + BLRandomTable.COLUMN_P_CODE + " TEXT,"
-            + BLRandomTable.COLUMN_EB_CODE + " TEXT,"
-            + BLRandomTable.COLUMN_LUID + " TEXT,"
-            + BLRandomTable.COLUMN_HH + " TEXT,"
-            + BLRandomTable.COLUMN_STRUCTURE_NO + " TEXT,"
-            + BLRandomTable.COLUMN_FAMILY_EXT_CODE + " TEXT,"
-            + BLRandomTable.COLUMN_HH_HEAD + " TEXT,"
-            + BLRandomTable.COLUMN_CONTACT + " TEXT,"
-            + BLRandomTable.COLUMN_HH_SELECTED_STRUCT + " TEXT,"
-            + BLRandomTable.COLUMN_RANDOMDT + " TEXT,"
-            + BLRandomTable.COLUMN_SNO_HH + " TEXT );") /*    public static final String SQL_ALTER_CHILD_TABLE = "ALTER TABLE " +
+    const val SQL_CREATE_VILLAGE = ("CREATE TABLE " + VillageTable.TABLE_NAME + "("
+            + VillageTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + VillageTable.COLUMN_VILLAGE_CODE + " TEXT,"
+            + VillageTable.COLUMN_UC_CODE + " TEXT,"
+            + VillageTable.COLUMN_UC + " TEXT,"
+            + VillageTable.COLUMN_VILLAGE + " TEXT);")
+    const val SQL_CREATE_CHILD_LIST = ("CREATE TABLE " + ChildTable.TABLE_NAME + "("
+            + ChildTable.COLUMN_ID + " TEXT,"
+            + ChildTable.COLUMN_CHILD_ID + " TEXT,"
+            + ChildTable.COLUMN_CHILD_NAME + " TEXT,"
+            + ChildTable.COLUMN_DOB + " TEXT,"
+            + ChildTable.COLUMN_GENDER + " TEXT,"
+            + ChildTable.COLUMN_HH_HEAD + " TEXT,"
+            + ChildTable.COLUMN_MOTHER_NAME + " TEXT,"
+            + ChildTable.COLUMN_PROJECT + " TEXT,"
+            + ChildTable.COLUMN_VILLAGE_CODE + " TEXT);")
+
+/*    public static final String SQL_ALTER_CHILD_TABLE = "ALTER TABLE " +
             ChildTable.TABLE_NAME + " ADD COLUMN " +
             ChildTable.COLUMN_SYSDATE + " TEXT";*/
 }

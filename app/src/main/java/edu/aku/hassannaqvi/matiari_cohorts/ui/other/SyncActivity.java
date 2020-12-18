@@ -234,7 +234,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
             runOnUiThread(() -> {
 
                 if (booleans[0]) {
-//                  getting Users!!
+//                  getting Users
                     if (listActivityCreated) {
                         model = new SyncModel();
                         model.setstatusID(0);
@@ -250,13 +250,21 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                     }
                     new GetAllData(mContext, "VersionApp", syncListAdapter, list).execute();
 
-//                    Getting App Version
+//                    Getting ChildList
                     if (listActivityCreated) {
                         model = new SyncModel();
                         model.setstatusID(0);
                         list.add(model);
                     }
-                    new GetAllData(mContext, "Districts", syncListAdapter, list).execute();
+                    new GetAllData(mContext, "ChildList", syncListAdapter, list).execute();
+
+//                    Getting ChildList
+                    if (listActivityCreated) {
+                        model = new SyncModel();
+                        model.setstatusID(0);
+                        list.add(model);
+                    }
+                    new GetAllData(mContext, "Villages", syncListAdapter, list).execute();
 
                 }
 

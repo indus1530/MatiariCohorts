@@ -20,12 +20,13 @@ import java.net.URL;
 import java.util.List;
 
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.SyncListAdapter;
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.DistrictsContract;
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.UsersContract;
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.VersionAppContract;
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
+import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel;
 import edu.aku.hassannaqvi.matiari_cohorts.models.SyncModel;
+import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel;
 
 /**
  * Created by ali.azaz on 7/14/2017.
@@ -37,8 +38,9 @@ public class GetAllData extends AsyncTask<String, String, String> {
     private SyncListAdapter adapter;
     private List<SyncModel> list;
     private int position;
-    private String TAG = "", syncClass;
-    private Context mContext;
+    private final String syncClass;
+    private final Context mContext;
+    private String TAG = "";
     private ProgressDialog pd;
 
     public GetAllData(Context context, String syncClass) {
@@ -60,8 +62,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
             case "VersionApp":
                 position = 1;
                 break;
-            case "Districts":
+            case "ChildList":
                 position = 2;
+                break;
+            case "Villages":
+                position = 3;
                 break;
         }
         list.get(position).settableName(syncClass);
@@ -91,8 +96,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
             case "VersionApp":
                 position = 1;
                 break;
-            case "Districts":
+            case "ChildList":
                 position = 2;
+                break;
+            case "Villages":
+                position = 3;
                 break;
         }
         list.get(position).setstatus("Syncing");
@@ -119,10 +127,15 @@ public class GetAllData extends AsyncTask<String, String, String> {
                     url = new URL(MainApp._UPDATE_URL + VersionAppContract.VersionAppTable.SERVER_URI);
                     position = 1;
                     break;
-                case "Districts":
+                case "ChildList":
                     url = new URL(MainApp._HOST_URL + MainApp._SERVER_GET_URL);
-                    tableName = DistrictsContract.DistrictsTable.TABLE_NAME;
+                    tableName = ChildModel.ChildTable.TABLE_NAME;
                     position = 2;
+                    break;
+                case "Villages":
+                    url = new URL(MainApp._HOST_URL + MainApp._SERVER_GET_URL);
+                    tableName = VillageModel.VillageTable.TABLE_NAME;
+                    position = 3;
                     break;
             }
 
@@ -132,7 +145,8 @@ public class GetAllData extends AsyncTask<String, String, String> {
 
             switch (syncClass) {
                 case "Users":
-                case "Districts":
+                case "Villages":
+                case "ChildList":
                     urlConnection.setRequestMethod("POST");
                     urlConnection.setDoOutput(true);
                     urlConnection.setDoInput(true);
@@ -206,11 +220,16 @@ public class GetAllData extends AsyncTask<String, String, String> {
                             if (insertCount == 1) jsonArray.put("1");
                             position = 1;
                             break;
-                     /*   case "Districts":
+                        case "ChildList":
                             jsonArray = new JSONArray(result);
-                            insertCount = db.syncDistricts(jsonArray);
+                            insertCount = db.syncChildList(jsonArray);
                             position = 2;
-                            break;*/
+                            break;
+                        case "Villages":
+                            jsonArray = new JSONArray(result);
+                            insertCount = db.syncVillage(jsonArray);
+                            position = 3;
+                            break;
                     }
 
                     pd.setMessage("Received: " + jsonArray.length());
