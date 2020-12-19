@@ -23,3 +23,18 @@ data class ResponseStatusCallbacks<out T>(
     }
 }
 
+data class ProgressResponseStatusCallbacks<out T>(
+        val status: ResponseStatus
+) {
+    companion object {
+        fun <T> success(): ProgressResponseStatusCallbacks<T> =
+                ProgressResponseStatusCallbacks(status = ResponseStatus.SUCCESS)
+
+        fun <T> error(): ProgressResponseStatusCallbacks<T> =
+                ProgressResponseStatusCallbacks(status = ResponseStatus.ERROR)
+
+        fun <T> loading(): ProgressResponseStatusCallbacks<T> =
+                ProgressResponseStatusCallbacks(status = ResponseStatus.LOADING)
+    }
+}
+
