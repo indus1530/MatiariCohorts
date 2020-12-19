@@ -37,11 +37,11 @@ public class MainApp extends Application {
     public static final String TAG = "AppMain";
     // public static final String _IP = "https://vcoe1.aku.edu";// .LIVE server
     public static final String _IP = "http://f38158";// .TEST server
-    public static final String _HOST_URL = MainApp._IP + "/blf/api/";// .TEST server;
+    public static final String _HOST_URL = MainApp._IP + "/matiari_cohort/api/";// .TEST server;
     public static final String _SERVER_URL = "sync.php";
     public static final String _SERVER_GET_URL = "getData.php";
-    public static final String _PHOTO_UPLOAD_URL = MainApp._IP + "/blf/api/uploads.php";
-    public static final String _UPDATE_URL = MainApp._IP + "/blf/app/";
+    public static final String _PHOTO_UPLOAD_URL = MainApp._IP + "/matiari_cohort/api/uploads.php";
+    public static final String _UPDATE_URL = MainApp._IP + "/matiari_cohort/app/s";
     // Location settings
     public static final int INTERVAL_BETWEEN_LOCATION_UPDATE = 200;
     public static final int INTERVAL_FASTEST_BETWEEN_LOCATION_UPDATE = 1000;

@@ -22,13 +22,13 @@ class ChildListAdapter(private val clickListener: OnItemClickListener) : Recycle
             diffResult.dispatchUpdatesTo(this)
         }
 
-    private var filteredChildItems: ArrayList<ChildModel> = ArrayList()
-        set(value) {
-            field = value
-            val diffCallback = ChildViewHolder.ChildViewDiffUtils(filteredChildItems, childItems)
-            val diffResult = DiffUtil.calculateDiff(diffCallback)
-            diffResult.dispatchUpdatesTo(this)
-        }
+     var filteredChildItems: ArrayList<ChildModel> = ArrayList()
+         set(value) {
+             field = value
+             val diffCallback = ChildViewHolder.ChildViewDiffUtils(filteredChildItems, childItems)
+             val diffResult = DiffUtil.calculateDiff(diffCallback)
+             diffResult.dispatchUpdatesTo(this)
+         }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, i: Int): ChildViewHolder {
         return ChildViewHolder.create(viewGroup)

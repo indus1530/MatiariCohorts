@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.sections.dashboardActivity.fragments.ChildListFragment">
 
     <com.kennyc.view.MultiStateView
@@ -12,11 +12,12 @@
         android:layout_height="match_parent"
         app:msv_animateViewChanges="true"
         app:msv_emptyView="@layout/empty_view"
+        app:msv_errorView="@layout/error_view"
         app:msv_loadingView="@layout/loading_view"
         app:msv_viewState="content">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/hhList"
+            android:id="@+id/childList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/light_gray"

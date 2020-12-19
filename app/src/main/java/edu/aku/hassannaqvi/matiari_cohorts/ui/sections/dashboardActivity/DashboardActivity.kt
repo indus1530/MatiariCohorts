@@ -10,13 +10,9 @@ import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.fragmen
 
 class DashboardActivity : AppCompatActivity() {
 
-//    lateinit var viewModel: DashboardViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
-
-//        viewModel = obtainViewModel(DashboardViewModel::class.java, GeneralRepository(DatabaseHelper(this)))
 
         if (savedInstanceState == null) {
             supportFragmentManager.commit {
@@ -25,7 +21,6 @@ class DashboardActivity : AppCompatActivity() {
                 add<ChildListFragment>(R.id.fragment_container_childlist)
             }
         }
-
 
     }
 }

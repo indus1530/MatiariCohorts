@@ -14,8 +14,8 @@ import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>, generalRepository: GeneralRepository) =
         ViewModelProvider(this, ViewModelFactory(generalRepository)).get(viewModelClass)
 
-fun <T : ViewModel> Fragment.obtainViewModel(viewModelClass: Class<T>, generalRepository: GeneralRepository) =
-        ViewModelProvider(this, ViewModelFactory(generalRepository)).get(viewModelClass)
+fun <T : ViewModel> Fragment.obtainViewModel(activity: AppCompatActivity, viewModelClass: Class<T>, generalRepository: GeneralRepository) =
+        ViewModelProvider(activity, ViewModelFactory(generalRepository)).get(viewModelClass)
 
 fun <T : AppCompatActivity> AppCompatActivity.gotoActivity(targetActivityClass: Class<T>) {
     val intent = Intent(this, targetActivityClass)

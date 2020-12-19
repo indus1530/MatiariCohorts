@@ -4,5 +4,5 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:text="No Data Found. Please try another Village"
+    android:text="Please select appropriate UC and Village for Children list"
     android:textSize="20sp" />

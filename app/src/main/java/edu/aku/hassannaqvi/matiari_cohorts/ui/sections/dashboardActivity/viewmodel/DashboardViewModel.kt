@@ -7,12 +7,15 @@ import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
 import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatusCallbacks
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class DashboardViewModel(private val repository: GeneralRepository) : ViewModel() {
 
     private val _villageResponse: MutableLiveData<ResponseStatusCallbacks<List<VillageModel>>> = MutableLiveData()
     private val _childResponse: MutableLiveData<ResponseStatusCallbacks<List<ChildModel>>> = MutableLiveData()
+
+    val childDataProcessResponse: MutableLiveData<Boolean> = MutableLiveData(false)
 
     val villageResponse: MutableLiveData<ResponseStatusCallbacks<List<VillageModel>>>
         get() = _villageResponse
@@ -32,22 +35,30 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
                     ResponseStatusCallbacks.error(data = null, message = "No village found!")
             } catch (e: Exception) {
                 _villageResponse.value =
-                        ResponseStatusCallbacks.error(data = null, message = "No village found!")
+                        ResponseStatusCallbacks.error(data = null, message = "Something wen't wrong while fetching village data!")
             }
 
         }
 
     }
 
+    fun progressAlert(boolean: Boolean) {
+        childDataProcessResponse.value = boolean
+    }
+
     fun getChildDataFromDB(vCode: String) {
         _childResponse.value = ResponseStatusCallbacks.loading(null)
         viewModelScope.launch {
             try {
-                _childResponse.value =
-                        ResponseStatusCallbacks.success(data = repository.getChildListByVillage(vCode), message = "Child list found")
+                delay(3000)
+                val children = repository.getChildListByVillage(vCode)
+                _childResponse.value = if (children.size > 0)
+                    ResponseStatusCallbacks.success(data = children, message = "Child list found")
+                else
+                    ResponseStatusCallbacks.error(data = null, message = "No child found!")
             } catch (e: Exception) {
                 _childResponse.value =
-                        ResponseStatusCallbacks.error(data = null, message = "No child found!")
+                        ResponseStatusCallbacks.error(data = null, message = "Something wen't wrong while fetching child data!")
             }
 
         }

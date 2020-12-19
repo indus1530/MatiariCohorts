@@ -71,7 +71,7 @@ class ChildViewHolder(private val bi: ItemChildLayoutBinding) :
     ) :
             DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition].childId == newList[newItemPosition].childId
+            return oldList[oldItemPosition].formFlag == newList[newItemPosition].formFlag
         }
 
         override fun getOldListSize(): Int {
