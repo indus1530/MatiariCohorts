@@ -51,6 +51,8 @@ public class Forms extends LiveData<Forms> {
     public String mcrem = "";
 
     private String _ID = "";
+
+    private String CHILD_ID = "";
     private String _UID = "";
     private String sysdate = "";
     private String username = ""; // Interviewer
@@ -348,6 +350,14 @@ public class Forms extends LiveData<Forms> {
         return projectName;
     }
 
+
+    public String getCHILD_ID() {
+        return CHILD_ID;
+    }
+
+    public void setCHILD_ID(String CHILD_ID) {
+        this.CHILD_ID = CHILD_ID;
+    }
 
     public String get_ID() {
         return _ID;
