@@ -486,6 +486,7 @@ public class Forms extends LiveData<Forms> {
 
     public Forms Sync(JSONObject jsonObject) throws JSONException {
         this._ID = jsonObject.getString(FormsTable.COLUMN_ID);
+        this.CHILD_ID = jsonObject.getString(FormsTable.COLUMN_ID);
         this._UID = jsonObject.getString(FormsTable.COLUMN_UID);
         this.sysdate = jsonObject.getString(FormsTable.COLUMN_SYSDATE);
         this.username = jsonObject.getString(FormsTable.COLUMN_USERNAME);
@@ -509,6 +510,7 @@ public class Forms extends LiveData<Forms> {
 
     public Forms Hydrate(Cursor cursor) {
         this._ID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ID));
+        this.CHILD_ID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ID));
         this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
         this.sysdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYSDATE));
         this.username = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USERNAME));
@@ -587,6 +589,7 @@ public class Forms extends LiveData<Forms> {
 
         try {
             json.put(FormsTable.COLUMN_ID, this._ID == null ? JSONObject.NULL : this._ID);
+            json.put(FormsTable.COLUMN_CHILD_ID, this.CHILD_ID == null ? JSONObject.NULL : this.CHILD_ID);
 
             json.put(FormsTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
             json.put(FormsTable.COLUMN_SYSDATE, this.sysdate == null ? JSONObject.NULL : this.sysdate);
