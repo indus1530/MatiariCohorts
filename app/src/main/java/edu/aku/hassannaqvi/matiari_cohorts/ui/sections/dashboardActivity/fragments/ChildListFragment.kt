@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kennyc.view.MultiStateView
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.ChildListAdapter
@@ -17,7 +19,6 @@ import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.viewmodel.DashboardViewModel
 import kotlinx.android.synthetic.main.fragment_child_list.*
-import kotlinx.coroutines.Runnable
 
 /*
 * @author Ali Azaz Alam dt. 12.18.20
@@ -27,15 +28,28 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
 
     lateinit var viewModel: DashboardViewModel
     lateinit var adapter: ChildListAdapter
+    private var layoutManager: RecyclerView.LayoutManager? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = obtainViewModel(activity as DashboardActivity, DashboardViewModel::class.java, GeneralRepository(DatabaseHelper(activity)))
+
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        callingRecyclerView()
+
+        childList.apply {
+            // set a LinearLayoutManager to handle Android
+            // RecyclerView behavior
+            layoutManager = LinearLayoutManager(activity)
+            // set the custom adapter to the RecyclerView
+            adapter = ChildListAdapter(object : ChildListAdapter.OnItemClickListener {
+                override fun onItemClick(item: ChildModel, position: Int) {
+
+                }
+            })
+        }
 
         /*
         * Show Error text when no data is selected
@@ -43,10 +57,11 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
         multiStateView.viewState = MultiStateView.ViewState.ERROR
 
         viewModel.childDataProcessResponse.observe(viewLifecycleOwner, Observer {
-            if (it)
-                multiStateView.viewState = MultiStateView.ViewState.LOADING
-            else
-                multiStateView.viewState = MultiStateView.ViewState.CONTENT
+            when (it.status) {
+                ResponseStatus.SUCCESS -> multiStateView.viewState = MultiStateView.ViewState.CONTENT
+                ResponseStatus.ERROR -> multiStateView.viewState = MultiStateView.ViewState.ERROR
+                ResponseStatus.LOADING -> multiStateView.viewState = MultiStateView.ViewState.LOADING
+            }
         })
 
         /*
@@ -60,9 +75,7 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
                         adapter.childItems = it.data as ArrayList<ChildModel>
                     }
                     ResponseStatus.ERROR -> {
-                        multiStateView.postDelayed(Runnable {
-                            multiStateView.viewState = MultiStateView.ViewState.EMPTY
-                        }, 2000L)
+                        multiStateView.viewState = MultiStateView.ViewState.EMPTY
                     }
                     ResponseStatus.LOADING -> {
                     }

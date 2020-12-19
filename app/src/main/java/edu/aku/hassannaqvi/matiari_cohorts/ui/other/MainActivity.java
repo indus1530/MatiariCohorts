@@ -93,14 +93,6 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         bi = DataBindingUtil.setContentView(this, R.layout.activity_main);
         bi.setCallback(this);
 
-/*        bi.srclog.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                Toast.makeText(getBaseContext(), "Screen Log", Toast.LENGTH_LONG).show();
-
-            }
-        });*/
-
        /* bi.txtinstalldate.setText(appInfo.getAppInfo());
         Collection<FormsSL> todaysForms = appInfo.getDbHelper().getTodayForms(sysdateToday);
         Collection<FormsSL> unsyncedForms = appInfo.getDbHelper().getUnsyncedForms();
