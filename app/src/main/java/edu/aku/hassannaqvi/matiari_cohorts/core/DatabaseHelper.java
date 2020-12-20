@@ -202,10 +202,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = {
                 FormsTable._ID,
+                FormsTable.COLUMN_CHILD_ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_SYSDATE,
                 FormsTable.COLUMN_USERNAME,
-//              FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_ISTATUS96x,
+                FormsTable.COLUMN_ENDINGDATETIME,
                 FormsTable.COLUMN_SA,
                 FormsTable.COLUMN_GPSLAT,
                 FormsTable.COLUMN_GPSLNG,
@@ -273,6 +276,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(FormsTable.COLUMN_PROJECT_NAME, form.getProjectName());
         values.put(FormsTable.COLUMN_UID, form.get_UID());
+        values.put(FormsTable.COLUMN_CHILD_ID, form.getCHILD_ID());
         values.put(FormsTable.COLUMN_SYSDATE, form.getSysdate());
         values.put(FormsTable.COLUMN_USERNAME, form.getUsername());
     /*    values.put(FormsWFTable.COLUMN_ISTATUS, formSF.getIstatus());
@@ -286,6 +290,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_DEVICEID, form.getDeviceID());
         values.put(FormsTable.COLUMN_APPVERSION, form.getAppversion());
         values.put(FormsTable.COLUMN_SA, form.getsA());
+        values.put(FormsTable.COLUMN_ISTATUS, form.getIstatus());
+        values.put(FormsTable.COLUMN_ISTATUS96x, form.getIstatus96x());
+        values.put(FormsTable.COLUMN_ENDINGDATETIME, form.getEndingdatetime());
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId;
@@ -305,12 +312,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = {
                 FormsTable._ID,
+                FormsTable.COLUMN_CHILD_ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_SYSDATE,
                 FormsTable.COLUMN_USERNAME,
-/*
                 FormsTable.COLUMN_ISTATUS,
-*/
+                FormsTable.COLUMN_ISTATUS96x,
+                FormsTable.COLUMN_ENDINGDATETIME,
                 FormsTable.COLUMN_SA,
                 FormsTable.COLUMN_GPSLAT,
                 FormsTable.COLUMN_GPSLNG,
@@ -360,6 +368,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = {
                 FormsTable._ID,
+                FormsTable.COLUMN_CHILD_ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_SYSDATE,
                 FormsTable.COLUMN_USERNAME,
@@ -419,10 +428,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = null;
         String[] columns = {
                 FormsTable._ID,
+                FormsTable.COLUMN_CHILD_ID,
                 FormsTable.COLUMN_UID,
                 FormsTable.COLUMN_SYSDATE,
                 FormsTable.COLUMN_USERNAME,
-//                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_ISTATUS96x,
+                FormsTable.COLUMN_ENDINGDATETIME,
                 FormsTable.COLUMN_SYNCED,
 
         };
@@ -449,6 +461,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (c.moveToNext()) {
                 Forms forms = new Forms();
                 forms.set_ID(c.getString(c.getColumnIndex(FormsTable.COLUMN_ID)));
+                forms.setCHILD_ID(c.getString(c.getColumnIndex(FormsTable.COLUMN_CHILD_ID)));
                 forms.set_UID(c.getString(c.getColumnIndex(FormsTable.COLUMN_UID)));
                 forms.setSysdate(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYSDATE)));
                 forms.setUsername(c.getString(c.getColumnIndex(FormsTable.COLUMN_USERNAME)));

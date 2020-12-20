@@ -13,6 +13,7 @@ public class FormsContract {
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN_PROJECT_NAME = "projectName";
         public static final String COLUMN_ID = "_id";
+        public static final String COLUMN_CHILD_ID = "child_id";
         public static final String COLUMN_UID = "_uid";
         public static final String COLUMN_SYSDATE = "sysdate";
         public static final String COLUMN_USERNAME = "username";
