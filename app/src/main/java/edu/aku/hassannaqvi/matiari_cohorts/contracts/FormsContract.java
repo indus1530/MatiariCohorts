@@ -30,5 +30,7 @@ public class FormsContract {
         public static final String COLUMN_SYNCED_DATE = "synced_date";
         public static final String COLUMN_APPVERSION = "appversion";
         public static final String COLUMN_SA = "sA";
+        public static final String COLUMN_sF = "sF";
+        public static final String COLUMN_sL = "sL";
     }
 }

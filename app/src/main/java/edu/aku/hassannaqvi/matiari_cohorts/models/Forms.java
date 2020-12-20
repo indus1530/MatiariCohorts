@@ -69,6 +69,8 @@ public class Forms extends LiveData<Forms> {
     private String synced_date = "";
     private String appversion = "";
     private String sA = "";
+    private String sF = "";
+    private String sL = "";
 
 
     public Forms() {
@@ -471,6 +473,23 @@ public class Forms extends LiveData<Forms> {
     }
 
 
+    public String getsF() {
+        return sF;
+    }
+
+    public void setsF(String sF) {
+        this.sF = sF;
+    }
+
+    public String getsL() {
+        return sL;
+    }
+
+    public void setsL(String sL) {
+        this.sL = sL;
+    }
+
+
     public String getSynced_date() {
         return synced_date;
     }
@@ -499,6 +518,8 @@ public class Forms extends LiveData<Forms> {
         this.synced_date = jsonObject.getString(FormsTable.COLUMN_SYNCED_DATE);
         this.appversion = jsonObject.getString(FormsTable.COLUMN_SYNCED_DATE);
         this.sA = jsonObject.getString(FormsTable.COLUMN_SA);
+        this.sF = jsonObject.getString(FormsTable.COLUMN_sF);
+        this.sL = jsonObject.getString(FormsTable.COLUMN_sL);
 
         return this;
 
@@ -594,13 +615,13 @@ public class Forms extends LiveData<Forms> {
             json.put(FormsTable.COLUMN_ISTATUS96x, this.istatus96x == null ? JSONObject.NULL : this.istatus96x);
             json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
             json.put(FormsTable.COLUMN_SA, new JSONObject(sAtoString()));
-            /*  if (this.sF != null && !this.sF.equals("")) {
-                json.put(FormsTable.COLUMN_SF, new JSONObject(this.sF));
+            if (this.sF != null && !this.sF.equals("")) {
+                json.put(FormsTable.COLUMN_sF, new JSONObject(this.sF));
             }
 
             if (this.sL != null && !this.sL.equals("")) {
-                json.put(FormsTable.COLUMN_SL, new JSONObject(this.sL));
-            }*/
+                json.put(FormsTable.COLUMN_sL, new JSONObject(this.sL));
+            }
             json.put(FormsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
             json.put(FormsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
             json.put(FormsTable.COLUMN_GPSDATE, this.gpsDT == null ? JSONObject.NULL : this.gpsDT);
