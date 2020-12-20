@@ -9,7 +9,10 @@ import com.validatorcrawler.aliazaz.Validator
 import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS.Companion.FSTATUS_END_FLAG
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp.appInfo
+import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp.forms
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityEndingBinding
+import java.text.SimpleDateFormat
+import java.util.*
 
 class EndingActivity : AppCompatActivity() {
     lateinit var bi: ActivityEndingBinding
@@ -55,12 +58,14 @@ class EndingActivity : AppCompatActivity() {
     }
 
     private fun saveDraft() {
-
-
         val statusValue = if (bi.a0601.isChecked) "1" else if (bi.a0602.isChecked) "2" else if (bi.a0603.isChecked) "3" else if (bi.a0604.isChecked) "4" else if (bi.a0605.isChecked) "5" else if (bi.a0606.isChecked) "6" else if (bi.a0607.isChecked) "7" else if (bi.a0608.isChecked) "8" else if (bi.a0696.isChecked) "96" else "0"
-        /*   MainApp.formsSF.istatus = statusValue
-           MainApp.formsSF.istatus96x = bi.a0696x.text.toString()*/
-        //  MainApp.formsSF.endingdatetime = SimpleDateFormat("dd-MM-yy HH:mm").format(Date().time)
+
+        forms.istatus = statusValue
+        forms.istatus96x = if (bi.a0696x.text.toString().trim().isEmpty()) "-1" else bi.a0696x.text.toString()
+        forms.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm").format(Date().time)
+        /*MainApp.formsSF.istatus = statusValue
+        MainApp.formsSF.istatus96x = bi.a0696x.text.toString()
+        MainApp.formsSF.endingdatetimewq32    `1 = SimpleDateFormat("dd-MM-yy HH:mm").format(Date().time)*/
     }
 
 
