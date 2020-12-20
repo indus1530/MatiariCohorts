@@ -6,8 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.kennyc.view.MultiStateView
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.ChildListAdapter
@@ -28,28 +26,16 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
 
     lateinit var viewModel: DashboardViewModel
     lateinit var adapter: ChildListAdapter
-    private var layoutManager: RecyclerView.LayoutManager? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         viewModel = obtainViewModel(activity as DashboardActivity, DashboardViewModel::class.java, GeneralRepository(DatabaseHelper(activity)))
-
         return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        childList.apply {
-            // set a LinearLayoutManager to handle Android
-            // RecyclerView behavior
-            layoutManager = LinearLayoutManager(activity)
-            // set the custom adapter to the RecyclerView
-            adapter = ChildListAdapter(object : ChildListAdapter.OnItemClickListener {
-                override fun onItemClick(item: ChildModel, position: Int) {
-
-                }
-            })
-        }
+        callingRecyclerView()
 
         /*
         * Show Error text when no data is selected
