@@ -56,11 +56,9 @@ public class Forms extends LiveData<Forms> {
     private String _UID = "";
     private String sysdate = "";
     private String username = ""; // Interviewer
-    //  private String istatus = ""; // Interview Status
-    //  private String istatus96x = ""; // Interview Status
-    /*
+    private String istatus = ""; // Interview Status
+    private String istatus96x = ""; // Interview Status
     private String endingdatetime = "";
-*/
     private String gpsLat = "";
     private String gpsLng = "";
     private String gpsDT = "";
@@ -376,7 +374,7 @@ public class Forms extends LiveData<Forms> {
         this._UID = _UID;
     }
 
-    /*public String getIstatus() {
+    public String getIstatus() {
         return istatus;
     }
 
@@ -390,9 +388,8 @@ public class Forms extends LiveData<Forms> {
 
     public void setIstatus96x(String istatus96x) {
         this.istatus96x = istatus96x;
-    }*/
+    }
 
-    /*
 
     public String getEndingdatetime() {
         return endingdatetime;
@@ -401,7 +398,6 @@ public class Forms extends LiveData<Forms> {
     public void setEndingdatetime(String endingdatetime) {
         this.endingdatetime = endingdatetime;
     }
-*/
 
     public String getGpsLat() {
         return gpsLat;
@@ -490,9 +486,9 @@ public class Forms extends LiveData<Forms> {
         this._UID = jsonObject.getString(FormsTable.COLUMN_UID);
         this.sysdate = jsonObject.getString(FormsTable.COLUMN_SYSDATE);
         this.username = jsonObject.getString(FormsTable.COLUMN_USERNAME);
-        //   this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
-        //    this.istatus96x = jsonObject.getString(FormsTable.COLUMN_ISTATUS96x);
-        //  this.endingdatetime = jsonObject.getString(FormsTable.COLUMN_ENDINGDATETIME);
+        this.istatus = jsonObject.getString(FormsTable.COLUMN_ISTATUS);
+        this.istatus96x = jsonObject.getString(FormsTable.COLUMN_ISTATUS96x);
+        this.endingdatetime = jsonObject.getString(FormsTable.COLUMN_ENDINGDATETIME);
         this.gpsLat = jsonObject.getString(FormsTable.COLUMN_GPSLAT);
         this.gpsLng = jsonObject.getString(FormsTable.COLUMN_GPSLNG);
         this.gpsDT = jsonObject.getString(FormsTable.COLUMN_GPSDATE);
@@ -514,9 +510,9 @@ public class Forms extends LiveData<Forms> {
         this._UID = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_UID));
         this.sysdate = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_SYSDATE));
         this.username = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_USERNAME));
-        //   this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
-        //   this.istatus96x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS96x));
-        //     this.endingdatetime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ENDINGDATETIME));
+        this.istatus = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS));
+        this.istatus96x = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ISTATUS96x));
+        this.endingdatetime = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_ENDINGDATETIME));
         this.gpsLat = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLAT));
         this.gpsLng = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSLNG));
         this.gpsDT = cursor.getString(cursor.getColumnIndex(FormsTable.COLUMN_GPSDATE));
@@ -594,9 +590,9 @@ public class Forms extends LiveData<Forms> {
             json.put(FormsTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
             json.put(FormsTable.COLUMN_SYSDATE, this.sysdate == null ? JSONObject.NULL : this.sysdate);
             json.put(FormsTable.COLUMN_USERNAME, this.username == null ? JSONObject.NULL : this.username);
-            //        json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
-            //       json.put(FormsTable.COLUMN_ISTATUS96x, this.istatus96x == null ? JSONObject.NULL : this.istatus96x);
-            //   json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
+            json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
+            json.put(FormsTable.COLUMN_ISTATUS96x, this.istatus96x == null ? JSONObject.NULL : this.istatus96x);
+            json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
             json.put(FormsTable.COLUMN_SA, new JSONObject(sAtoString()));
             /*  if (this.sF != null && !this.sF.equals("")) {
                 json.put(FormsTable.COLUMN_SF, new JSONObject(this.sF));

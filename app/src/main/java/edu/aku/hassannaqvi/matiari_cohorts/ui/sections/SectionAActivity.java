@@ -213,6 +213,8 @@ public class SectionAActivity extends AppCompatActivity {
 
         forms.setMcrem(bi.mcrem.getText().toString().trim().isEmpty() ? "-1" : bi.mcrem.getText().toString());
 
+        setGPS(this);
+
     }
 
 
