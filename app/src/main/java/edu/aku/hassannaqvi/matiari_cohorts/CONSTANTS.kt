@@ -36,10 +36,8 @@ class CONSTANTS {
         const val SUB_INFO_END_FLAG = "sub_info_end_flag"
         const val FSTATUS_END_FLAG = "fstatus_end_flag"
 
-        //Child Activity
-        const val CHILD_ENDING_AGE_ISSUE = "childAgeIssue"
-        const val CHILD_NO_ANSWER = "childNoAns"
-        const val CHILD_SERIAL = "serial_extra"
+        //Child A Activity
+        const val CHILD_DATA = "childData"
 
     }
 }

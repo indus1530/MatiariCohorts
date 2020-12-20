@@ -16,7 +16,7 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
     private val _villageResponse: MutableLiveData<ResponseStatusCallbacks<List<VillageModel>>> = MutableLiveData()
     private val _childResponse: MutableLiveData<ResponseStatusCallbacks<List<ChildModel>>> = MutableLiveData()
 
-    val childDataProcessResponse: MutableLiveData<ProgressResponseStatusCallbacks<Boolean>> = MutableLiveData(
+    val childDataProcessResponse: MutableLiveData<ProgressResponseStatusCallbacks<Any>> = MutableLiveData(
             ProgressResponseStatusCallbacks.error()
     )
 
@@ -45,7 +45,7 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
 
     }
 
-    fun progressAlert(boolean: Boolean) {
+    fun progressAlert(boolean: Boolean, data: Any? = null) {
         childDataProcessResponse.value = if (boolean) ProgressResponseStatusCallbacks.loading() else ProgressResponseStatusCallbacks.success()
     }
 

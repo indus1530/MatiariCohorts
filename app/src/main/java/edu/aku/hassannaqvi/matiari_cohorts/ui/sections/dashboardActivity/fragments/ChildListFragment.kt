@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kennyc.view.MultiStateView
+import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS.Companion.CHILD_DATA
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.ChildListAdapter
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
+import edu.aku.hassannaqvi.matiari_cohorts.extension.gotoActivityWithSerializable
 import edu.aku.hassannaqvi.matiari_cohorts.extension.obtainViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
 import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus
+import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.SectionAActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.viewmodel.DashboardViewModel
 import kotlinx.android.synthetic.main.fragment_child_list.*
@@ -44,7 +47,9 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
 
         viewModel.childDataProcessResponse.observe(viewLifecycleOwner, Observer {
             when (it.status) {
-                ResponseStatus.SUCCESS -> multiStateView.viewState = MultiStateView.ViewState.CONTENT
+                ResponseStatus.SUCCESS -> {
+                    multiStateView.viewState = MultiStateView.ViewState.CONTENT
+                }
                 ResponseStatus.ERROR -> multiStateView.viewState = MultiStateView.ViewState.ERROR
                 ResponseStatus.LOADING -> multiStateView.viewState = MultiStateView.ViewState.LOADING
             }
@@ -75,7 +80,7 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
     private fun callingRecyclerView() {
         adapter = ChildListAdapter(object : ChildListAdapter.OnItemClickListener {
             override fun onItemClick(item: ChildModel, position: Int) {
-
+                gotoActivityWithSerializable(SectionAActivity::class.java, CHILD_DATA, item)
             }
         })
         childList.adapter = adapter

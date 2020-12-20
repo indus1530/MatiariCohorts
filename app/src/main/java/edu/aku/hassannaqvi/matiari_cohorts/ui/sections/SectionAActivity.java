@@ -19,11 +19,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS;
 import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.FormsContract;
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivitySectionABinding;
+import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel;
 import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity;
 
@@ -32,7 +34,7 @@ import static edu.aku.hassannaqvi.matiari_cohorts.core.MainApp.forms;
 public class SectionAActivity extends AppCompatActivity {
 
     ActivitySectionABinding bi;
-    Intent oF = null;
+    ChildModel child;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,10 @@ public class SectionAActivity extends AppCompatActivity {
         bi = DataBindingUtil.setContentView(this, R.layout.activity_section_a);
         bi.setCallback(this);
         setupSkips();
+        child = (ChildModel) getIntent().getSerializableExtra(CONSTANTS.CHILD_DATA);
+        bi.setForm(child);
+        Clear.clearAllFields(bi.mc14, false);
+        bi.mc14.check(child.getGender().equals("Male") ? bi.mc1401.getId() : bi.mc1402.getId());
     }
 
 

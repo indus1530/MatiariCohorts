@@ -5,8 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_6sdp"
-        android:background="@android:color/background_light">
+        android:layout_margin="@dimen/_6sdp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/parentLayout"
@@ -58,7 +57,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/mem_icon" />
+                                android:src="@drawable/ctr_childboy" />
 
                         </RelativeLayout>
 
@@ -99,7 +98,7 @@
                             android:id="@+id/icon2"
                             android:layout_width="@dimen/_15sdp"
                             android:layout_height="match_parent"
-                            app:srcCompat="@android:drawable/stat_notify_more" />
+                            app:srcCompat="@drawable/ic_mother_face" />
 
                         <TextView
                             android:id="@+id/motherName"

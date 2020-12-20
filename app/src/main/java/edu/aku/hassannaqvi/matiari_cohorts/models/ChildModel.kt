@@ -4,8 +4,9 @@ import android.database.Cursor
 import android.provider.BaseColumns
 import org.json.JSONException
 import org.json.JSONObject
+import java.io.Serializable
 
-class ChildModel {
+class ChildModel : Serializable {
     var childId: String = ""
     var childName: String = ""
     var dob: String = ""
@@ -17,6 +18,8 @@ class ChildModel {
 
     //Not for DB
     var formFlag: Int = 0
+    var uc: String = ""
+    var village: String = ""
 
 
     @Throws(JSONException::class)

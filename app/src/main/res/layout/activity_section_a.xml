@@ -7,7 +7,7 @@
 
         <variable
             name="form"
-            type="edu.aku.hassannaqvi.matiari_cohorts.models.Forms" />
+            type="edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel" />
 
         <variable
             name="callback"
@@ -63,6 +63,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:text="@{form.childId}"
                         android:hint="@string/mc01"
                         android:inputType="number" />
 
@@ -173,6 +174,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
+                        android:text="@{form.childId}"
                         android:hint="@string/mc03"
                         android:inputType="number" />
                 </LinearLayout>
@@ -296,6 +298,8 @@
                     <EditText
                         android:id="@+id/mc06"
                         android:layout_width="match_parent"
+                        android:enabled="false"
+                        android:text="@{form.uc}"
                         android:layout_height="wrap_content"
                         android:hint="@string/mc06" />
                 </LinearLayout>
@@ -336,7 +340,9 @@
 
                     <EditText
                         android:id="@+id/mc07"
+                        android:enabled="false"
                         android:layout_width="match_parent"
+                        android:text="@{form.village}"
                         android:layout_height="wrap_content"
                         android:hint="@string/mc07" />
                 </LinearLayout>
@@ -466,6 +472,8 @@
                     <EditText
                         android:id="@+id/mc10"
                         android:layout_width="match_parent"
+                        android:enabled="false"
+                        android:text="@{form.childName}"
                         android:layout_height="wrap_content"
                         android:hint="@string/mc10" />
                 </LinearLayout>
@@ -547,6 +555,8 @@
 
                     <EditText
                         android:id="@+id/mc12"
+                        android:enabled="false"
+                        android:text="@{form.motherName}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/mc12" />
