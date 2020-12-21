@@ -233,7 +233,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         protected String doInBackground(Boolean... booleans) {
             runOnUiThread(() -> {
 
-                if (booleans[0]) {
+//                if (booleans[0]) {
 //                  getting Users
                     if (listActivityCreated) {
                         model = new SyncModel();
@@ -266,7 +266,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                     }
                     new GetAllData(mContext, "Villages", syncListAdapter, list).execute();
 
-                }
+//                }
 
                 listActivityCreated = false;
             });

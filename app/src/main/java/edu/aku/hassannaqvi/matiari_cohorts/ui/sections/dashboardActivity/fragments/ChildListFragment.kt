@@ -57,7 +57,7 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
                 ResponseStatus.SUCCESS -> {
                     multiStateView.viewState = MultiStateView.ViewState.CONTENT
                 }
-                ResponseStatus.ERROR -> multiStateView.viewState = MultiStateView.ViewState.ERROR
+                ResponseStatus.ERROR -> multiStateView.viewState = MultiStateView.ViewState.EMPTY
                 ResponseStatus.LOADING -> {
                     multiStateView.viewState = MultiStateView.ViewState.LOADING
                     villageData = it.data as VillageModel

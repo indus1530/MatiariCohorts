@@ -72,7 +72,7 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
                     }
                     ResponseStatus.ERROR -> {
                         lifecycleScope.launch {
-                            delay(2500)
+                            delay(3000)
                             activity?.finish()
                         }
                     }
