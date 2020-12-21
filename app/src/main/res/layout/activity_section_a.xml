@@ -301,7 +301,8 @@
                         android:enabled="false"
                         android:text="@{form.uc}"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc06" />
+                        android:hint="@string/mc06"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -344,7 +345,8 @@
                         android:layout_width="match_parent"
                         android:text="@{form.village}"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc07" />
+                        android:hint="@string/mc07"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -385,7 +387,8 @@
                         android:id="@+id/mc08"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc08" />
+                        android:hint="@string/mc08"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -475,7 +478,8 @@
                         android:enabled="false"
                         android:text="@{form.childName}"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc10" />
+                        android:hint="@string/mc10"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -516,7 +520,8 @@
                         android:id="@+id/mc11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc11" />
+                        android:hint="@string/mc11"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -559,7 +564,8 @@
                         android:text="@{form.motherName}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc12" />
+                        android:hint="@string/mc12"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -815,7 +821,8 @@
                         android:id="@+id/mc16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc16" />
+                        android:hint="@string/mc16"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1138,7 +1145,8 @@
                         android:id="@+id/mc21"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc21" />
+                        android:hint="@string/mc21"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1240,7 +1248,8 @@
                         android:id="@+id/mc23"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc23" />
+                        android:hint="@string/mc23"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1283,7 +1292,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/mc24"
-                        android:inputType="phone" />
+                        android:inputType="number"
+                        android:maxLength="11"
+                        android:minLength="7"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1410,7 +1421,8 @@
                         android:id="@+id/mcrem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mcrem" />
+                        android:hint="@string/mcrem"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

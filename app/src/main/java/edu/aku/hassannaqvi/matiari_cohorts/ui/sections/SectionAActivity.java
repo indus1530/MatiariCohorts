@@ -49,6 +49,7 @@ public class SectionAActivity extends AppCompatActivity {
     }
 
 
+
     private void setupSkips() {
 
         bi.mc15.setOnCheckedChangeListener((group, checkedId) -> {
