@@ -630,9 +630,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // New value for one column
         ContentValues values = new ContentValues();
-/*        values.put(FormsSFTable.COLUMN_ISTATUS, MainApp.formsSF.getIstatus());
-        values.put(FormsSFTable.COLUMN_ISTATUS96x, MainApp.formsSF.getIstatus96x());*/
-//        values.put(FormsSFTable.COLUMN_ENDINGDATETIME, MainApp.formsSF.getEndingdatetime());
+        values.put(FormsTable.COLUMN_ISTATUS, MainApp.forms.getIstatus());
+        values.put(FormsTable.COLUMN_ISTATUS96x, MainApp.forms.getIstatus96x());
+        values.put(FormsTable.COLUMN_ENDINGDATETIME, MainApp.forms.getEndingdatetime());
 
         // Which row to update, based on the ID
         String selection = FormsTable.COLUMN_ID + " =? ";
