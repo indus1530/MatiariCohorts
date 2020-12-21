@@ -7,19 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.kennyc.view.MultiStateView
-import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS.Companion.CHILD_DATA
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.ChildListAdapter
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
-import edu.aku.hassannaqvi.matiari_cohorts.extension.gotoActivityWithSerializable
 import edu.aku.hassannaqvi.matiari_cohorts.extension.obtainViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
+import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
 import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus
-import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.SectionAActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.viewmodel.DashboardViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.utils.openWarningFragment
 import kotlinx.android.synthetic.main.fragment_child_list.*
+import java.util.*
 
 /*
 * @author Ali Azaz Alam dt. 12.18.20
@@ -29,8 +29,12 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
 
     lateinit var viewModel: DashboardViewModel
     lateinit var adapter: ChildListAdapter
+    var villageData: VillageModel? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        /*
+        * Obtaining ViewModel
+        * */
         viewModel = obtainViewModel(activity as DashboardActivity, DashboardViewModel::class.java, GeneralRepository(DatabaseHelper(activity)))
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -45,13 +49,19 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
         * */
         multiStateView.viewState = MultiStateView.ViewState.ERROR
 
-        viewModel.childDataProcessResponse.observe(viewLifecycleOwner, Observer {
+        /*
+        * Fetch flag that defines village exist and it's processing child list
+        * */
+        viewModel.villageDataProcessResponse.observe(viewLifecycleOwner, Observer {
             when (it.status) {
                 ResponseStatus.SUCCESS -> {
                     multiStateView.viewState = MultiStateView.ViewState.CONTENT
                 }
                 ResponseStatus.ERROR -> multiStateView.viewState = MultiStateView.ViewState.ERROR
-                ResponseStatus.LOADING -> multiStateView.viewState = MultiStateView.ViewState.LOADING
+                ResponseStatus.LOADING -> {
+                    multiStateView.viewState = MultiStateView.ViewState.LOADING
+                    villageData = it.data as VillageModel
+                }
             }
         })
 
@@ -62,8 +72,8 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
             it?.let {
                 when (it.status) {
                     ResponseStatus.SUCCESS -> {
-                        viewModel.progressAlert(false)
                         adapter.childItems = it.data as ArrayList<ChildModel>
+                        viewModel.progressVillageAlert(false)
                     }
                     ResponseStatus.ERROR -> {
                         multiStateView.viewState = MultiStateView.ViewState.EMPTY
@@ -73,16 +83,26 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
                 }
             }
         })
-
-
     }
 
+    /*
+    * Initialize recyclerView with onClickListener
+    * */
     private fun callingRecyclerView() {
         adapter = ChildListAdapter(object : ChildListAdapter.OnItemClickListener {
             override fun onItemClick(item: ChildModel, position: Int) {
-                gotoActivityWithSerializable(SectionAActivity::class.java, CHILD_DATA, item)
+                villageData?.let {
+                    item.village = villageData!!.village
+                    item.uc = villageData!!.uc
+                }
+                openWarningFragment(
+                        activity as DashboardActivity,
+                        title = "CONFIRMATION!",
+                        message = "Are you sure, you want to continue ${item.childName.toUpperCase(Locale.ENGLISH)} interview?",
+                        data = item)
             }
         })
         childList.adapter = adapter
     }
+
 }

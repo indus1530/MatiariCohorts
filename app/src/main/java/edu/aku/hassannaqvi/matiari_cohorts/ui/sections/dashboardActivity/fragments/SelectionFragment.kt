@@ -32,13 +32,16 @@ import java.util.*
 class SelectionFragment : Fragment(R.layout.fragment_selection) {
 
     lateinit var viewModel: DashboardViewModel
+    lateinit var ucAdapter: ArrayAdapter<String>
+    lateinit var villageAdapter: ArrayAdapter<String>
     var uc = mutableListOf("....")
     var village = mutableListOf("....")
     var ucMap: MutableMap<String, Pair<String, VillageModel>> = mutableMapOf()
-    lateinit var ucAdapter: ArrayAdapter<String>
-    lateinit var villageAdapter: ArrayAdapter<String>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        /*
+        * Obtaining ViewModel
+        * */
         viewModel = obtainViewModel(activity as DashboardActivity, DashboardViewModel::class.java, GeneralRepository(DatabaseHelper(activity)))
         return super.onCreateView(inflater, container, savedInstanceState)
     }
@@ -54,6 +57,10 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
         villageAdapter = ArrayAdapter(view.context, android.R.layout.simple_spinner_dropdown_item, village)
         spinnerVillage.adapter = villageAdapter
 
+        /*
+        * Calling viewmodel village data function
+        * Fetch village result response
+        * */
         viewModel.getVillageDataFromDB()
         viewModel.villageResponse.observe(viewLifecycleOwner, Observer {
             it?.let {
@@ -74,14 +81,13 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
                 }
             }
         })
-
-        /*
-        * setupListeners
-        * */
         setupListener()
-
     }
 
+
+    /*
+    * Setup Listeners
+    * */
     private fun setupListener() {
 
         spinnerUC.onItemSelectedListener = object : OnItemSelectedListener {
@@ -107,7 +113,6 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
                 if (position == 0) return
                 lifecycleScope.launch {
-                    viewModel.progressAlert(true)
                     withContext(Dispatchers.Main) {
                         var ucKey = ""
                         ucMap.forEach { (k, v) ->
@@ -116,6 +121,7 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
                                 return@forEach
                             }
                         }
+                        viewModel.progressVillageAlert(true, ucMap.get(ucKey)?.second)
                         viewModel.getChildDataFromDB(ucKey)
                     }
                 }
@@ -129,6 +135,9 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
 
     }
 
+    /*
+    * Suspend function for populating UC and Village response
+    * */
     private suspend fun populateSpinnersData(villages: ArrayList<VillageModel>) {
         withContext(Dispatchers.Main) {
             val splitLst: MutableMap<String, VillageModel> = mutableMapOf()

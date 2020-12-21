@@ -649,8 +649,8 @@ public class Forms extends LiveData<Forms> {
                 this.mc01 = json.getString("mc01");
                 this.mc02 = json.getString("mc02");
                 this.mc03 = json.getString("mc03");
-                this.mc04 = json.getString("mc04");
-                this.mc05 = json.getString("mc05");
+//                this.mc04 = json.getString("mc04");
+//                this.mc05 = json.getString("mc05");
                 this.mc06 = json.getString("mc06");
                 this.mc07 = json.getString("mc07");
                 this.mc08 = json.getString("mc08");
@@ -674,9 +674,8 @@ public class Forms extends LiveData<Forms> {
                 this.mc23 = json.getString("mc23");
                 this.mc24 = json.getString("mc24");
                 this.mc25 = json.getString("mc25");
-                this.mc26 = json.getString("mc26");
+//                this.mc26 = json.getString("mc26");
                 this.mcrem = json.getString("mcrem");
-                this.username = json.getString("username");
 
             } catch (JSONException e) {
                 e.printStackTrace();

@@ -16,7 +16,7 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
     private val _villageResponse: MutableLiveData<ResponseStatusCallbacks<List<VillageModel>>> = MutableLiveData()
     private val _childResponse: MutableLiveData<ResponseStatusCallbacks<List<ChildModel>>> = MutableLiveData()
 
-    val childDataProcessResponse: MutableLiveData<ProgressResponseStatusCallbacks<Any>> = MutableLiveData(
+    val villageDataProcessResponse: MutableLiveData<ProgressResponseStatusCallbacks<Any>> = MutableLiveData(
             ProgressResponseStatusCallbacks.error()
     )
 
@@ -45,8 +45,8 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
 
     }
 
-    fun progressAlert(boolean: Boolean, data: Any? = null) {
-        childDataProcessResponse.value = if (boolean) ProgressResponseStatusCallbacks.loading() else ProgressResponseStatusCallbacks.success()
+    fun progressVillageAlert(boolean: Boolean, data: Any? = null) {
+        villageDataProcessResponse.value = if (boolean) ProgressResponseStatusCallbacks.loading(data) else ProgressResponseStatusCallbacks.success()
     }
 
     fun getChildDataFromDB(vCode: String) {
@@ -61,7 +61,7 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
                     ResponseStatusCallbacks.error(data = null, message = "No child found!")
             } catch (e: Exception) {
                 _childResponse.value =
-                        ResponseStatusCallbacks.error(data = null, message = e.message.toString())
+                        ResponseStatusCallbacks.error(data = null, message = "Something wen't wrong while fetching children data!")
             }
 
         }

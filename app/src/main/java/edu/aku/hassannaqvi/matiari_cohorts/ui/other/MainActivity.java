@@ -22,6 +22,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -265,14 +267,6 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
      }
 
     @Override
-    public void callWarningActivity() {
-        Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    @Override
     public void onBackPressed() {
         if (exit) {
             finish(); // finish activity
@@ -328,5 +322,13 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         } else {
             bi.recordSummary.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void callWarningActivity(@Nullable Object data) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

@@ -182,85 +182,85 @@
 
 
             <!-- mc04  Input   -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmc04"
-                style="@style/cardView">
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/fldGrpCVmc04"-->
+            <!--                style="@style/cardView">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:orientation="vertical">-->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bottom">
+            <!--                    <RelativeLayout-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:background="@drawable/bottom">-->
 
-                        <TextView
-                            android:id="@+id/qtxt_mc04"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mc04"
-                            android:text="@string/mc04" />
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/qtxt_mc04"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_toEndOf="@id/q_mc04"-->
+            <!--                            android:text="@string/mc04" />-->
 
-                        <TextView
-                            android:id="@+id/q_mc04"
-                            style="@style/quesNum"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mc04"
-                            android:layout_alignBottom="@id/qtxt_mc04"
-                            android:text="@string/Q_mc04" />
-                    </RelativeLayout>
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/q_mc04"-->
+            <!--                            style="@style/quesNum"-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_alignTop="@id/qtxt_mc04"-->
+            <!--                            android:layout_alignBottom="@id/qtxt_mc04"-->
+            <!--                            android:text="@string/Q_mc04" />-->
+            <!--                    </RelativeLayout>-->
 
-                    <EditText
-                        android:id="@+id/mc04"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/mc04" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            <!--                    <EditText-->
+            <!--                        android:id="@+id/mc04"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:hint="@string/mc04" />-->
+            <!--                </LinearLayout>-->
+            <!--            </androidx.cardview.widget.CardView>-->
 
 
             <!-- mc05  Input   -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmc05"
-                style="@style/cardView">
+            <!--            <androidx.cardview.widget.CardView-->
+            <!--                android:id="@+id/fldGrpCVmc05"-->
+            <!--                style="@style/cardView">-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <!--                <LinearLayout-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:orientation="vertical">-->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bottom">
+            <!--                    <RelativeLayout-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:background="@drawable/bottom">-->
 
-                        <TextView
-                            android:id="@+id/qtxt_mc05"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mc05"
-                            android:text="@string/mc05" />
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/qtxt_mc05"-->
+            <!--                            android:layout_width="match_parent"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_toEndOf="@id/q_mc05"-->
+            <!--                            android:text="@string/mc05" />-->
 
-                        <TextView
-                            android:id="@+id/q_mc05"
-                            style="@style/quesNum"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mc05"
-                            android:layout_alignBottom="@id/qtxt_mc05"
-                            android:text="@string/Q_mc05" />
-                    </RelativeLayout>
+            <!--                        <TextView-->
+            <!--                            android:id="@+id/q_mc05"-->
+            <!--                            style="@style/quesNum"-->
+            <!--                            android:layout_width="wrap_content"-->
+            <!--                            android:layout_height="wrap_content"-->
+            <!--                            android:layout_alignTop="@id/qtxt_mc05"-->
+            <!--                            android:layout_alignBottom="@id/qtxt_mc05"-->
+            <!--                            android:text="@string/Q_mc05" />-->
+            <!--                    </RelativeLayout>-->
 
-                    <EditText
-                        android:id="@+id/mc05"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/mc05" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            <!--                    <EditText-->
+            <!--                        android:id="@+id/mc05"-->
+            <!--                        android:layout_width="match_parent"-->
+            <!--                        android:layout_height="wrap_content"-->
+            <!--                        android:hint="@string/mc05" />-->
+            <!--                </LinearLayout>-->
+            <!--            </androidx.cardview.widget.CardView>-->
 
 
             <!-- mc06  Input   -->
@@ -1369,48 +1369,6 @@
 
                     </RadioGroup>
 
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-
-            <!-- mc26  Input   -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/fldGrpCVmc26"
-                style="@style/cardView">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bottom">
-
-                        <TextView
-                            android:id="@+id/qtxt_mc26"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toEndOf="@id/q_mc26"
-                            android:text="@string/mc26" />
-
-                        <TextView
-                            android:id="@+id/q_mc26"
-                            style="@style/quesNum"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignTop="@id/qtxt_mc26"
-                            android:layout_alignBottom="@id/qtxt_mc26"
-                            android:text="@string/Q_mc26" />
-                    </RelativeLayout>
-
-                    <EditText
-                        android:id="@+id/mc26"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="@string/mc26" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>

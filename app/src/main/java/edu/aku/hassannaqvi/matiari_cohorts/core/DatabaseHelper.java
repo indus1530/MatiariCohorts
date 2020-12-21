@@ -279,9 +279,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_CHILD_ID, form.getCHILD_ID());
         values.put(FormsTable.COLUMN_SYSDATE, form.getSysdate());
         values.put(FormsTable.COLUMN_USERNAME, form.getUsername());
-    /*    values.put(FormsWFTable.COLUMN_ISTATUS, formSF.getIstatus());
-        values.put(FormsWFTable.COLUMN_ISTATUS96x, formSF.getIstatus96x());*/
-//        values.put(FormsTable.COLUMN_ENDINGDATETIME, formSF.getEndingdatetime());
         values.put(FormsTable.COLUMN_GPSLAT, form.getGpsLat());
         values.put(FormsTable.COLUMN_GPSLNG, form.getGpsLng());
         values.put(FormsTable.COLUMN_GPSDATE, form.getGpsDT());
@@ -290,9 +287,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(FormsTable.COLUMN_DEVICEID, form.getDeviceID());
         values.put(FormsTable.COLUMN_APPVERSION, form.getAppversion());
         values.put(FormsTable.COLUMN_SA, form.getsA());
-        values.put(FormsTable.COLUMN_ISTATUS, form.getIstatus());
-        values.put(FormsTable.COLUMN_ISTATUS96x, form.getIstatus96x());
-        values.put(FormsTable.COLUMN_ENDINGDATETIME, form.getEndingdatetime());
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId;

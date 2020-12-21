@@ -27,7 +27,7 @@ import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivitySectionABinding;
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel;
 import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity;
+import edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity;
 
 import static edu.aku.hassannaqvi.matiari_cohorts.core.MainApp.forms;
 
@@ -94,20 +94,27 @@ public class SectionAActivity extends AppCompatActivity {
         if (formValidation()) {
             try {
                 SaveDraft();
+                if (UpdateDB()) {
+                    finish();
+                    startActivity(new Intent(this, EndingActivity.class).putExtra("complete", true));
+                }
             } catch (Exception e) {
                 e.printStackTrace();
-            }
-            if (UpdateDB()) {
-                finish();
-                startActivity(new Intent(this, MainActivity.class));
-
             }
         }
     }
 
 
     public void BtnEnd() {
-        super.onBackPressed();
+        try {
+            SaveDraft();
+            if (UpdateDB()) {
+                finish();
+                startActivity(new Intent(this, EndingActivity.class));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -149,9 +156,9 @@ public class SectionAActivity extends AppCompatActivity {
 
         forms.setMc03(bi.mc03.getText().toString().trim().isEmpty() ? "-1" : bi.mc03.getText().toString());
 
-        forms.setMc04(bi.mc04.getText().toString().trim().isEmpty() ? "-1" : bi.mc04.getText().toString());
+//        forms.setMc04(bi.mc04.getText().toString().trim().isEmpty() ? "-1" : bi.mc04.getText().toString());
 
-        forms.setMc05(bi.mc05.getText().toString().trim().isEmpty() ? "-1" : bi.mc05.getText().toString());
+//        forms.setMc05(bi.mc05.getText().toString().trim().isEmpty() ? "-1" : bi.mc05.getText().toString());
 
         forms.setMc06(bi.mc06.getText().toString().trim().isEmpty() ? "-1" : bi.mc06.getText().toString());
 
@@ -215,7 +222,7 @@ public class SectionAActivity extends AppCompatActivity {
                 : bi.mc2506.isChecked() ? "6"
                 : "-1");
 
-        forms.setMc26(bi.mc26.getText().toString().trim().isEmpty() ? "-1" : bi.mc26.getText().toString());
+//        forms.setMc26(bi.mc26.getText().toString().trim().isEmpty() ? "-1" : bi.mc26.getText().toString());
 
         forms.setMcrem(bi.mcrem.getText().toString().trim().isEmpty() ? "-1" : bi.mcrem.getText().toString());
 

@@ -9,12 +9,8 @@
     <string name="a06_info"> انٹرویو مکمل نہ ہونے  کی صورت میں سپروائزر سے رابطہ کریں ۔ </string>
     <string name="a0601">مکمل</string>
     <string name="a0602">فرد کی شناخت نہیں ہو سکی</string>
-    <string name="a0603">گھر کی شناخت نہیں ہو سکی </string>
-    <string name="a0604">گھر بند ہے</string>
-    <string name="a0605">گھر میں کوئی اہل جواب دہندہ موجود نہیں</string>
-    <string name="a0606">گھر طویل مدت سے بند ہے</string>
-    <string name="a0607">انکار کردیا </string>
-    <string name="a0608">فون پر رابطہ نہیں ہوسکا </string>
+    <string name="a0603">انکار کردیا </string>
+    <string name="a0604">فون پر رابطہ نہیں ہوسکا </string>
     <string name="a0696">دیگر(وضاحت کریں)</string>
 
     <string name="section1_mainheading">SECTION 1: Follow-Up Evaluation of Health and Developmental Outcomes</string>

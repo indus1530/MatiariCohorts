@@ -23,6 +23,11 @@ fun <T : AppCompatActivity> AppCompatActivity.gotoActivity(targetActivityClass: 
     startActivity(intent)
 }
 
+fun <T : AppCompatActivity> AppCompatActivity.gotoActivityWithSerializable(targetActivityClass: Class<T>, key: String, data: Serializable) {
+    val intent = Intent(this, targetActivityClass).putExtra(key, data)
+    startActivity(intent)
+}
+
 fun <T : AppCompatActivity> Fragment.gotoActivityWithSerializable(targetActivityClass: Class<T>, key: String, data: Serializable) {
     val intent = Intent(view?.context, targetActivityClass).putExtra(key, data)
     startActivity(intent)

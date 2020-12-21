@@ -23,7 +23,7 @@ class ChildViewHolder(private val bi: ItemChildLayoutBinding) :
         bi.childID.text = String.format("Child-ID: %s", item.childId)
         bi.motherName.text = String.format("Mother: %s", item.motherName)
         bi.name.text = item.childName
-        val imageRes: Int = if (item.equals("Male")) R.drawable.ctr_childboy else R.drawable.ctr_childgirl
+        val imageRes: Int = if (item.gender == "Male") R.drawable.ctr_childboy else R.drawable.ctr_childgirl
         var hhStatusText = "NULL"
         var hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.white)
         when (item.formFlag) {

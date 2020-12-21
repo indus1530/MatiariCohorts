@@ -17,6 +17,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ChildEndDialogBinding
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity
@@ -229,12 +230,45 @@ fun openWarningActivity(activity: Activity, title: String, message: String, btnY
     }
 }
 
+@JvmOverloads
+fun Fragment.openWarningFragment(mHost: Activity, title: String, message: String, btnYesTxt: String = "YES", btnNoTxt: String = "NO", data: Serializable? = null) {
+
+    activity?.let { activityFrag ->
+        val dialog = Dialog(activityFrag)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val bi: ChildEndDialogBinding = DataBindingUtil.inflate(LayoutInflater.from(activityFrag), R.layout.child_end_dialog, null, false)
+        dialog.setContentView(bi.root)
+        bi.alertTitle.text = title
+        bi.alertTitle.setTextColor(ContextCompat.getColor(activityFrag, R.color.green))
+        bi.content.text = message
+        bi.btnOk.text = btnYesTxt
+        bi.btnOk.setBackgroundColor(ContextCompat.getColor(activityFrag, R.color.green))
+        bi.btnNo.text = btnNoTxt
+        bi.btnNo.setBackgroundColor(ContextCompat.getColor(activityFrag, R.color.gray))
+        dialog.setCancelable(false)
+        val params = WindowManager.LayoutParams()
+        params.copyFrom(dialog.window!!.attributes)
+        params.width = WindowManager.LayoutParams.WRAP_CONTENT
+        params.height = WindowManager.LayoutParams.WRAP_CONTENT
+        dialog.window!!.attributes = params
+        dialog.show()
+        bi.btnOk.setOnClickListener {
+            val warningActivity = mHost as WarningActivityInterface
+            warningActivity.callWarningActivity(data)
+            dialog.dismiss()
+        }
+        bi.btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+    }
+}
+
 interface EndSectionActivity {
     fun endSecActivity(flag: Boolean)
 }
 
 interface WarningActivityInterface {
-    fun callWarningActivity()
+    fun callWarningActivity(data: Any? = null)
 }
 
 fun showTooltip(context: Context, view: View) {

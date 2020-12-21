@@ -90,30 +90,6 @@
                             android:text="@string/a0604" />
 
                         <RadioButton
-                            android:id="@+id/a0605"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/a0605" />
-
-                        <RadioButton
-                            android:id="@+id/a0606"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/a0606" />
-
-                        <RadioButton
-                            android:id="@+id/a0607"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/a0607" />
-
-                        <RadioButton
-                            android:id="@+id/a0608"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/a0608" />
-
-                        <RadioButton
                             android:id="@+id/a0696"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"

@@ -5,13 +5,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
+import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.ChildListAdapter
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityDashboardBinding
+import edu.aku.hassannaqvi.matiari_cohorts.extension.gotoActivityWithSerializable
+import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
+import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.SectionAActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.fragments.ChildListFragment
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.fragments.SelectionFragment
+import edu.aku.hassannaqvi.matiari_cohorts.utils.WarningActivityInterface
 
-class DashboardActivity : AppCompatActivity() {
+class DashboardActivity : AppCompatActivity(), WarningActivityInterface {
 
     lateinit var adapter: ChildListAdapter
     lateinit var bi: ActivityDashboardBinding
@@ -30,5 +35,9 @@ class DashboardActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun callWarningActivity(data: Any?) {
+        gotoActivityWithSerializable(SectionAActivity::class.java, CONSTANTS.CHILD_DATA, data as ChildModel)
     }
 }
