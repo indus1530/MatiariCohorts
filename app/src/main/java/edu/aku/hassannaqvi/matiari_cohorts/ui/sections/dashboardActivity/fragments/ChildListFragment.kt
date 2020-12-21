@@ -54,10 +54,8 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
         * */
         viewModel.villageDataProcessResponse.observe(viewLifecycleOwner, Observer {
             when (it.status) {
-                ResponseStatus.SUCCESS -> {
-                    multiStateView.viewState = MultiStateView.ViewState.CONTENT
-                }
-                ResponseStatus.ERROR -> multiStateView.viewState = MultiStateView.ViewState.EMPTY
+                ResponseStatus.SUCCESS -> multiStateView.viewState = MultiStateView.ViewState.CONTENT
+                ResponseStatus.ERROR -> multiStateView.viewState = MultiStateView.ViewState.ERROR
                 ResponseStatus.LOADING -> {
                     multiStateView.viewState = MultiStateView.ViewState.LOADING
                     villageData = it.data as VillageModel

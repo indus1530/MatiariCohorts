@@ -552,8 +552,63 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     orderBy                    // The sort order
             );
             while (c.moveToNext()) {
-                ChildModel forms = new ChildModel();
-                allForms.add(forms.hydrate(c));
+                ChildModel child = new ChildModel().hydrate(c);
+                if (getSpecificForm(child.getChildId()) == null)
+                    child.setFormFlag(0);
+                else child.setFormFlag(1);
+                allForms.add(child);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allForms;
+    }
+
+    public Forms getSpecificForm(String childID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                FormsTable._ID,
+                FormsTable.COLUMN_CHILD_ID,
+                FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_SYSDATE,
+                FormsTable.COLUMN_USERNAME,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_ISTATUS96x,
+                FormsTable.COLUMN_ENDINGDATETIME,
+                FormsTable.COLUMN_SA,
+                FormsTable.COLUMN_GPSLAT,
+                FormsTable.COLUMN_GPSLNG,
+                FormsTable.COLUMN_GPSDATE,
+                FormsTable.COLUMN_GPSACC,
+                FormsTable.COLUMN_DEVICETAGID,
+                FormsTable.COLUMN_DEVICEID,
+                FormsTable.COLUMN_APPVERSION,
+        };
+        String whereClause = FormsTable.COLUMN_CHILD_ID + "=? AND " + FormsTable.COLUMN_ISTATUS + "=?";
+        String[] whereArgs = {childID, "1"};
+        String groupBy = null;
+        String having = null;
+        String orderBy = FormsTable.COLUMN_ID + " ASC";
+
+        Forms allForms = null;
+        try {
+            c = db.query(
+                    FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                allForms = new Forms().Hydrate(c);
             }
         } finally {
             if (c != null) {

@@ -144,6 +144,7 @@ public class SectionAActivity extends AppCompatActivity {
         forms.setDevicetagID(MainApp.appInfo.getTagName());
         forms.setAppversion(MainApp.appInfo.getAppVersion());
         forms.setUsername(MainApp.userName);
+        forms.setCHILD_ID(child.getChildId());
 
         setGPS(this);
 
