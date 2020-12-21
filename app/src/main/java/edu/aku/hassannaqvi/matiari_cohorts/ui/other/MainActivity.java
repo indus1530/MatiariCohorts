@@ -14,26 +14,28 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityMainBinding;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.models.VersionApp;
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity;
 import edu.aku.hassannaqvi.matiari_cohorts.utils.AndroidUtilityKt;
@@ -95,10 +97,10 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         bi = DataBindingUtil.setContentView(this, R.layout.activity_main);
         bi.setCallback(this);
 
-       /* bi.txtinstalldate.setText(appInfo.getAppInfo());
-        Collection<FormsSL> todaysForms = appInfo.getDbHelper().getTodayForms(sysdateToday);
-        Collection<FormsSL> unsyncedForms = appInfo.getDbHelper().getUnsyncedForms();
-        Collection<FormsSL> unclosedForms = appInfo.getDbHelper().getUnclosedForms();
+        bi.txtinstalldate.setText(appInfo.getAppInfo());
+        Collection<Forms> todaysForms = appInfo.getDbHelper().getTodayForms(sysdateToday);
+        Collection<Forms> unsyncedForms = appInfo.getDbHelper().getUnsyncedForms();
+        Collection<Forms> unclosedForms = appInfo.getDbHelper().getUnclosedForms();
 
         StringBuilder rSumText = new StringBuilder()
                 .append("TODAY'S RECORDS SUMMARY\r\n")
@@ -112,48 +114,36 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
                     .append("[District   ][Ref. No][Name   ][FormsSL Status][Sync Status]\r\n")
                     .append("---------------------------------------------------------\r\n");
 
-            for (FormsSL form : todaysForms) {
+            for (Forms form : todaysForms) {
                 Log.d(TAG, "onCreate: '" + form.getIstatus() + "'");
                 switch (form.getIstatus()) {
                     case "1":
                         iStatus = " Complete                                          ";
                         break;
                     case "2":
-                        iStatus = " Individual not identified                         ";
-                        break;
-                    case "3":
-                        iStatus = " Household not identified                          ";
-                        break;
-                    case "4":
                         iStatus = " Locked                                            ";
                         break;
-                    case "5":
-                        iStatus = " No competentrespondent at home                    ";
-                        break;
-                    case "6":
-                        iStatus = " Entire household absent for extended period of time";
-                        break;
-                    case "7":
+                    case "3":
                         iStatus = " Refused                                           ";
                         break;
-                    case "8":
+                    case "4":
                         iStatus = " Phone could not be contacted                      ";
                         break;
                     case "96":
                         iStatus = " Other                                             ";
                         break;
-                   *//* case "":
+                    case "":
                         iStatus = " Open                                              ";
-                        break;*//*
+                        break;
                     default:
                         iStatus = " - N/A -                                           " + form.getIstatus();
                 }
 
                 rSumText
                         .append(" ")
-                        .append((form.getA05() + "             ").substring(0, 12))
-                        .append((form.getRefno() + "         ").substring(0, 9))
-                        .append((form.getA08() + "         ").substring(0, 9))
+                        /*.append((form.getsF() + "             ").substring(0, 12))
+                        .append((form.getsA() + "         ").substring(0, 9))
+                        .append((form.getsL() + "         ").substring(0, 9))*/
                         .append(iStatus.substring(0, 13))
                         .append(form.getSynced() == null ? "Not Synced" : "Synced    ")
                         .append("\r\n")
@@ -163,21 +153,21 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         SharedPreferences syncPref = getSharedPreferences("src", Context.MODE_PRIVATE);
         rSumText.append("\r\nDEVICE INFORMATION\r\n")
                 .append("  ========================================================\r\n")
-                *//* .append("\t|| Open Forms: \t\t\t\t\t\t").append(String.format("%02d", unclosedForms.size()))
-                 .append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||\r\n")*//*
+                .append("\t|| Open Forms: \t\t\t\t\t\t").append(String.format("%02d", unclosedForms.size()))
+                .append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||\r\n")
                 .append("\t|| Unsynced Forms: \t\t\t\t").append(String.format("%02d", unsyncedForms.size()))
                 .append("\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t||\r\n")
                 .append("\t|| Last Data Download: \t\t").append(syncPref.getString("LastDataDownload", "Never Downloaded   "))
                 .append("\t\t\t\t\t\t||\r\n")
                 .append("\t|| Last Data Upload: \t\t\t").append(syncPref.getString("LastDataUpload", "Never Uploaded     "))
                 .append("\t\t\t\t\t\t||\r\n")
-                *//*  .append("\t|| Last Photo Upload: \t\t").append(syncPref.getString("LastPhotoUpload", "Never Uploaded     "))
-                  .append("\t\t\t\t\t\t||\r\n")*//*
+                .append("\t|| Last Photo Upload: \t\t").append(syncPref.getString("LastPhotoUpload", "Never Uploaded     "))
+                .append("\t\t\t\t\t\t||\r\n")
                 .append("\t========================================================\r\n");
         bi.recordSummary.setText(rSumText);
 
         Log.d(TAG, "onCreate: " + rSumText);
-        */
+
         if (MainApp.admin) {
             bi.databaseBtn.setVisibility(View.VISIBLE);
         } else {
@@ -260,11 +250,11 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         return super.onOptionsItemSelected(item);
     }
 
-     @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.item_menu, menu);
         return super.onCreateOptionsMenu(menu);
-     }
+    }
 
     @Override
     public void onBackPressed() {

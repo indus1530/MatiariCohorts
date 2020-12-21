@@ -415,6 +415,56 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allForms;
     }
 
+    public Collection<Forms> getUnclosedForms() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                FormsTable._ID,
+                FormsTable.COLUMN_CHILD_ID,
+                FormsTable.COLUMN_UID,
+                FormsTable.COLUMN_SYSDATE,
+                FormsTable.COLUMN_ISTATUS,
+                FormsTable.COLUMN_SYNCED,
+        };
+
+        String whereClause = FormsTable.COLUMN_ISTATUS + " = ''";
+        // String whereClause = null;
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+        String orderBy = FormsTable.COLUMN_ID + " ASC";
+        ArrayList<Forms> allForms = new ArrayList<>();
+
+        try {
+            c = db.query(
+                    FormsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                Forms forms = new Forms();
+                forms.set_UID(c.getString(c.getColumnIndex(FormsTable.COLUMN_UID)));
+                forms.setCHILD_ID(c.getString(c.getColumnIndex(FormsTable.COLUMN_CHILD_ID)));
+                forms.setSysdate(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYSDATE)));
+                forms.setIstatus(c.getString(c.getColumnIndex(FormsTable.COLUMN_ISTATUS)));
+                forms.setSynced(c.getString(c.getColumnIndex(FormsTable.COLUMN_SYNCED)));
+                allForms.add(forms);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allForms;
+    }
+
     public Collection<Forms> getTodayForms(String sysdate) {
 
         // String sysdate =  spDateT.substring(0, 8).trim()

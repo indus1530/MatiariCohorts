@@ -1293,8 +1293,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/mc24"
                         android:inputType="number"
-                        android:maxLength="11"
-                        android:minLength="7"/>
+                        android:maxLength="11"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
