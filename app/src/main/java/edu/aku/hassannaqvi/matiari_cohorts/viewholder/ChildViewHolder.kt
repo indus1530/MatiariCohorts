@@ -3,7 +3,6 @@ package edu.aku.hassannaqvi.matiari_cohorts.viewholder
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -58,15 +57,11 @@ class ChildViewHolder(private val bi: ItemChildLayoutBinding) :
 
     companion object {
         fun create(viewGroup: ViewGroup): ChildViewHolder {
-            /*val view = LayoutInflater.from(viewGroup.context)
+            val view = LayoutInflater.from(viewGroup.context)
                     .inflate(R.layout.item_child_layout, viewGroup, false)
-            val binding = ItemChildLayoutBinding.bind(view)*/
-
-            val bi: ItemChildLayoutBinding = DataBindingUtil.inflate(LayoutInflater.from(viewGroup.context), R.layout.item_child_layout, viewGroup, false)
-
-            return ChildViewHolder(bi)
+            val binding = ItemChildLayoutBinding.bind(view)
+            return ChildViewHolder(binding)
         }
-
     }
 
     class ChildViewDiffUtils(

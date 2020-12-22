@@ -49,7 +49,6 @@ public class SectionAActivity extends AppCompatActivity {
     }
 
 
-
     private void setupSkips() {
 
         bi.mc15.setOnCheckedChangeListener((group, checkedId) -> {
@@ -146,14 +145,12 @@ public class SectionAActivity extends AppCompatActivity {
         forms.setUsername(MainApp.userName);
         forms.setChild_id(child.getChildId());
         forms.setVillage_code(child.getVillageCode());
+        forms.setHhhead(child.getHhHead());
+        forms.setEproject(child.getProject());
 
         setGPS(this);
 
         forms.setMc01(bi.mc01.getText().toString().trim().isEmpty() ? "-1" : bi.mc01.getText().toString());
-
-        child.setHhHead(child.getHhHead());
-        child.setProject(child.getProject());
-
 
         forms.setMc02(bi.mc0201.isChecked() ? "1"
                 : bi.mc0202.isChecked() ? "2"

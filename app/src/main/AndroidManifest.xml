@@ -29,21 +29,6 @@
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
         <activity
-            android:name=".ui.sections.dashboardActivity.DashboardActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.list_activity.FormsReportCluster"
-            android:label="Forms Report"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.list_activity.FormsReportDate"
-            android:label="Forms Report"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.sections.SectionAActivity"
-            android:label="@string/section1_mainheading"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".ui.other.SplashscreenActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
@@ -56,20 +41,41 @@
         <activity
             android:name=".ui.other.LoginActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.other.MainActivity" />
         <activity
-            android:name=".ui.other.EndingActivity"
+            android:name=".ui.list_activity.FormsReportCluster"
+            android:label="Forms Report by Cluster"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.list_activity.FormsReportDate"
+            android:label="Forms Report by Date"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.other.MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.sections.dashboardActivity.DashboardActivity"
+            android:label="Dashboard"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.sections.SectionAActivity"
+            android:label="@string/section1_mainheading"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu" />
+        <activity
+            android:name=".ui.other.EndingActivity"
+            android:label="Ending Interview"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppThemeUrdu" />
+        <activity
+            android:name=".ui.other.SyncActivity"
+            android:label="Download/Upload Data"
+            android:parentActivityName=".ui.other.MainActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".core.AndroidDatabaseManager"
             android:parentActivityName=".ui.other.MainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".ui.other.SyncActivity"
-            android:parentActivityName=".ui.other.MainActivity"
-            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

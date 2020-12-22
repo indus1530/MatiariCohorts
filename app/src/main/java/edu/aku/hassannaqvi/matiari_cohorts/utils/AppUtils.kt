@@ -253,7 +253,7 @@ fun Fragment.openWarningFragment(mHost: Activity, title: String, message: String
         dialog.window!!.attributes = params
         dialog.show()
         bi.btnOk.setOnClickListener {
-            val warningActivity = mHost as WarningActivityInterface
+            val warningActivity = activity as WarningActivityInterface
             warningActivity.callWarningActivity(data)
             dialog.dismiss()
         }

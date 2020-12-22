@@ -17,8 +17,8 @@ import edu.aku.hassannaqvi.matiari_cohorts.contracts.FormsContract.FormsTable;
 
 public class Forms extends LiveData<Forms> {
 
-    private final String projectName = "matiari_cohorts";
-
+    public String hhhead = "";
+    public String eproject = "";
     public String mc01 = "";
     public String mc02 = "";
     public String mc03 = "";
@@ -346,6 +346,7 @@ public class Forms extends LiveData<Forms> {
 
 
     public String getProjectName() {
+        String projectName = "matiari_cohorts";
         return projectName;
     }
 
@@ -506,6 +507,21 @@ public class Forms extends LiveData<Forms> {
         this.synced_date = synced_date;
     }
 
+    public String getHhhead() {
+        return hhhead;
+    }
+
+    public void setHhhead(String hhhead) {
+        this.hhhead = hhhead;
+    }
+
+    public String getEproject() {
+        return eproject;
+    }
+
+    public void setEproject(String eproject) {
+        this.eproject = eproject;
+    }
 
     public Forms Sync(JSONObject jsonObject) throws JSONException {
         this._ID = jsonObject.getString(FormsTable.COLUMN_ID);
@@ -570,7 +586,9 @@ public class Forms extends LiveData<Forms> {
         JSONObject json = new JSONObject();
 
         try {
-            json.put("mc01", mc01)
+            json.put("hhHead", hhhead)
+                    .put("eproject", eproject)
+                    .put("mc01", mc01)
                     .put("mc02", mc02)
                     .put("mc03", mc03)
                     .put("mc04", mc04)
@@ -657,6 +675,8 @@ public class Forms extends LiveData<Forms> {
                 JSONObject json = null;
                 json = new JSONObject(string);
 
+                this.hhhead = json.getString("hhhead");
+                this.eproject = json.getString("eproject");
                 this.mc01 = json.getString("mc01");
                 this.mc02 = json.getString("mc02");
                 this.mc03 = json.getString("mc03");

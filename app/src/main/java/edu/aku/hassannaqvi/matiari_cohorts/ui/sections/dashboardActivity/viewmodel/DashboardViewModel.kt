@@ -55,9 +55,10 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
             try {
                 delay(3000)
                 val children = repository.getChildListByVillage(vCode)
-                _childResponse.value = if (children.size > 0)
-                    ResponseStatusCallbacks.success(data = children, message = "Child list found")
-                else
+                _childResponse.value = if (children.size > 0) {
+                    val childList = ArrayList<ChildModel>(children.sortedBy { it.formFlag })
+                    ResponseStatusCallbacks.success(data = childList, message = "Child list found")
+                } else
                     ResponseStatusCallbacks.error(data = null, message = "No child found!")
             } catch (e: Exception) {
                 _childResponse.value =
