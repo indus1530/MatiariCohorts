@@ -32,5 +32,6 @@ public class FormsContract {
         public static final String COLUMN_SA = "sA";
         public static final String COLUMN_sF = "sF";
         public static final String COLUMN_sL = "sL";
+        public static final String COLUMN_VILLAGE_CODE = "village_code";
     }
 }

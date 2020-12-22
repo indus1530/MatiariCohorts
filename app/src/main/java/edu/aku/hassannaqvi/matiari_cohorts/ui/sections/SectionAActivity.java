@@ -144,11 +144,16 @@ public class SectionAActivity extends AppCompatActivity {
         forms.setDevicetagID(MainApp.appInfo.getTagName());
         forms.setAppversion(MainApp.appInfo.getAppVersion());
         forms.setUsername(MainApp.userName);
-        forms.setCHILD_ID(child.getChildId());
+        forms.setChild_id(child.getChildId());
+        forms.setVillage_code(child.getVillageCode());
 
         setGPS(this);
 
         forms.setMc01(bi.mc01.getText().toString().trim().isEmpty() ? "-1" : bi.mc01.getText().toString());
+
+        child.setHhHead(child.getHhHead());
+        child.setProject(child.getProject());
+
 
         forms.setMc02(bi.mc0201.isChecked() ? "1"
                 : bi.mc0202.isChecked() ? "2"
