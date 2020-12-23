@@ -24,15 +24,15 @@ class ChildViewHolder(private val bi: ItemChildLayoutBinding) :
         bi.name.text = item.childName
         val imageRes: Int = if (item.gender == "Male") R.drawable.ctr_childboy else R.drawable.ctr_childgirl
         var hhStatusText = "NULL"
-        var hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.white)
+        var hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.black_overlay)
+        var backgroundColor = ContextCompat.getColor(this.itemView.context, R.color.white)
         when (item.formFlag) {
             0 -> {
                 hhStatusText = "OPEN"
-                hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.black_overlay)
             }
             1 -> {
                 bi.parentLayout.isEnabled = false
-                bi.parentLayout.setBackgroundColor(ContextCompat.getColor(this.itemView.context, R.color.gray))
+                backgroundColor = ContextCompat.getColor(this.itemView.context, R.color.gray)
                 hhStatusText = "CLOSED"
                 hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.red_overlay)
             }
@@ -45,6 +45,8 @@ class ChildViewHolder(private val bi: ItemChildLayoutBinding) :
                 hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.green_overlay)
             }
         }*/
+
+        bi.parentLayout.setBackgroundColor(backgroundColor)
         bi.hhStatus.text = hhStatusText
         bi.hhStatus.setBackgroundColor(hhStatusColor)
         Glide.with(this.itemView.context)
@@ -70,7 +72,7 @@ class ChildViewHolder(private val bi: ItemChildLayoutBinding) :
     ) :
             DiffUtil.Callback() {
         override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            return oldList[oldItemPosition].formFlag == newList[newItemPosition].formFlag
+            return oldList[oldItemPosition].childId == newList[newItemPosition].childId
         }
 
         override fun getOldListSize(): Int {

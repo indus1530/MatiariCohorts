@@ -6,27 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".ui.sections.dashboardActivity.fragments.ChildListFragment">
 
-    <com.kennyc.view.MultiStateView
-        android:id="@+id/multiStateView"
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/content_scroll"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:msv_animateViewChanges="true"
-        app:msv_emptyView="@layout/empty_view"
-        app:msv_errorView="@layout/error_view"
-        app:msv_loadingView="@layout/loading_view"
-        app:msv_viewState="content">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/childList"
+        <com.kennyc.view.MultiStateView
+            android:id="@+id/multiStateView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/light_gray"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@+id/checkLayout2"
-            tools:listitem="@layout/item_child_layout">
+            app:msv_animateViewChanges="true"
+            app:msv_emptyView="@layout/empty_view"
+            app:msv_errorView="@layout/error_view"
+            app:msv_loadingView="@layout/loading_view"
+            app:msv_viewState="content">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/childList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/light_gray"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/checkLayout2"
+                tools:listitem="@layout/item_child_layout">
 
-    </com.kennyc.view.MultiStateView>
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </com.kennyc.view.MultiStateView>
+
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>
