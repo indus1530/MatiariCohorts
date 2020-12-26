@@ -59,6 +59,7 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
                 ResponseStatus.LOADING -> {
                     multiStateView.viewState = MultiStateView.ViewState.LOADING
                     villageData = it.data as VillageModel
+                    villageData?.let { snapshot -> viewModel.getChildDataFromDB(snapshot.villageCode) }
                 }
             }
         })
@@ -90,8 +91,8 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
         adapter = ChildListAdapter(object : ChildListAdapter.OnItemClickListener {
             override fun onItemClick(item: ChildModel, position: Int) {
                 villageData?.let {
-                    item.village = villageData!!.village
-                    item.uc = villageData!!.uc
+                    item.village = it.village
+                    item.uc = it.uc
                 }
                 openWarningFragment(
                         activity as DashboardActivity,
@@ -103,4 +104,9 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
         childList.adapter = adapter
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        villageData?.let { snapshot -> viewModel.getChildDataFromDB(snapshot.villageCode) }
+    }
 }

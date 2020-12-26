@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
 
-open class GeneralRepository(private val db: DatabaseHelper) : GeneralBluePrint {
+open class GeneralRepository(private val db: DatabaseHelper) : GeneralDataSource {
 
     override suspend fun getVillages(): ArrayList<VillageModel> = withContext(Dispatchers.IO) {
         db.villagesList

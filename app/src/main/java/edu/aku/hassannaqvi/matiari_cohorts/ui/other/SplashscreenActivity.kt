@@ -1,15 +1,15 @@
 package edu.aku.hassannaqvi.matiari_cohorts.ui.other
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import kotlinx.coroutines.*
 
 /*
 * @author Ali Azaz Alam dt. 12.16.20
 * */
-class SplashscreenActivity : Activity() {
+class SplashscreenActivity : AppCompatActivity() {
     private lateinit var activityScope: Job
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,6 +27,11 @@ class SplashscreenActivity : Activity() {
         super.onResume()
         if (activityScope.isActive.not())
             launchSplashScope()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        activityScope.cancel()
     }
 
     private fun launchSplashScope() =

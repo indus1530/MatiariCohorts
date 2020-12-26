@@ -63,7 +63,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="@{form.childId}"
                         android:hint="@string/mc01"
                         android:inputType="number" />
 
@@ -104,35 +103,15 @@
                             android:text="@string/Q_mc02" />
                     </RelativeLayout>
 
-                    <RadioGroup
+                    <com.edittextpicker.aliazaz.EditTextPicker
                         android:id="@+id/mc02"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:gravity="center"
+                        android:hint="@string/mc02"
+                        android:text="@{form.project}" />
 
-                        <RadioButton
-                            android:id="@+id/mc0201"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mc0201" />
-
-                        <RadioButton
-                            android:id="@+id/mc0202"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mc0202" />
-
-                        <RadioButton
-                            android:id="@+id/mc0203"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mc0203" />
-
-                        <RadioButton
-                            android:id="@+id/mc0204"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/mc0204" />
-                    </RadioGroup>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -173,10 +152,10 @@
                         android:id="@+id/mc03"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="false"
                         android:gravity="center"
-                        android:text="@{form.childId}"
                         android:hint="@string/mc03"
-                        android:inputType="number" />
+                        android:text="@{form.childId}" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -298,11 +277,11 @@
                     <EditText
                         android:id="@+id/mc06"
                         android:layout_width="match_parent"
-                        android:enabled="false"
-                        android:text="@{form.uc}"
                         android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:enabled="false"
                         android:hint="@string/mc06"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:text="@{form.uc}" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -341,12 +320,12 @@
 
                     <EditText
                         android:id="@+id/mc07"
-                        android:enabled="false"
                         android:layout_width="match_parent"
-                        android:text="@{form.village}"
                         android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:enabled="false"
                         android:hint="@string/mc07"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:text="@{form.village}" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -387,8 +366,8 @@
                         android:id="@+id/mc08"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc08"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/mc08" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -475,11 +454,11 @@
                     <EditText
                         android:id="@+id/mc10"
                         android:layout_width="match_parent"
-                        android:enabled="false"
-                        android:text="@{form.childName}"
                         android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:enabled="false"
                         android:hint="@string/mc10"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:text="@{form.childName}" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -520,8 +499,8 @@
                         android:id="@+id/mc11"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc11"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/mc11" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -560,12 +539,12 @@
 
                     <EditText
                         android:id="@+id/mc12"
-                        android:enabled="false"
-                        android:text="@{form.motherName}"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:enabled="false"
                         android:hint="@string/mc12"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:text="@{form.motherName}" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -709,6 +688,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:enabled="false"
                             android:text="@string/mc1401" />
 
                         <RadioButton
@@ -716,6 +696,7 @@
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
+                            android:enabled="false"
                             android:text="@string/mc1402" />
 
                     </RadioGroup>
@@ -821,8 +802,8 @@
                         android:id="@+id/mc16"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc16"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/mc16" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1145,8 +1126,8 @@
                         android:id="@+id/mc21"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc21"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/mc21" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1248,8 +1229,8 @@
                         android:id="@+id/mc23"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mc23"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/mc23" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1293,7 +1274,7 @@
                         android:layout_height="wrap_content"
                         android:hint="@string/mc24"
                         android:inputType="number"
-                        android:maxLength="11"/>
+                        android:maxLength="11" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1420,8 +1401,8 @@
                         android:id="@+id/mcrem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/mcrem"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"/>
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:hint="@string/mcrem" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -1438,6 +1419,7 @@
                     android:id="@+id/btn_End"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:padding="10dp"
                     android:layout_marginStart="12dp"
                     android:background="@color/red_overlay"
                     android:onClick="@{() -> callback.BtnEnd()}"
@@ -1447,6 +1429,7 @@
                 <Button
                     android:id="@+id/btn_Continue"
                     android:layout_width="wrap_content"
+                    android:padding="10dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:background="@color/green_overlay"

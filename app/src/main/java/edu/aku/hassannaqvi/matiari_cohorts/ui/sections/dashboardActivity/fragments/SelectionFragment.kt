@@ -61,7 +61,6 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
         * Calling viewmodel village data function
         * Fetch village result response
         * */
-        viewModel.getVillageDataFromDB()
         viewModel.villageResponse.observe(viewLifecycleOwner, Observer {
             it?.let {
                 when (it.status) {
@@ -103,6 +102,7 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
                 ucMap.forEach { (k, v) ->
                     if (v.first == spinnerUC.selectedItem.toString()) village.add(v.second.village)
                 }
+                viewModel.progressVillageAlert()
                 villageAdapter.notifyDataSetChanged()
             }
 
@@ -121,8 +121,7 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
                                 return@forEach
                             }
                         }
-                        viewModel.progressVillageAlert(true, ucMap.get(ucKey)?.second)
-                        viewModel.getChildDataFromDB(ucKey)
+                        viewModel.progressVillageAlert(true, ucMap[ucKey]?.second)
                     }
                 }
             }

@@ -27,7 +27,7 @@
         android:layout_marginBottom="28dp"
         android:drawablePadding="12dp"
         android:gravity="center_vertical"
-        android:text="Are you sure, you want to exit without saving?"
+        android:text="Are you sure, you want to exit interview?"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
         android:textColor="@color/black_overlay" />
 

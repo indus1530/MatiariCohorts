@@ -4,7 +4,7 @@ import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
 import java.util.*
 
-interface GeneralBluePrint {
+interface GeneralDataSource {
 
     suspend fun getVillages(): ArrayList<VillageModel>
 

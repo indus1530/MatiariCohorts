@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
-import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
+import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralDataSource
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ProgressResponseStatusCallbacks
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatusCallbacks
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-class DashboardViewModel(private val repository: GeneralRepository) : ViewModel() {
+class DashboardViewModel(private val repository: GeneralDataSource) : ViewModel() {
 
     private val _villageResponse: MutableLiveData<ResponseStatusCallbacks<List<VillageModel>>> = MutableLiveData()
     private val _childResponse: MutableLiveData<ResponseStatusCallbacks<List<ChildModel>>> = MutableLiveData()
@@ -26,8 +26,14 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
     val childResponse: MutableLiveData<ResponseStatusCallbacks<List<ChildModel>>>
         get() = _childResponse
 
+    init {
+        /*
+        * Load village data when viewmodel connected
+        * */
+        getVillageDataFromDB()
+    }
 
-    fun getVillageDataFromDB() {
+    private fun getVillageDataFromDB() {
         _villageResponse.value = ResponseStatusCallbacks.loading(null)
         viewModelScope.launch {
             try {
@@ -45,15 +51,16 @@ class DashboardViewModel(private val repository: GeneralRepository) : ViewModel(
 
     }
 
-    fun progressVillageAlert(boolean: Boolean, data: Any? = null) {
-        villageDataProcessResponse.value = if (boolean) ProgressResponseStatusCallbacks.loading(data) else ProgressResponseStatusCallbacks.success()
+    fun progressVillageAlert(boolean: Boolean? = null, data: Any? = null) {
+        villageDataProcessResponse.value = boolean?.run { if (boolean) ProgressResponseStatusCallbacks.loading(data) else ProgressResponseStatusCallbacks.success() }
+                ?: ProgressResponseStatusCallbacks.error()
     }
 
     fun getChildDataFromDB(vCode: String) {
         _childResponse.value = ResponseStatusCallbacks.loading(null)
         viewModelScope.launch {
             try {
-                delay(3000)
+                delay(1000)
                 val children = repository.getChildListByVillage(vCode)
                 _childResponse.value = if (children.size > 0) {
                     val childList = ArrayList<ChildModel>(children.sortedBy { it.formFlag })
