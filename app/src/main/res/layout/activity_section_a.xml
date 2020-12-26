@@ -29,7 +29,8 @@
             <!-- mc01  Input-Numeric   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVmc01"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -412,7 +413,7 @@
                         android:hint="@string/mc09"
                         app:dateFormat="dd-MM-yyyy"
                         app:maxDate="CR_DATE"
-                        app:minDate="01/11/2015" />
+                        app:minDate="15/12/2020" />
 
                 </LinearLayout>
 
@@ -456,7 +457,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
-                        android:enabled="false"
                         android:hint="@string/mc10"
                         android:text="@{form.childName}" />
                 </LinearLayout>
@@ -606,7 +606,7 @@
                                 android:hint="@string/mc1301"
                                 android:inputType="number"
                                 android:maxLength="2"
-                                app:maxValue="22"
+                                app:maxValue="25"
                                 app:minValue="0"
                                 app:type="range" />
 
@@ -1050,7 +1050,7 @@
                                 android:hint="@string/mc2001"
                                 android:inputType="number"
                                 android:maxLength="2"
-                                app:maxValue="22"
+                                app:maxValue="25"
                                 app:minValue="0"
                                 app:type="range" />
 
@@ -1419,21 +1419,21 @@
                     android:id="@+id/btn_End"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="10dp"
                     android:layout_marginStart="12dp"
                     android:background="@color/red_overlay"
                     android:onClick="@{() -> callback.BtnEnd()}"
+                    android:padding="10dp"
                     android:text="Cancel"
                     android:textColor="@color/white" />
 
                 <Button
                     android:id="@+id/btn_Continue"
                     android:layout_width="wrap_content"
-                    android:padding="10dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:background="@color/green_overlay"
                     android:onClick="@{() -> callback.BtnContinue()}"
+                    android:padding="10dp"
                     android:text="Save"
                     android:textColor="@color/white" />
             </LinearLayout>

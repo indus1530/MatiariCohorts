@@ -81,13 +81,15 @@
                             android:id="@+id/a0603"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/a0603" />
+                            android:text="@string/a0603"
+                            android:visibility="gone" />
 
                         <RadioButton
                             android:id="@+id/a0604"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="@string/a0604" />
+                            android:text="@string/a0604"
+                            android:visibility="gone" />
 
                         <RadioButton
                             android:id="@+id/a0696"

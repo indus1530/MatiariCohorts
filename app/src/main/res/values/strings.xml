@@ -5,13 +5,13 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
 
-    <string name="a06">  گھرانے کے انٹرویوکا نتیجہ: نوٹ: انٹرویو مکمل نہ ہونے کی صورت میں سپروائزر سے رابطہ کریں۔ </string>
+    <string name="a06"> Household interview outcome: If interview is not completed then contact to super wiser </string>
     <string name="a06_info"> انٹرویو مکمل نہ ہونے  کی صورت میں سپروائزر سے رابطہ کریں ۔ </string>
-    <string name="a0601">مکمل</string>
-    <string name="a0602">فرد کی شناخت نہیں ہو سکی</string>
+    <string name="a0601">Completed</string>
+    <string name="a0602">InComplete</string>
     <string name="a0603">انکار کردیا </string>
     <string name="a0604">فون پر رابطہ نہیں ہوسکا </string>
-    <string name="a0696">دیگر(وضاحت کریں)</string>
+    <string name="a0696">Other (Specify)</string>
 
     <string name="section1_mainheading">SECTION 1: Follow-Up Evaluation of Health and Developmental Outcomes</string>
     <string name="btnSync">Download Data</string>
@@ -140,7 +140,7 @@
     <string name='Q_mc25'>mc25</string>
     <string name='Q_mc26'>mc26</string>
     <string name='Q_mcrem'>mcrem</string>
-    <string name='Q_a06'>a06</string>
+    <string name='Q_a06'>mc27</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
