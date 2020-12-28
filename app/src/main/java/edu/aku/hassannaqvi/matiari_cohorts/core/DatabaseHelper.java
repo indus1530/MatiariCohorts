@@ -611,9 +611,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             );
             while (c.moveToNext()) {
                 ChildModel child = new ChildModel().hydrate(c);
-                if (getSpecificForm(child.getChildId()) == null)
+                Forms specificForm = getSpecificForm(child.getChildId());
+                if (specificForm == null)
                     child.setFormFlag(0);
-                else child.setFormFlag(1);
+                else {
+                    String status = specificForm.getIstatus();
+                    if (status == null || status.equals(""))
+                        child.setFormFlag(0);
+                    else child.setFormFlag(Integer.parseInt(status));
+                }
                 allForms.add(child);
             }
         } finally {
@@ -649,8 +655,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_DEVICEID,
                 FormsTable.COLUMN_APPVERSION,
         };
-        String whereClause = FormsTable.COLUMN_CHILD_ID + "=? AND " + FormsTable.COLUMN_ISTATUS + "=?";
-        String[] whereArgs = {childID, "1"};
+        String whereClause = FormsTable.COLUMN_CHILD_ID + "=?";
+        String[] whereArgs = {childID};
         String groupBy = null;
         String having = null;
         String orderBy = FormsTable.COLUMN_ID + " ASC";

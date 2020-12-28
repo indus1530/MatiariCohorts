@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.databinding.DataBindingUtil
 import com.validatorcrawler.aliazaz.Clear
 import com.validatorcrawler.aliazaz.Validator
@@ -168,7 +169,22 @@ class SectionAActivity : AppCompatActivity(), EndSectionActivity {
         setGPS(this)
     }
 
-    private fun formValidation(): Boolean = Validator.emptyCheckingContainer(this, bi.GrpName)
+    private fun formValidation(): Boolean {
+        if (!Validator.emptyCheckingContainer(this, bi.GrpName)) return false
+        if (bi.mc1301.text.toString().toInt() == 0 && bi.mc1302.text.toString().toInt() == 0) {
+            Toast.makeText(this, "Year and Month both can't be zero", Toast.LENGTH_SHORT).show()
+            bi.mc1301.error = "Year and Month both can't be zero"
+            return false
+        }
+        if (bi.fldGrpCVmc20.isVisible) {
+            if (bi.mc2001.text.toString().toInt() == 0 && bi.mc2002.text.toString().toInt() == 0) {
+                Toast.makeText(this, "Year and Month both can't be zero", Toast.LENGTH_SHORT).show()
+                bi.mc2001.error = "Year and Month both can't be zero"
+                return false
+            }
+        }
+        return true
+    }
 
     private fun setGPS(activity: Activity) {
         val gpsPref = activity.getSharedPreferences("GPSCoordinates", MODE_PRIVATE)

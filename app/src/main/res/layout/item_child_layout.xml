@@ -31,7 +31,8 @@
                     android:background="@color/black_overlay"
                     android:elevation="@dimen/_1sdp"
                     android:gravity="center"
-                    android:text="OPEN"
+                    android:paddingStart="@dimen/_2sdp"
+                    android:text="IN-COMPLETE"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textColor="@color/white"
                     android:textStyle="bold" />

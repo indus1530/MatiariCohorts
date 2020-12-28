@@ -367,7 +367,7 @@
                         android:id="@+id/mc08"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz0123456789"
                         android:hint="@string/mc08" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -1401,7 +1401,7 @@
                         android:id="@+id/mcrem"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz"
+                        android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz0123456789"
                         android:hint="@string/mcrem" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
