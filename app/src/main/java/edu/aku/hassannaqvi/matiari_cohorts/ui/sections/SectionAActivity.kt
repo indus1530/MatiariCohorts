@@ -134,7 +134,6 @@ class SectionAActivity : AppCompatActivity(), EndSectionActivity {
         MainApp.forms.child_id = child.childId
         MainApp.forms.village_code = child.villageCode
         MainApp.forms.setHhhead(child.hhHead)
-        MainApp.forms.setEproject(child.project)
         setGPS(this)
         MainApp.forms.setMc01(if (bi.mc01.text.toString().trim().isEmpty()) "-1" else bi.mc01.text.toString())
         MainApp.forms.setMc02(if (bi.mc02.text.toString().trim().isEmpty()) "-1" else bi.mc02.text.toString())

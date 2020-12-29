@@ -296,3 +296,12 @@ fun showTooltip(context: Context, view: View) {
         Toast.makeText(context, "No ID Associated with this question.", Toast.LENGTH_SHORT).show()
     }
 }
+
+fun convertStringToUpperCase(inputStr: String): String {
+    /*
+     * Program that first convert all uper case into lower case then
+     * convert fist letter into uppercase
+     */
+    val calStr = inputStr.split(" ").map { it.toLowerCase(Locale.ENGLISH).capitalize(Locale.ENGLISH) }
+    return calStr.joinToString(separator = " ")
+}

@@ -29,6 +29,7 @@ import edu.aku.hassannaqvi.matiari_cohorts.models.VersionApp;
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel;
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel.VillageTable;
 
+import static edu.aku.hassannaqvi.matiari_cohorts.utils.AppUtilsKt.convertStringToUpperCase;
 import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.DATABASE_VERSION;
 import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.SQL_CREATE_CHILD_LIST;
@@ -618,7 +619,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     String status = specificForm.getIstatus();
                     if (status == null || status.equals(""))
                         child.setFormFlag(0);
-                    else child.setFormFlag(Integer.parseInt(status));
+                    else {
+                        String name = specificForm.getMc10();
+                        if (!name.equals("") && !child.getChildName().equals(name)) {
+                            child.setChildName(convertStringToUpperCase(name) + " (modified)");
+                        }
+                        child.setFormFlag(Integer.parseInt(status));
+                    }
                 }
                 allForms.add(child);
             }

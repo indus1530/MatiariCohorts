@@ -5,14 +5,15 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/_6sdp">
+        android:layout_margin="@dimen/_1sdp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/parentLayout"
             style="@style/cardView"
+            android:layout_margin="@dimen/_3sdp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_70sdp"
-            android:layout_margin="@dimen/_5sdp"
+            app:cardElevation="@dimen/_2sdp"
             android:elevation="@dimen/_1sdp"
             android:padding="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

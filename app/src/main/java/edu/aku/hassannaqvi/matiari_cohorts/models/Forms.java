@@ -18,7 +18,6 @@ import edu.aku.hassannaqvi.matiari_cohorts.contracts.FormsContract.FormsTable;
 public class Forms extends LiveData<Forms> {
 
     public String hhhead = "";
-    public String eproject = "";
     public String mc01 = "";
     public String mc02 = "";
     public String mc03 = "";
@@ -515,14 +514,6 @@ public class Forms extends LiveData<Forms> {
         this.hhhead = hhhead;
     }
 
-    public String getEproject() {
-        return eproject;
-    }
-
-    public void setEproject(String eproject) {
-        this.eproject = eproject;
-    }
-
     public Forms Sync(JSONObject jsonObject) throws JSONException {
         this._ID = jsonObject.getString(FormsTable.COLUMN_ID);
         this.child_id = jsonObject.getString(FormsTable.COLUMN_ID);
@@ -587,7 +578,6 @@ public class Forms extends LiveData<Forms> {
 
         try {
             json.put("hhHead", hhhead)
-                    .put("eproject", eproject)
                     .put("mc01", mc01)
                     .put("mc02", mc02)
                     .put("mc03", mc03)
@@ -644,13 +634,6 @@ public class Forms extends LiveData<Forms> {
             json.put(FormsTable.COLUMN_ISTATUS96x, this.istatus96x == null ? JSONObject.NULL : this.istatus96x);
             json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
             json.put(FormsTable.COLUMN_SA, new JSONObject(sAtoString()));
-            if (this.sF != null && !this.sF.equals("")) {
-                json.put(FormsTable.COLUMN_sF, new JSONObject(this.sF));
-            }
-
-            if (this.sL != null && !this.sL.equals("")) {
-                json.put(FormsTable.COLUMN_sL, new JSONObject(this.sL));
-            }
             json.put(FormsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
             json.put(FormsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
             json.put(FormsTable.COLUMN_GPSDATE, this.gpsDT == null ? JSONObject.NULL : this.gpsDT);
@@ -672,11 +655,9 @@ public class Forms extends LiveData<Forms> {
         if (string != null) {
 
             try {
-                JSONObject json = null;
-                json = new JSONObject(string);
+                JSONObject json = new JSONObject(string);
 
-                this.hhhead = json.getString("hhhead");
-                this.eproject = json.getString("eproject");
+                this.hhhead = json.getString("hhHead");
                 this.mc01 = json.getString("mc01");
                 this.mc02 = json.getString("mc02");
                 this.mc03 = json.getString("mc03");
