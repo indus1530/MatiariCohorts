@@ -10,13 +10,13 @@ import com.kennyc.view.MultiStateView
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.ChildListAdapter
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
-import edu.aku.hassannaqvi.matiari_cohorts.extension.obtainViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
 import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.viewmodel.DashboardViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.obtainViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.utils.openWarningFragment
 import kotlinx.android.synthetic.main.fragment_child_list.*
 import java.util.*

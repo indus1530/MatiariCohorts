@@ -1,59 +1,37 @@
-package edu.aku.hassannaqvi.matiari_cohorts.models;
+package edu.aku.hassannaqvi.matiari_cohorts.models
 
-import android.database.Cursor;
+import android.database.Cursor
+import android.provider.BaseColumns
+import org.json.JSONException
+import org.json.JSONObject
 
-import org.json.JSONException;
-import org.json.JSONObject;
+class VersionApp {
+    var versioncode: String = ""
+    var versionname: String = ""
+    var pathname: String = ""
 
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.VersionAppContract.VersionAppTable;
-
-public class VersionApp {
-
-    private static final String TAG = VersionApp.class.getName();
-    String versioncode;
-    String versionname;
-    String pathname;
-
-    public VersionApp() {
-        // Default Constructor
+    @Throws(JSONException::class)
+    fun sync(jsonObject: JSONObject): VersionApp {
+        versioncode = jsonObject.getString(VersionAppTable.COLUMN_VERSION_CODE)
+        pathname = jsonObject.getString(VersionAppTable.COLUMN_PATH_NAME)
+        versionname = jsonObject.getString(VersionAppTable.COLUMN_VERSION_NAME)
+        return this
     }
 
-    public VersionApp Sync(JSONObject jsonObject) throws JSONException {
-        this.versioncode = jsonObject.getString(VersionAppTable.COLUMN_VERSION_CODE);
-        this.pathname = jsonObject.getString(VersionAppTable.COLUMN_PATH_NAME);
-        this.versionname = jsonObject.getString(VersionAppTable.COLUMN_VERSION_NAME);
-        return this;
+    fun hydrate(cursor: Cursor): VersionApp {
+        versioncode = cursor.getString(cursor.getColumnIndex(VersionAppTable.COLUMN_VERSION_CODE))
+        pathname = cursor.getString(cursor.getColumnIndex(VersionAppTable.COLUMN_PATH_NAME))
+        versionname = cursor.getString(cursor.getColumnIndex(VersionAppTable.COLUMN_VERSION_NAME))
+        return this
     }
 
-    public VersionApp hydrate(Cursor cursor) {
-        this.versioncode = cursor.getString(cursor.getColumnIndex(VersionAppTable.COLUMN_VERSION_CODE));
-        this.pathname = cursor.getString(cursor.getColumnIndex(VersionAppTable.COLUMN_PATH_NAME));
-        this.versionname = cursor.getString(cursor.getColumnIndex(VersionAppTable.COLUMN_VERSION_NAME));
-        return this;
+    object VersionAppTable : BaseColumns {
+        const val TABLE_NAME = "versionApp"
+        const val COLUMN_ID = "id"
+        const val COLUMN_VERSION_PATH = "elements"
+        const val COLUMN_VERSION_CODE = "versionCode"
+        const val COLUMN_VERSION_NAME = "versionName"
+        const val COLUMN_PATH_NAME = "outputFile"
+        const val SERVER_URI = "output.json"
     }
-
-    public String getVersioncode() {
-        return versioncode;
-    }
-
-    public void setVersioncode(String versioncode) {
-        this.versioncode = versioncode;
-    }
-
-    public String getPathname() {
-        return pathname;
-    }
-
-    public void setPathname(String pathname) {
-        this.pathname = pathname;
-    }
-
-    public String getVersionname() {
-        return versionname;
-    }
-
-    public void setVersionname(String versionname) {
-        this.versionname = versionname;
-    }
-
 }

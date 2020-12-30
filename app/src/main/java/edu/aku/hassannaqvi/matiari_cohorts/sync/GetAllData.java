@@ -20,12 +20,12 @@ import java.net.URL;
 import java.util.List;
 
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.SyncListAdapter;
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.UsersContract;
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.VersionAppContract;
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel;
 import edu.aku.hassannaqvi.matiari_cohorts.models.SyncModel;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Users;
+import edu.aku.hassannaqvi.matiari_cohorts.models.VersionApp;
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel;
 
 /**
@@ -120,11 +120,11 @@ public class GetAllData extends AsyncTask<String, String, String> {
             switch (syncClass) {
                 case "Users":
                     url = new URL(MainApp._HOST_URL + MainApp._SERVER_GET_URL);
-                    tableName = UsersContract.UsersTable.TABLE_NAME;
+                    tableName = Users.UsersTable.TABLE_NAME;
                     position = 0;
                     break;
                 case "VersionApp":
-                    url = new URL(MainApp._UPDATE_URL + VersionAppContract.VersionAppTable.SERVER_URI);
+                    url = new URL(MainApp._UPDATE_URL + VersionApp.VersionAppTable.SERVER_URI);
                     position = 1;
                     break;
                 case "ChildList":

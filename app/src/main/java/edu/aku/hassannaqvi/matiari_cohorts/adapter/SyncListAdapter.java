@@ -45,7 +45,7 @@ public class SyncListAdapter extends RecyclerView.Adapter<SyncListAdapter.SyncLi
 
     @Override
     public int getItemCount() {
-        return synclist.size() > 0 ? synclist.size() : 0;
+        return Math.max(synclist.size(), 0);
     }
 
     private int checkStatus(int i) {

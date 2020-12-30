@@ -1,9 +1,9 @@
 package edu.aku.hassannaqvi.matiari_cohorts.utils
 
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.FormsContract.FormsTable
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.UsersContract.UsersTable
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.VersionAppContract.VersionAppTable
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel.ChildTable
+import edu.aku.hassannaqvi.matiari_cohorts.models.Users.UsersTable
+import edu.aku.hassannaqvi.matiari_cohorts.models.VersionApp.VersionAppTable
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel.VillageTable
 
 object CreateTable {
@@ -35,13 +35,13 @@ object CreateTable {
             + FormsTable.COLUMN_SYNCED_DATE + " TEXT"
             + " );")
     const val SQL_CREATE_USERS = ("CREATE TABLE " + UsersTable.TABLE_NAME + "("
-            + UsersTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + UsersTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
             + UsersTable.COLUMN_USERNAME + " TEXT,"
             + UsersTable.COLUMN_PASSWORD + " TEXT,"
             + UsersTable.COLUMN_FULLNAME + " TEXT"
             + " );")
     const val SQL_CREATE_VERSIONAPP = "CREATE TABLE " + VersionAppTable.TABLE_NAME + " (" +
-            VersionAppTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            VersionAppTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             VersionAppTable.COLUMN_VERSION_CODE + " TEXT, " +
             VersionAppTable.COLUMN_VERSION_NAME + " TEXT, " +
             VersionAppTable.COLUMN_PATH_NAME + " TEXT " +

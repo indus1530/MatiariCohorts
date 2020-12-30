@@ -9,12 +9,12 @@ import edu.aku.hassannaqvi.matiari_cohorts.CONSTANTS
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.adapter.ChildListAdapter
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityDashboardBinding
-import edu.aku.hassannaqvi.matiari_cohorts.extension.gotoActivityWithSerializable
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.SectionAActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.fragments.ChildListFragment
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.fragments.SelectionFragment
 import edu.aku.hassannaqvi.matiari_cohorts.utils.WarningActivityInterface
+import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivityWithSerializable
 
 class DashboardActivity : AppCompatActivity(), WarningActivityInterface {
 

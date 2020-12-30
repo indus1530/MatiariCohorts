@@ -22,8 +22,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.jakewharton.threetenabp.AndroidThreeTen;
 
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.UsersContract;
 import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Users;
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity;
 import edu.aku.hassannaqvi.matiari_cohorts.utils.LocationUtils;
 
@@ -54,7 +54,7 @@ public class MainApp extends Application {
     public static Boolean admin = false;
 
     public static String userName = "0000";
-    public static UsersContract user;
+    public static Users user;
     public static Forms forms;
 
     public static String DeviceURL = "devices.php";
@@ -160,6 +160,7 @@ public class MainApp extends Application {
 
         //Initiate DateTime
         AndroidThreeTen.init(this);
+        appInfo = new AppInfo(this);
     }
 
     protected void showCurrentLocation() {

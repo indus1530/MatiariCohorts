@@ -3,6 +3,7 @@ package edu.aku.hassannaqvi.matiari_cohorts.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
+import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.viewmodel.LoginViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.viewmodel.DashboardViewModel
 
 /*
@@ -14,6 +15,7 @@ class ViewModelFactory(private val repository: GeneralRepository) : ViewModelPro
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when {
             modelClass.isAssignableFrom(DashboardViewModel::class.java) -> DashboardViewModel(repository) as T
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> LoginViewModel(repository) as T
             else -> throw IllegalArgumentException("Unknown viewModel class $modelClass")
         }
     }

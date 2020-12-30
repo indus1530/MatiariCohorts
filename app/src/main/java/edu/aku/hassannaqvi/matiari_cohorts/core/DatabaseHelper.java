@@ -18,14 +18,13 @@ import java.util.Collection;
 import java.util.Date;
 
 import edu.aku.hassannaqvi.matiari_cohorts.contracts.FormsContract.FormsTable;
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.UsersContract.UsersTable;
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.VersionAppContract;
-import edu.aku.hassannaqvi.matiari_cohorts.contracts.VersionAppContract.VersionAppTable;
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel;
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel.ChildTable;
 import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.models.Users;
+import edu.aku.hassannaqvi.matiari_cohorts.models.Users.UsersTable;
 import edu.aku.hassannaqvi.matiari_cohorts.models.VersionApp;
+import edu.aku.hassannaqvi.matiari_cohorts.models.VersionApp.VersionAppTable;
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel;
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel.VillageTable;
 
@@ -69,20 +68,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * */
     public int syncVersionApp(JSONObject VersionList) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(VersionAppContract.VersionAppTable.TABLE_NAME, null, null);
+        db.delete(VersionAppTable.TABLE_NAME, null, null);
         long count = 0;
         try {
-            JSONObject jsonObjectCC = ((JSONArray) VersionList.get(VersionAppContract.VersionAppTable.COLUMN_VERSION_PATH)).getJSONObject(0);
+            JSONObject jsonObjectCC = ((JSONArray) VersionList.get(VersionAppTable.COLUMN_VERSION_PATH)).getJSONObject(0);
             VersionApp Vc = new VersionApp();
-            Vc.Sync(jsonObjectCC);
+            Vc.sync(jsonObjectCC);
 
             ContentValues values = new ContentValues();
 
-            values.put(VersionAppContract.VersionAppTable.COLUMN_PATH_NAME, Vc.getPathname());
-            values.put(VersionAppContract.VersionAppTable.COLUMN_VERSION_CODE, Vc.getVersioncode());
-            values.put(VersionAppContract.VersionAppTable.COLUMN_VERSION_NAME, Vc.getVersionname());
+            values.put(VersionAppTable.COLUMN_PATH_NAME, Vc.getPathname());
+            values.put(VersionAppTable.COLUMN_VERSION_CODE, Vc.getVersioncode());
+            values.put(VersionAppTable.COLUMN_VERSION_NAME, Vc.getVersionname());
 
-            count = db.insert(VersionAppContract.VersionAppTable.TABLE_NAME, null, values);
+            count = db.insert(VersionAppTable.TABLE_NAME, null, values);
             if (count > 0) count = 1;
 
         } catch (Exception ignored) {
@@ -103,7 +102,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 JSONObject jsonObjectUser = userList.getJSONObject(i);
 
                 Users user = new Users();
-                user.Sync(jsonObjectUser);
+                user.sync(jsonObjectUser);
                 ContentValues values = new ContentValues();
 
                 values.put(UsersTable.COLUMN_USERNAME, user.getUserName());
@@ -188,14 +187,44 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /*
      * Functions that dealing with table data
      * */
-    public boolean Login(String username, String password) throws SQLException {
+    public Users getLoginUser(String username, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                UsersTable.COLUMN_ID,
+                UsersTable.COLUMN_USERNAME,
+                UsersTable.COLUMN_PASSWORD,
+                UsersTable.COLUMN_FULLNAME,
+        };
+        String whereClause = UsersTable.COLUMN_USERNAME + "=? AND " + UsersTable.COLUMN_PASSWORD + "=?";
+        String[] whereArgs = {username, password};
+        String groupBy = null;
+        String having = null;
+        String orderBy = UsersTable.COLUMN_ID + " ASC";
 
-        Cursor mCursor = db.rawQuery("SELECT * FROM " + UsersTable.TABLE_NAME + " WHERE " + UsersTable.COLUMN_USERNAME + "=? AND " + UsersTable.COLUMN_PASSWORD + "=?", new String[]{username, password});
-        if (mCursor != null) {
-            return mCursor.getCount() > 0;
+        Users allForms = null;
+        try {
+            c = db.query(
+                    UsersTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                allForms = new Users().hydrate(c);
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
         }
-        return false;
+        return allForms;
     }
 
     public Collection<Forms> checkFormsExist() {

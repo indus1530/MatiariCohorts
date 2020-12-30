@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.extension
+package edu.aku.hassannaqvi.matiari_cohorts.utils.extension
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

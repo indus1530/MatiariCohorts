@@ -44,7 +44,7 @@ class DashboardViewModel(private val repository: GeneralDataSource) : ViewModel(
                     ResponseStatusCallbacks.error(data = null, message = "No village found!")
             } catch (e: Exception) {
                 _villageResponse.value =
-                        ResponseStatusCallbacks.error(data = null, message = "Something wen't wrong while fetching village data!")
+                        ResponseStatusCallbacks.error(data = null, message = e.message.toString())
             }
 
         }
@@ -69,7 +69,7 @@ class DashboardViewModel(private val repository: GeneralDataSource) : ViewModel(
                     ResponseStatusCallbacks.error(data = null, message = "No child found!")
             } catch (e: Exception) {
                 _childResponse.value =
-                        ResponseStatusCallbacks.error(data = null, message = "Something wen't wrong while fetching children data!")
+                        ResponseStatusCallbacks.error(data = null, message = e.message.toString())
             }
 
         }

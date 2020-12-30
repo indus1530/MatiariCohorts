@@ -2,6 +2,7 @@ package edu.aku.hassannaqvi.matiari_cohorts.repository
 
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
+import edu.aku.hassannaqvi.matiari_cohorts.models.Users
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -15,5 +16,9 @@ open class GeneralRepository(private val db: DatabaseHelper) : GeneralDataSource
 
     override suspend fun getChildListByVillage(villageCode: String): ArrayList<ChildModel> = withContext(Dispatchers.IO) {
         db.getChildList(villageCode)
+    }
+
+    override suspend fun getLoginInformation(username: String, password: String): Users? = withContext(Dispatchers.IO) {
+        db.getLoginUser(username, password)
     }
 }

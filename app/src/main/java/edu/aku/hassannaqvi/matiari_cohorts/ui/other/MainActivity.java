@@ -20,6 +20,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
@@ -27,16 +30,16 @@ import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityMainBinding;
 import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.models.VersionApp;
+import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.LoginActivity;
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity;
 import edu.aku.hassannaqvi.matiari_cohorts.utils.AndroidUtilityKt;
 import edu.aku.hassannaqvi.matiari_cohorts.utils.AppUtilsKt;
@@ -49,8 +52,8 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
 
     static File file;
     ActivityMainBinding bi;
-    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime());
-    String sysdateToday = new SimpleDateFormat("dd-MM-yy").format(new Date());
+    String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(new Date().getTime());
+    String sysdateToday = new SimpleDateFormat("dd-MM-yy", Locale.ENGLISH).format(new Date());
     SharedPreferences sharedPrefDownload;
     SharedPreferences.Editor editorDownload;
     DownloadManager downloadManager;
@@ -296,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
                 break;
             case R.id.uploadData:
                 if (!AndroidUtilityKt.isNetworkConnected(this)) {
-                    Toast.makeText(this, "No network connection available!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Network connection not available!", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 oF = new Intent(this, SyncActivity.class);

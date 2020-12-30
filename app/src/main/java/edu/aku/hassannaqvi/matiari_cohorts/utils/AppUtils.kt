@@ -5,10 +5,12 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Environment
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -304,4 +306,21 @@ fun convertStringToUpperCase(inputStr: String): String {
      */
     val calStr = inputStr.split(" ").map { it.toLowerCase(Locale.ENGLISH).capitalize(Locale.ENGLISH) }
     return calStr.joinToString(separator = " ")
+}
+
+fun showGPSAlert(context: Context) {
+    val alertDialogBuilder = AlertDialog.Builder(context)
+    alertDialogBuilder
+            .setMessage("GPS is disabled in your device. Enable it?")
+            .setCancelable(false)
+            .setPositiveButton("Enable GPS"
+            ) { dialog: DialogInterface?, id: Int ->
+                val callGPSSettingIntent = Intent(
+                        Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                context.startActivity(callGPSSettingIntent)
+            }
+    alertDialogBuilder.setNegativeButton("Cancel"
+    ) { dialog: DialogInterface, id: Int -> dialog.cancel() }
+    val alert = alertDialogBuilder.create()
+    alert.show()
 }

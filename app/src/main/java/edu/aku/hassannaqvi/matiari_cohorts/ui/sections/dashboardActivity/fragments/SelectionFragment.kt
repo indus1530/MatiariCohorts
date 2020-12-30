@@ -12,12 +12,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
-import edu.aku.hassannaqvi.matiari_cohorts.extension.obtainViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
 import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.viewmodel.DashboardViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.obtainViewModel
 import kotlinx.android.synthetic.main.fragment_selection.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay

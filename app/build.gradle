@@ -135,6 +135,9 @@ dependencies {
     //SDP
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
 
+    //Permissions
+    implementation 'com.nabinbhandari.android:permissions:3.8'
+
 }
 repositories {
     mavenCentral()
