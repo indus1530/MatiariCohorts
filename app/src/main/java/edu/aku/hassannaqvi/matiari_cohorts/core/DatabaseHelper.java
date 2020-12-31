@@ -584,7 +584,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String orderBy = null;
 
-        VersionApp allVC = new VersionApp();
+        VersionApp allVC = null;
         try {
             c = db.query(
                     VersionAppTable.TABLE_NAME,  // The table to query

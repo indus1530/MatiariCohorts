@@ -19,6 +19,7 @@ fun <T : ViewModel> Fragment.obtainViewModel(activity: AppCompatActivity, viewMo
         ViewModelProvider(activity, ViewModelFactory(generalRepository)).get(viewModelClass)
 
 fun <T : AppCompatActivity> AppCompatActivity.gotoActivity(targetActivityClass: Class<T>) {
+    finish()
     val intent = Intent(this, targetActivityClass)
     startActivity(intent)
 }

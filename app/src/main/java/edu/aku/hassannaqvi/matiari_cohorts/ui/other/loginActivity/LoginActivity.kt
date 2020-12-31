@@ -33,6 +33,7 @@ import edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.SyncActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.repository.LoginUISource
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.viewmodel.LoginViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.obtainViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.utils.getIMEIInfo
 import edu.aku.hassannaqvi.matiari_cohorts.utils.isGPSEnabled
@@ -106,20 +107,18 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
             val password = bi.password.text.toString()
             showProgress(true)
             lifecycleScope.launch {
-                withContext(Dispatchers.Main) {
-                    delay(1000)
-                    if (!formValidation(username, password)) {
-                        this.cancel()
-                        showProgress(false)
-                    }
-                    val job = launch {
-                        isLoginApproved(username, password)
-                    }
-                    job.join()
-                    if (approval) {
-                        showProgress(false)
-                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                    }
+                delay(1000)
+                if (!formValidation(username, password)) {
+                    this.cancel()
+                    showProgress(false)
+                }
+                val job = launch {
+                    isLoginApproved(username, password)
+                }
+                job.join()
+                if (approval) {
+                    showProgress(false)
+                    gotoActivity(MainActivity::class.java)
                 }
             }
 

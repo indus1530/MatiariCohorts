@@ -53,15 +53,13 @@ class SectionAActivity : AppCompatActivity(), EndSectionActivity {
     fun BtnContinue() {
         initializeCoroutine()
         scope.launch {
-            launch {
-                if (!formValidation()) throw CustomExceptions("Not validate form")
-                val saveJob = launch { saveDraft() }
-                saveJob.join()
-                launch(Dispatchers.IO) {
-                    if (!updateDB()) throw CustomExceptions("Update db error")
-                    finish()
-                    startActivity(Intent(this@SectionAActivity, EndingActivity::class.java).putExtra("complete", true))
-                }
+            if (!formValidation()) throw CustomExceptions("Not validate form")
+            val saveJob = launch { saveDraft() }
+            saveJob.join()
+            launch(Dispatchers.IO) {
+                if (!updateDB()) throw CustomExceptions("Update db error")
+                finish()
+                startActivity(Intent(this@SectionAActivity, EndingActivity::class.java).putExtra("complete", true))
             }
         }
 

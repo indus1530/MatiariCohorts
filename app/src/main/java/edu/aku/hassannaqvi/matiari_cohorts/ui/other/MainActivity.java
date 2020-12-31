@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         sharedPrefDownload = getSharedPreferences("appDownload", MODE_PRIVATE);
         editorDownload = sharedPrefDownload.edit();
         versionApp = appInfo.getDbHelper().getVersionApp();
-        if (versionApp.getVersioncode() != null) {
+        if (versionApp != null) {
 
             preVer = appInfo.getVersionName() + "." + appInfo.getVersionCode();
             newVer = versionApp.getVersionname() + "." + versionApp.getVersioncode();
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         registerReceiver(broadcastReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
 
 //        Testing visibility
-        if (Integer.parseInt(appInfo.getVersionName().split("\\.")[0]) > 0) {
+        if (appInfo.isTestingApp()) {
             bi.testing.setVisibility(View.GONE);
         } else {
             bi.testing.setVisibility(View.VISIBLE);

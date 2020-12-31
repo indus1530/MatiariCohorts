@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.LoginActivity
+import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivity
 import kotlinx.coroutines.*
 
 /*
@@ -38,8 +39,7 @@ class SplashscreenActivity : AppCompatActivity() {
     private fun launchSplashScope() =
             CoroutineScope(Dispatchers.Main).launch {
                 delay(SPLASH_TIME_OUT.toLong())
-                finish()
-                startActivity(Intent(this@SplashscreenActivity, LoginActivity::class.java))
+                gotoActivity(LoginActivity::class.java)
             }
 
     companion object {

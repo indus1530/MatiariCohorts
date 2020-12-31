@@ -17,7 +17,12 @@ class AppInfo {
     var tagName: String? = null
     var deviceID: String = ""
     var appVersion: String = ""
-    var dtToday: String = ""
+    val dtToday: String
+        get() = SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(Date().time)
+    val isTestingApp: Boolean
+        get() = versionName.split("\\.".toRegex())[0].toInt() > 0
+
+
     lateinit var dbHelper: DatabaseHelper
 
     constructor(context: Context) {
@@ -25,7 +30,6 @@ class AppInfo {
             installedOn = context.packageManager.getPackageInfo(context.applicationContext.packageName, 0).lastUpdateTime
             versionCode = context.packageManager.getPackageInfo(context.applicationContext.packageName, 0).versionCode
             versionName = context.packageManager.getPackageInfo(context.applicationContext.packageName, 0).versionName
-            dtToday = SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(Date().time)
             deviceID = Settings.Secure.getString(context.contentResolver, Settings.Secure.ANDROID_ID)
             appVersion = "$versionName.$versionCode"
             tagName = getTagName(context)
