@@ -1,9 +1,8 @@
 package edu.aku.hassannaqvi.matiari_cohorts.repository
 
-import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
-import edu.aku.hassannaqvi.matiari_cohorts.models.Users
-import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
+import edu.aku.hassannaqvi.matiari_cohorts.models.*
 import java.util.*
+import kotlin.collections.ArrayList
 
 interface GeneralDataSource {
 
@@ -23,8 +22,19 @@ interface GeneralDataSource {
     * */
     suspend fun getLoginInformation(username: String, password: String): Users?
     /*
-    * For dashboard End
+    * For login End
     * */
 
+    /*
+    * For MainActivity Start
+    * */
+    suspend fun getFormsByDate(date: String): ArrayList<Forms>
+
+    suspend fun getUploadStatus(): FormIndicatorsModel
+
+    suspend fun getFormStatus(date: String): FormIndicatorsModel
+    /*
+    * For MainActivity End
+    * */
 
 }

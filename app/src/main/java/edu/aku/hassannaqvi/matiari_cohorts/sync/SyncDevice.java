@@ -24,6 +24,7 @@ import edu.aku.hassannaqvi.matiari_cohorts.R;
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
 
 import static android.content.Context.MODE_PRIVATE;
+import static edu.aku.hassannaqvi.matiari_cohorts.utils.AndroidUtilityKt.getIMEIInfo;
 
 public class SyncDevice extends AsyncTask<Void, Integer, String> {
     private SyncDeviceInterface delegate;
@@ -79,7 +80,11 @@ public class SyncDevice extends AsyncTask<Void, Integer, String> {
                 DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
 
                 try {
-                    jsonObject.addProperty("imei", MainApp.IMEI);
+                    /*
+                     * IMEI of device will fetch from @getIMEIInfo and pass it to property
+                     * */
+                    String IMEI = getIMEIInfo(context);
+                    jsonObject.addProperty("imei", IMEI);
                     jsonObject.addProperty("appversion", MainApp.appInfo.getAppVersion());
                     jsonObject.addProperty("appname", context.getString(R.string.app_name));
 

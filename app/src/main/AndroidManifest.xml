@@ -47,7 +47,7 @@
             android:label="Forms Report by Date"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.other.MainActivity"
+            android:name=".ui.other.Main2Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.sections.dashboardActivity.DashboardActivity"
@@ -66,11 +66,11 @@
         <activity
             android:name=".ui.other.SyncActivity"
             android:label="Download/Upload Data"
-            android:parentActivityName=".ui.other.MainActivity"
+            android:parentActivityName=".ui.other.Main2Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".core.AndroidDatabaseManager"
-            android:parentActivityName=".ui.other.MainActivity"
+            android:parentActivityName=".ui.other.Main2Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>

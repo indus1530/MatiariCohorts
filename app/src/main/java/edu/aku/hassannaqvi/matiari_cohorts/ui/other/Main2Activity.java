@@ -48,7 +48,7 @@ import edu.aku.hassannaqvi.matiari_cohorts.utils.WarningActivityInterface;
 
 import static edu.aku.hassannaqvi.matiari_cohorts.core.MainApp.appInfo;
 
-public class MainActivity extends AppCompatActivity implements WarningActivityInterface {
+public class Main2Activity extends AppCompatActivity implements WarningActivityInterface {
 
     static File file;
     ActivityMainBinding bi;
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
                         ActivityManager am = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
                         List<ActivityManager.RunningTaskInfo> taskInfo = am.getRunningTasks(1);
 
-                        if (Objects.requireNonNull(taskInfo.get(0).topActivity).getClassName().equals(MainActivity.class.getName())) {
+                        if (Objects.requireNonNull(taskInfo.get(0).topActivity).getClassName().equals(Main2Activity.class.getName())) {
                             showDialog(newVer, preVer);
                         }
                     }
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         bi.setCallback(this);
 
         bi.txtinstalldate.setText(appInfo.getAppInfo());
-        Collection<Forms> todaysForms = appInfo.getDbHelper().getTodayForms(sysdateToday);
+        Collection<Forms> todaysForms = appInfo.getDbHelper().getFormsByDate(sysdateToday);
         Collection<Forms> unsyncedForms = appInfo.getDbHelper().getUnsyncedForms();
         Collection<Forms> unclosedForms = appInfo.getDbHelper().getUnclosedForms();
 
@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements WarningActivityIn
         Intent intent = null;
         switch (item.getItemId()) {
             case R.id.onSync:
-                intent = new Intent(MainActivity.this, SyncActivity.class);
+                intent = new Intent(Main2Activity.this, SyncActivity.class);
                 break;
             /*case R.id.checkOpenForms:
                 intent = new Intent(MainActivity.this, PendingFormsActivity.class);

@@ -29,7 +29,7 @@ import edu.aku.hassannaqvi.matiari_cohorts.location.GPSLocationListener
 import edu.aku.hassannaqvi.matiari_cohorts.models.Users
 import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus.*
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.MainActivity
+import edu.aku.hassannaqvi.matiari_cohorts.ui.other.Main2Activity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.SyncActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.repository.LoginUISource
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.viewmodel.LoginViewModel
@@ -59,7 +59,9 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
         checkPermissions()
 
         /*
-        * Get login information
+        * Get login confirmation from db. If it's null that means username or password - incorrect -
+        * otherwise approve it
+        *
         * */
         viewModel.loginResponse.observe(this, {
             when (it.status) {
@@ -80,6 +82,9 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
         })
     }
 
+    /*
+    * For uploading/downloading data, the network needs to work
+    * */
     fun onSyncDataClick(v: View) {
         if (!isNetworkConnected(this)) {
             Toast.makeText(this, "Network connection not available!", Toast.LENGTH_SHORT).show()
@@ -88,6 +93,9 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
         startActivity(Intent(this, SyncActivity::class.java))
     }
 
+    /*
+    * Toggle password view
+    * */
     fun onShowPasswordClick(v: View) {
         if (bi.password.transformationMethod == null) {
             bi.password.transformationMethod = PasswordTransformationMethod()
@@ -98,6 +106,12 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
         }
     }
 
+    /*
+    * Click on login button, it works in steps:
+    * 1. Check the permissions @checkPermissions
+    * 2. Check the GPS is enabled @isGPSEnabled or not otherwise show GPS setting to enable it @showGPSAlert
+    * 3. If both of above conditions are okay then start coroutine to check login and proceed to MainActivity
+    * */
     fun onLoginClick(v: View) {
         if (!permissionFlag)
             checkPermissions()
@@ -118,7 +132,7 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
                 job.join()
                 if (approval) {
                     showProgress(false)
-                    gotoActivity(MainActivity::class.java)
+                    gotoActivity(Main2Activity::class.java)
                 }
             }
 
@@ -126,6 +140,9 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
             showGPSAlert(this)
     }
 
+    /*
+    * Visible progress dialog and hide whole layout when @param{show} is true and vice versa
+    * */
     override fun showProgress(show: Boolean) {
         val shortAnimTime = resources.getInteger(android.R.integer.config_shortAnimTime)
 
@@ -146,6 +163,9 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
         })
     }
 
+    /*
+    * Validate username and password fields
+    * */
     override fun formValidation(username: String, password: String): Boolean {
         // Check for a valid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
@@ -164,11 +184,18 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
         return true
     }
 
+    /*
+    * Set error on password
+    * */
     override fun setPasswordIncorrect(error: String?) {
         bi.password.error = error ?: "Incorrect Password"
         bi.password.requestFocus()
     }
 
+    /*
+    * @isLoginApproved takes @params{username & password} and to see if it's testing user else -
+    * pass it to viewmodel @getLoginInfoFromDB to check whether it exist in db or not
+    * */
     override suspend fun isLoginApproved(username: String, password: String) {
         if ((username == "dmu@aku" && password == "aku?dmu") ||
                 (username == "test1234" && password == "test1234")) {
@@ -179,6 +206,9 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
             viewModel.getLoginInfoFromDB(username, password)
     }
 
+    /*
+    * Showing showcase builder view
+    * */
     private fun showcaseBuilderView() {
         ShowcaseView.Builder(this)
                 .setTarget(ViewTarget(bi.syncData.id, this))
@@ -188,6 +218,10 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
                 .build()
     }
 
+    /*
+    * Runtime permissions that user needs to be accept all of it otherwise -
+    * it won't route to another activity
+    * */
     private fun checkPermissions() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             grantedPermissions()
@@ -201,7 +235,7 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
         val options: Permissions.Options = Permissions.Options()
                 .setRationaleDialogTitle("Permissions Required")
                 .setSettingsDialogTitle("Warning")
-        Permissions.check(this /*context*/, permissions, null, options, object : PermissionHandler() {
+        Permissions.check(this, permissions, null, options, object : PermissionHandler() {
             override fun onGranted() {
                 grantedPermissions()
                 permissionFlag = true
@@ -209,8 +243,10 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
         })
     }
 
+    /*
+    * If all permissions are granted [work for device > M], the location listener will activate
+    * */
     private fun grantedPermissions() {
-        MainApp.IMEI = getIMEIInfo(this@LoginActivity)
         val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
         if (ActivityCompat.checkSelfPermission(this@LoginActivity, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this@LoginActivity, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return
