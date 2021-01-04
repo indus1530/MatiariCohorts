@@ -348,8 +348,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor mCursor = db.rawQuery(
                 String.format("select " +
                         "sum(case when %s = 1 then 1 else 0 end) as completed," +
-                        "sum(case when %s != 1 then 1 else 0 end) as notCompleted" +
-                        "from %s WHERE %s Like ?", FormsTable.COLUMN_ISTATUS, FormsTable.COLUMN_ISTATUS, FormsTable.TABLE_NAME, FormsTable.COLUMN_SYSDATE),
+                        "sum(case when %s != 1 OR %s is null then 1 else 0 end) as notCompleted " +
+                        "from %s WHERE %s Like ?", FormsTable.COLUMN_ISTATUS, FormsTable.COLUMN_ISTATUS, FormsTable.COLUMN_ISTATUS, FormsTable.TABLE_NAME, FormsTable.COLUMN_SYSDATE),
                 new String[]{"%" + sysdate + " %"}, null);
         if (mCursor != null && mCursor.moveToFirst()) {
             count = count.copy(Integer.parseInt(mCursor.getString(0)),
@@ -365,8 +365,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor mCursor = db.rawQuery(
                 String.format("select " +
                         "sum(case when %s = 1 then 1 else 0 end) as completed," +
-                        "sum(case when %s != 1 then 1 else 0 end) as notCompleted" +
-                        "from %s", FormsTable.COLUMN_SYNCED, FormsTable.COLUMN_SYNCED, FormsTable.TABLE_NAME),
+                        "sum(case when %s is null OR %s = '' then 1 else 0 end) as notCompleted " +
+                        "from %s", FormsTable.COLUMN_SYNCED, FormsTable.COLUMN_SYNCED, FormsTable.COLUMN_SYNCED, FormsTable.TABLE_NAME),
                 null, null);
         if (mCursor != null && mCursor.moveToFirst()) {
             count = count.copy(Integer.parseInt(mCursor.getString(0)),

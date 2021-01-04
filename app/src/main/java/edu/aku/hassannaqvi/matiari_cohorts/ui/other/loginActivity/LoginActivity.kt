@@ -33,6 +33,7 @@ import edu.aku.hassannaqvi.matiari_cohorts.ui.other.Main2Activity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.SyncActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.repository.LoginUISource
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.viewmodel.LoginViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.ui.other.mainActivity.MainActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.obtainViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.utils.getIMEIInfo
@@ -72,6 +73,7 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
                 }
                 ERROR -> {
                     setPasswordIncorrect()
+                    showProgress(false)
                 }
                 LOADING -> {
                     lifecycleScope.launch {
@@ -132,7 +134,8 @@ class LoginActivity : AppCompatActivity(), LoginUISource {
                 job.join()
                 if (approval) {
                     showProgress(false)
-                    gotoActivity(Main2Activity::class.java)
+                    finish()
+                    gotoActivity(MainActivity::class.java)
                 }
             }
 

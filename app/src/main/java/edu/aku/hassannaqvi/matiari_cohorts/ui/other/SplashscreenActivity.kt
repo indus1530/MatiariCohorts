@@ -39,6 +39,7 @@ class SplashscreenActivity : AppCompatActivity() {
     private fun launchSplashScope() =
             CoroutineScope(Dispatchers.Main).launch {
                 delay(SPLASH_TIME_OUT.toLong())
+                finish()
                 gotoActivity(LoginActivity::class.java)
             }
 

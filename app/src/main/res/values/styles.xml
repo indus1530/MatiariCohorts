@@ -295,4 +295,7 @@
         <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
+    <style name="Summary_Layout"  parent="Theme.AppCompat.Light.DarkActionBar">
+    </style>
+
 </resources>

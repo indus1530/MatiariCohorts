@@ -50,7 +50,7 @@ import static edu.aku.hassannaqvi.matiari_cohorts.core.MainApp.appInfo;
 
 public class Main2Activity extends AppCompatActivity implements WarningActivityInterface {
 
-    static File file;
+    /*static File file;
     ActivityMainBinding bi;
     String dtToday = new SimpleDateFormat("dd-MM-yy HH:mm", Locale.ENGLISH).format(new Date().getTime());
     String sysdateToday = new SimpleDateFormat("dd-MM-yy", Locale.ENGLISH).format(new Date());
@@ -144,9 +144,9 @@ public class Main2Activity extends AppCompatActivity implements WarningActivityI
 
                 rSumText
                         .append(" ")
-                        /*.append((form.getsF() + "             ").substring(0, 12))
+                        *//*.append((form.getsF() + "             ").substring(0, 12))
                         .append((form.getsA() + "         ").substring(0, 9))
-                        .append((form.getsL() + "         ").substring(0, 9))*/
+                        .append((form.getsL() + "         ").substring(0, 9))*//*
                         .append(iStatus.substring(0, 13))
                         .append(form.getSynced() == null ? "Not Synced" : "Synced    ")
                         .append("\r\n")
@@ -239,7 +239,7 @@ public class Main2Activity extends AppCompatActivity implements WarningActivityI
             case R.id.onSync:
                 intent = new Intent(Main2Activity.this, SyncActivity.class);
                 break;
-            /*case R.id.checkOpenForms:
+            *//*case R.id.checkOpenForms:
                 intent = new Intent(MainActivity.this, PendingFormsActivity.class);
                 break;
             case R.id.formsReportDate:
@@ -247,7 +247,7 @@ public class Main2Activity extends AppCompatActivity implements WarningActivityI
                 break;
             case R.id.formsReportCluster:
                 intent = new Intent(MainActivity.this, FormsReportCluster.class);
-                break;*/
+                break;*//*
         }
         startActivity(intent);
         return super.onOptionsItemSelected(item);
@@ -315,12 +315,12 @@ public class Main2Activity extends AppCompatActivity implements WarningActivityI
         } else {
             bi.recordSummary.setVisibility(View.VISIBLE);
         }
-    }
+    }*/
 
     @Override
     public void callWarningActivity(@Nullable Object data) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
+//        intent.setDataAndType(Uri.fromFile(file), "application/vnd.android.package-archive");
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }

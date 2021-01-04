@@ -47,7 +47,7 @@
             android:label="Forms Report by Date"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.other.Main2Activity"
+            android:name=".ui.other.mainActivity.MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.sections.dashboardActivity.DashboardActivity"

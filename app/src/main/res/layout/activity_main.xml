@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -12,7 +13,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/app_bg_gray"
         android:orientation="vertical">
 
         <TextView
@@ -20,10 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/red"
-            android:elevation="6dp"
             android:gravity="center"
             android:keepScreenOn="true"
-            android:padding="4dp"
             android:text="@string/only_for_testing"
             android:textColor="@color/white_overlay"
             android:textSize="20sp"
@@ -45,91 +43,27 @@
             android:id="@+id/activity_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            android:background="@color/white_overlay"
+            android:padding="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:layout_marginTop="@dimen/_3sdp"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/lblMainMenu"
+                <include
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:id="@+id/statisticLayout"
+                    layout="@layout/statistic_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:layout_marginTop="16dp"
-                    android:background="@drawable/mainmenu"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/main_menu"
-                    android:textAlignment="center"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_height="wrap_content" />
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/summary"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="?attr/actionBarSize"
-                        android:background="@color/white_overlay"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/txtSummary"
-                            android:layout_width="match_parent"
-                            android:layout_height="?attr/actionBarSize"
-                            android:layout_gravity="center_horizontal"
-                            android:drawableEnd="@drawable/ic_arrow_drop_down_black_24dp"
-                            android:drawablePadding="24dp"
-                            android:gravity="center"
-                            android:onClick="toggleSummary"
-                            android:padding="20dp"
-                            android:text="Records Summary"
-                            android:textColor="@color/black"
-                            android:textSize="20sp"
-                            android:typeface="monospace" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/recordSummary"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:background="@drawable/summary"
-                        android:minHeight="256dp"
-                        android:padding="20dp"
-                        android:text="@string/records_summary"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-                        android:typeface="monospace"
-                        android:visibility="gone" />
-
-                    <TextView
-                        android:id="@+id/txtinstalldate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-
-                        android:gravity="center"
-                        android:shadowColor="#d6d6d6"
-                        android:shadowDx="1"
-                        android:shadowDy="1"
-                        android:shadowRadius="1"
-                        android:textColor="#7f7f7f"
-                        android:textSize="12sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_30sdp"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -151,59 +85,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:orientation="vertical">
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
+                    <Button
+                        android:id="@+id/databaseBtn"
+                        android:layout_width="220dp"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/cardview_compat_inset_shadow"
-                        android:background="#333">
-
-                        <LinearLayout
-
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-
-                            android:orientation="horizontal">
-
-                            <Button
-
-                                android:id="@+id/uploadData"
-                                android:layout_width="0dp"
-                                android:layout_height="72dp"
-                                android:layout_margin="4dp"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:drawableStart="@drawable/ic_upload"
-                                android:elevation="1dp"
-                                android:onClick="@{callback::openSpecificActivity}"
-                                android:padding="18dp"
-                                android:radius="2dp"
-                                android:text="@string/btnUpload"
-                                android:visibility="gone"
-                                android:textColor="@color/black_overlay" />
-
-                            <Button
-                                android:id="@+id/databaseBtn"
-
-                                android:layout_width="0dp"
-                                android:layout_height="72dp"
-                                android:layout_margin="4dp"
-                                android:layout_weight="1"
-                                android:clickable="true"
-                                android:drawableStart="@drawable/database"
-                                android:elevation="1dp"
-                                android:onClick="@{callback::openSpecificActivity}"
-                                android:padding="18dp"
-                                android:radius="2dp"
-                                android:text="@string/database"
-                                android:textColor="@color/black_overlay" />
-                            <!--                            android:visibility=""-->
-
-                        </LinearLayout>
-
-                    </androidx.cardview.widget.CardView>
+                        android:layout_margin="10dp"
+                        android:background="@color/white_overlay"
+                        android:drawableStart="@drawable/database"
+                        android:onClick="@{callback::openSpecificActivity}"
+                        android:padding="8dp"
+                        android:text="@string/database"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="@color/black_overlay" />
 
                 </LinearLayout>
 

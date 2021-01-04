@@ -6,14 +6,13 @@ import androidx.lifecycle.viewModelScope
 import edu.aku.hassannaqvi.matiari_cohorts.models.FormIndicatorsModel
 import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatusCallbacks
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
 class MainViewModel(val repository: GeneralRepository) : ViewModel() {
-
-    private var sysdateToday = SimpleDateFormat("dd-MM-yy", Locale.ENGLISH).format(Date())
 
     /*
     * Today's form
@@ -36,16 +35,12 @@ class MainViewModel(val repository: GeneralRepository) : ViewModel() {
     val formsStatus: MutableLiveData<ResponseStatusCallbacks<FormIndicatorsModel>>
         get() = _fs
 
-    init {
-        getTodayForms(sysdateToday)
-        getUploadFormsStatus()
-        getFormsStatus(sysdateToday)
-    }
 
-    private fun getTodayForms(date: String) {
+     fun getTodayForms(date: String) {
         _tf.value = ResponseStatusCallbacks.loading(null)
         viewModelScope.launch {
             try {
+                delay(1000L)
                 val todayData = repository.getFormsByDate(date)
                 _tf.value = ResponseStatusCallbacks.success(data = todayData.size, message = "Forms exist")
             } catch (e: Exception) {
@@ -55,10 +50,11 @@ class MainViewModel(val repository: GeneralRepository) : ViewModel() {
     }
 
 
-    private fun getUploadFormsStatus() {
+    fun getUploadFormsStatus() {
         _uf.value = ResponseStatusCallbacks.loading(null)
         viewModelScope.launch {
             try {
+                delay(1000L)
                 val todayData = repository.getUploadStatus()
                 _uf.value = ResponseStatusCallbacks.success(data = todayData, message = "Upload status exist")
             } catch (e: Exception) {
@@ -68,10 +64,11 @@ class MainViewModel(val repository: GeneralRepository) : ViewModel() {
     }
 
 
-    private fun getFormsStatus(date: String) {
+    fun getFormsStatus(date: String) {
         _fs.value = ResponseStatusCallbacks.loading(null)
         viewModelScope.launch {
             try {
+                delay(1000L)
                 val todayData = repository.getFormStatus(date)
                 _fs.value = ResponseStatusCallbacks.success(data = todayData, message = "Form status exist")
             } catch (e: Exception) {

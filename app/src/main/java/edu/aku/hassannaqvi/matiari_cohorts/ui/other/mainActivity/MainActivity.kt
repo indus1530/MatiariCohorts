@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
             when (it.status) {
                 ResponseStatus.SUCCESS -> {
                     Log.d("Today's form count:", it.data.toString())
+                    bi.statisticLayout.tf.text = it.data.toString()
                 }
                 ResponseStatus.ERROR -> {
                 }
@@ -71,6 +72,8 @@ class MainActivity : AppCompatActivity() {
                     it.data?.let { item ->
                         Log.d("Complete count:", item.closedForms.toString())
                         Log.d("In-complete count:", item.openedForms.toString())
+                        bi.statisticLayout.cf.text = String.format("%02d", item.closedForms)
+                        bi.statisticLayout.icf.text = String.format("%02d", item.openedForms)
                     }
 
                 }
@@ -92,6 +95,8 @@ class MainActivity : AppCompatActivity() {
                     it.data?.let { item ->
                         Log.d("Synced count:", item.closedForms.toString())
                         Log.d("Un-Synced count:", item.openedForms.toString())
+                        bi.statisticLayout.sf.text = item.closedForms.toString()
+                        bi.statisticLayout.usf.text = item.openedForms.toString()
                     }
                 }
                 ResponseStatus.ERROR -> {
@@ -131,7 +136,11 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.onSync -> {
-                gotoActivity(SyncActivity::class.java)
+                if (isNetworkConnected(this)) {
+                    gotoActivity(SyncActivity::class.java)
+                } else
+                    Toast.makeText(this, "Network connection not available!", Toast.LENGTH_SHORT).show()
+
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -149,13 +158,14 @@ class MainActivity : AppCompatActivity() {
                 else showGPSAlert(this)
             }
             R.id.databaseBtn -> gotoActivity(AndroidDatabaseManager::class.java)
-            R.id.uploadData -> {
-                if (!isNetworkConnected(this)) {
-                    Toast.makeText(this, "Network connection not available!", Toast.LENGTH_SHORT).show()
-                    return
-                }
-                gotoActivity(SyncActivity::class.java)
-            }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        viewModel.getTodayForms(sysdateToday)
+        viewModel.getUploadFormsStatus()
+        viewModel.getFormsStatus(sysdateToday)
     }
 }
