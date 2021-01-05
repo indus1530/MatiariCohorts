@@ -58,7 +58,6 @@ public class MainApp extends Application {
     public static Forms forms;
 
     public static String DeviceURL = "devices.php";
-    public static String IMEI;
     public static SharedPreferences sharedPref;
     public static String DIST_ID;
     protected static LocationManager locationManager;

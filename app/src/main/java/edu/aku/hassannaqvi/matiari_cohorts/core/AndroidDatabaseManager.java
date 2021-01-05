@@ -31,10 +31,12 @@ import android.widget.TableRow.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class AndroidDatabaseManager extends Activity implements OnItemClickListener {
+public class AndroidDatabaseManager extends AppCompatActivity implements OnItemClickListener {
 
     //in the below line Change the text 'yourCustomSqlHelper' with your custom sqlitehelper class name.
     //Do not change the variable name dbm
