@@ -47,7 +47,7 @@ class ChildListFragment : Fragment(R.layout.fragment_child_list) {
         /*
         * Show Error text when no data is selected
         * */
-        multiStateView.viewState = MultiStateView.ViewState.ERROR
+        multiStateView.viewState = MultiStateView.ViewState.EMPTY
 
         /*
         * Fetch flag that defines village exist and it's processing child list

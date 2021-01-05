@@ -13,6 +13,7 @@ import androidx.databinding.DataBindingUtil
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.core.AndroidDatabaseManager
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
+import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityMainBinding
 import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus
@@ -41,6 +42,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         bi = DataBindingUtil.setContentView(this, R.layout.activity_main)
         bi.callback = this
+        if (MainApp.admin) bi.adminSection.visibility = View.VISIBLE
         viewModel = obtainViewModel(MainViewModel::class.java, GeneralRepository(DatabaseHelper(this)))
 
         /*

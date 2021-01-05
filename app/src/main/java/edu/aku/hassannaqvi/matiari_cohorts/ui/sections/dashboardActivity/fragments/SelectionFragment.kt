@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -71,6 +72,7 @@ class SelectionFragment : Fragment(R.layout.fragment_selection) {
                     }
                     ResponseStatus.ERROR -> {
                         lifecycleScope.launch {
+                            Toast.makeText(context, "Please sync data first", Toast.LENGTH_LONG).show()
                             delay(3000)
                             activity?.finish()
                         }

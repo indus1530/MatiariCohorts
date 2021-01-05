@@ -53,7 +53,6 @@ public class MainApp extends Application {
     public static AppInfo appInfo;
     public static Boolean admin = false;
 
-    public static String userName = "0000";
     public static Users user;
     public static Forms forms;
 

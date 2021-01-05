@@ -128,7 +128,7 @@ class SectionAActivity : AppCompatActivity(), EndSectionActivity {
         MainApp.forms.deviceID = MainApp.appInfo.deviceID
         MainApp.forms.devicetagID = MainApp.appInfo.tagName
         MainApp.forms.appversion = MainApp.appInfo.appVersion
-        MainApp.forms.username = MainApp.userName
+        MainApp.forms.username = MainApp.user.userName
         MainApp.forms.child_id = child.childId
         MainApp.forms.village_code = child.villageCode
         MainApp.forms.setHhhead(child.hhHead)
