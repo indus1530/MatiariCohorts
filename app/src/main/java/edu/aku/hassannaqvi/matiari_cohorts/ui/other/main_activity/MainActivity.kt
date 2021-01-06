@@ -85,6 +85,7 @@ class MainActivity : AppCompatActivity() {
 
                 }
                 ResponseStatus.ERROR -> {
+                    animateFadeOut()
                 }
                 ResponseStatus.LOADING -> {
                     lifecycleScope.launch { delay(1000) }
@@ -109,6 +110,7 @@ class MainActivity : AppCompatActivity() {
                     animateFadeOut()
                 }
                 ResponseStatus.ERROR -> {
+                    animateFadeOut()
                 }
                 ResponseStatus.LOADING -> {
                     lifecycleScope.launch { delay(1000) }
