@@ -1,5 +1,7 @@
 package edu.aku.hassannaqvi.matiari_cohorts.ui.other.mainActivity
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -10,6 +12,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.lifecycleScope
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.core.AndroidDatabaseManager
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
@@ -19,7 +22,6 @@ import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
 import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.SyncActivity
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.LoginActivity
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.viewmodel.LoginViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.mainActivity.viewmodel.MainViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivity
@@ -28,6 +30,8 @@ import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.obtainViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.utils.isGPSEnabled
 import edu.aku.hassannaqvi.matiari_cohorts.utils.isNetworkConnected
 import edu.aku.hassannaqvi.matiari_cohorts.utils.showGPSAlert
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -59,6 +63,7 @@ class MainActivity : AppCompatActivity() {
                 ResponseStatus.ERROR -> {
                 }
                 ResponseStatus.LOADING -> {
+                    lifecycleScope.launch { delay(1000) }
                 }
             }
         })
@@ -82,6 +87,7 @@ class MainActivity : AppCompatActivity() {
                 ResponseStatus.ERROR -> {
                 }
                 ResponseStatus.LOADING -> {
+                    lifecycleScope.launch { delay(1000) }
                 }
             }
         })
@@ -100,10 +106,12 @@ class MainActivity : AppCompatActivity() {
                         bi.statisticLayout.sf.text = item.closedForms.toString()
                         bi.statisticLayout.usf.text = item.openedForms.toString()
                     }
+                    animateFadeOut()
                 }
                 ResponseStatus.ERROR -> {
                 }
                 ResponseStatus.LOADING -> {
+                    lifecycleScope.launch { delay(1000) }
                 }
             }
         })
@@ -166,8 +174,53 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
+        animateFadeIn()
         viewModel.getTodayForms(sysdateToday)
         viewModel.getUploadFormsStatus()
         viewModel.getFormsStatus(sysdateToday)
+    }
+
+    /*
+    * Stop animation on statistic Layout
+    * */
+    private fun animateFadeOut() {
+        val shortAnimationDuration = 2000
+        /*
+        * Animate the content view to 100% opacity, and clear any animation
+        * listener set on the view.
+        * */
+        bi.statisticLayout.syncLinearLayout.animate()
+                .alpha(1f)
+                .setDuration(shortAnimationDuration.toLong())
+                .setListener(null)
+        bi.statisticLayout.statusLinearLayout.animate()
+                .alpha(1f)
+                .setDuration(shortAnimationDuration.toLong())
+                .setListener(null)
+
+        /* 
+        * Animate the loading view to 0% opacity. After the animation ends, 
+        * set its visibility to GONE as an optimization step (it won't participate 
+        * in layout passes, etc.)
+        * */
+
+        bi.statisticLayout.loading.animate()
+                .alpha(0f)
+                .setDuration(shortAnimationDuration.toLong())
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        bi.statisticLayout.loading.visibility = View.GONE
+                    }
+                })
+    }
+
+    /*
+    * Start animation on statistic Layout
+    * */
+    private fun animateFadeIn() {
+        bi.statisticLayout.syncLinearLayout.alpha = 0f
+        bi.statisticLayout.statusLinearLayout.alpha = 0f
+        bi.statisticLayout.loading.alpha = 1f
+        bi.statisticLayout.loading.visibility = View.VISIBLE
     }
 }
