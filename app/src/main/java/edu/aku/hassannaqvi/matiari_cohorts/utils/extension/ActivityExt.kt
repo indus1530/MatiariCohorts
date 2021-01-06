@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import edu.aku.hassannaqvi.matiari_cohorts.base.ViewModelFactory
-import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
+import edu.aku.hassannaqvi.matiari_cohorts.base.factory.ViewModelFactory
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.GeneralRepository
 import java.io.Serializable
 
 /*

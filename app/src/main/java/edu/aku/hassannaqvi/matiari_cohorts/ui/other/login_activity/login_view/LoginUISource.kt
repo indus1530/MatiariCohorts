@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.repository
+package edu.aku.hassannaqvi.matiari_cohorts.ui.other.login_activity.login_view
 
 interface LoginUISource {
 

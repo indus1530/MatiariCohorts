@@ -1,11 +1,11 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.viewmodel
+package edu.aku.hassannaqvi.matiari_cohorts.base.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.aku.hassannaqvi.matiari_cohorts.models.Users
-import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralDataSource
-import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatusCallbacks
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.GeneralDataSource
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.ResponseStatusCallbacks
 import kotlinx.coroutines.launch
 
 class LoginViewModel(private val repository: GeneralDataSource) : ViewModel() {

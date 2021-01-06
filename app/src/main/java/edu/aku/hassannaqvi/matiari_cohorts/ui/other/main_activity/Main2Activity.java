@@ -1,52 +1,12 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.other;
+package edu.aku.hassannaqvi.matiari_cohorts.ui.other.main_activity;
 
-import android.app.ActivityManager;
-import android.app.DownloadManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.database.Cursor;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.Environment;
-import android.os.Handler;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.io.File;
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
-
-import edu.aku.hassannaqvi.matiari_cohorts.R;
-import edu.aku.hassannaqvi.matiari_cohorts.core.AndroidDatabaseManager;
-import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp;
-import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityMainBinding;
-import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
-import edu.aku.hassannaqvi.matiari_cohorts.models.VersionApp;
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.LoginActivity;
-import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity;
-import edu.aku.hassannaqvi.matiari_cohorts.utils.AndroidUtilityKt;
-import edu.aku.hassannaqvi.matiari_cohorts.utils.AppUtilsKt;
-import edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable;
 import edu.aku.hassannaqvi.matiari_cohorts.utils.WarningActivityInterface;
-
-import static edu.aku.hassannaqvi.matiari_cohorts.core.MainApp.appInfo;
 
 public class Main2Activity extends AppCompatActivity implements WarningActivityInterface {
 

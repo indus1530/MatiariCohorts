@@ -1,13 +1,13 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.viewmodel
+package edu.aku.hassannaqvi.matiari_cohorts.base.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
-import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralDataSource
-import edu.aku.hassannaqvi.matiari_cohorts.repository.ProgressResponseStatusCallbacks
-import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatusCallbacks
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.GeneralDataSource
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.ProgressResponseStatusCallbacks
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.ResponseStatusCallbacks
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 

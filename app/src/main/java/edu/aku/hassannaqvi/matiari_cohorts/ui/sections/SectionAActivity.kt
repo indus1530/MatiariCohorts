@@ -19,7 +19,6 @@ import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivitySectionABinding
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
 import edu.aku.hassannaqvi.matiari_cohorts.models.Forms
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.CustomExceptions
 import edu.aku.hassannaqvi.matiari_cohorts.utils.EndSectionActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.contextEndActivity

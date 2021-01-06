@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.repository
+package edu.aku.hassannaqvi.matiari_cohorts.base.repository
 
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
 import edu.aku.hassannaqvi.matiari_cohorts.models.*

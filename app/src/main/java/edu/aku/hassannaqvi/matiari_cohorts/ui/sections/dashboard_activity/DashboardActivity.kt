@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity
+package edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboard_activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +11,8 @@ import edu.aku.hassannaqvi.matiari_cohorts.adapter.ChildListAdapter
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityDashboardBinding
 import edu.aku.hassannaqvi.matiari_cohorts.models.ChildModel
 import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.SectionAActivity
-import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.fragments.ChildListFragment
-import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.fragments.SelectionFragment
+import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboard_activity.fragments.ChildListFragment
+import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboard_activity.fragments.SelectionFragment
 import edu.aku.hassannaqvi.matiari_cohorts.utils.WarningActivityInterface
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivityWithSerializable
 

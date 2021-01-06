@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.other
+package edu.aku.hassannaqvi.matiari_cohorts.ui.sections
 
 import android.os.Bundle
 import android.widget.Toast

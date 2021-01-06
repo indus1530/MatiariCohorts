@@ -22,7 +22,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ChildEndDialogBinding
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity
+import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.EndingActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.DATABASE_NAME
 import edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.DB_NAME
 import edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.PROJECT_NAME

@@ -10,7 +10,7 @@
 
         <variable
             name="callback"
-            type="edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.LoginActivity" />
+            type="edu.aku.hassannaqvi.matiari_cohorts.ui.other.login_activity.LoginActivity" />
     </data>
 
     <LinearLayout

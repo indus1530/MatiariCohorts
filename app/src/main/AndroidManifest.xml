@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.other.loginActivity.LoginActivity"
+            android:name=".ui.other.login_activity.LoginActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar.Bridge"
             android:screenOrientation="portrait" />
         <activity
@@ -47,10 +47,10 @@
             android:label="Forms Report by Date"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.other.mainActivity.MainActivity"
+            android:name=".ui.other.main_activity.MainActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.sections.dashboardActivity.DashboardActivity"
+            android:name=".ui.sections.dashboard_activity.DashboardActivity"
             android:label="Dashboard"
             android:screenOrientation="portrait" />
         <activity
@@ -59,18 +59,18 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu" />
         <activity
-            android:name=".ui.other.EndingActivity"
+            android:name=".ui.sections.EndingActivity"
             android:label="Ending Interview"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeUrdu" />
         <activity
             android:name=".ui.other.SyncActivity"
             android:label="Download/Upload Data"
-            android:parentActivityName=".ui.other.Main2Activity"
+            android:parentActivityName=".ui.other.main_activity.Main2Activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".core.AndroidDatabaseManager"
-            android:parentActivityName=".ui.other.Main2Activity"
+            android:parentActivityName=".ui.other.main_activity.Main2Activity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
     </application>

@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.other.mainActivity
+package edu.aku.hassannaqvi.matiari_cohorts.ui.other.main_activity
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -18,12 +18,12 @@ import edu.aku.hassannaqvi.matiari_cohorts.core.AndroidDatabaseManager
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
 import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityMainBinding
-import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
-import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.GeneralRepository
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.ResponseStatus
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.SyncActivity
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.LoginActivity
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.mainActivity.viewmodel.MainViewModel
-import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity
+import edu.aku.hassannaqvi.matiari_cohorts.ui.other.login_activity.LoginActivity
+import edu.aku.hassannaqvi.matiari_cohorts.base.viewmodel.MainViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboard_activity.DashboardActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivityWithNoHistory
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.obtainViewModel

@@ -1,10 +1,9 @@
 package edu.aku.hassannaqvi.matiari_cohorts.ui.other
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import edu.aku.hassannaqvi.matiari_cohorts.R
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.LoginActivity
+import edu.aku.hassannaqvi.matiari_cohorts.ui.other.login_activity.LoginActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivity
 import kotlinx.coroutines.*
 

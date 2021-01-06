@@ -1,16 +1,14 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.other.mainActivity.viewmodel
+package edu.aku.hassannaqvi.matiari_cohorts.base.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import edu.aku.hassannaqvi.matiari_cohorts.models.FormIndicatorsModel
-import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
-import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatusCallbacks
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.GeneralRepository
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.ResponseStatusCallbacks
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.lang.Exception
-import java.text.SimpleDateFormat
-import java.util.*
 
 class MainViewModel(val repository: GeneralRepository) : ViewModel() {
 

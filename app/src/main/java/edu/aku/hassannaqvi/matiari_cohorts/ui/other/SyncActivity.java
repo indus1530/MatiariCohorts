@@ -37,11 +37,9 @@ import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.models.SyncModel;
 import edu.aku.hassannaqvi.matiari_cohorts.sync.GetAllData;
 import edu.aku.hassannaqvi.matiari_cohorts.sync.SyncAllData;
-import edu.aku.hassannaqvi.matiari_cohorts.sync.SyncAllPhotos;
 import edu.aku.hassannaqvi.matiari_cohorts.sync.SyncDevice;
 
 import static edu.aku.hassannaqvi.matiari_cohorts.utils.AppUtilsKt.dbBackup;
-import static edu.aku.hassannaqvi.matiari_cohorts.utils.CreateTable.PROJECT_NAME;
 
 public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDeviceInterface {
     SharedPreferences.Editor editor;
@@ -171,52 +169,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         super.onBackPressed();
         setResult(RESULT_OK);
         finish();
-    }
-
-    public void uploadPhotos(View view) {
-
-        String fileName = "";
-        String appFolder = PROJECT_NAME;
-
-        File sdDir = Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-
-        Log.d("Files", "Path: " + sdDir);
-        File directory = new File(String.valueOf(sdDir), appFolder);
-        Log.d("Directory", "uploadPhotos: " + directory);
-        if (directory.exists()) {
-            File[] files = directory.listFiles(new FileFilter() {
-                @Override
-                public boolean accept(File file) {
-                    return (file.getPath().endsWith(".jpg") || file.getPath().endsWith(".jpeg"));
-                }
-            });
-
-
-            Log.d("Files", "Count: " + files.length);
-            if (files.length > 0) {
-                for (int i = 0; i < files.length; i++) {
-                    Log.d("Files", "FileName:" + files[i].getName());
-                    SyncAllPhotos syncAllPhotos = new SyncAllPhotos(files[i].getName(), this);
-                    syncAllPhotos.execute();
-
-                    try {
-                        //3000 ms delay to process upload of next file.
-                        Thread.sleep(3000);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                editor.putString("LastPhotoUpload", new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
-                editor.apply();
-            } else {
-                Toast.makeText(this, "No photos to upload.", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(this, "No photos were taken", Toast.LENGTH_SHORT).show();
-        }
-
     }
 
     private class SyncData extends AsyncTask<Boolean, String, String> {

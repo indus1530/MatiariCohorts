@@ -30,10 +30,16 @@ class ChildViewHolder(private val bi: ItemChildLayoutBinding) :
             0 -> {
                 hhStatusText = "OPEN"
             }
-            1, 2 -> {
+            1 -> {
                 bi.parentLayout.isEnabled = false
                 backgroundColor = ContextCompat.getColor(this.itemView.context, R.color.gray)
-                hhStatusText = if (item.formFlag == 1) "COMPLETE" else "IN-COMPLETE"
+                hhStatusText = "COMPLETE"
+                hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.green_overlay)
+            }
+            2 -> {
+                bi.parentLayout.isEnabled = false
+                backgroundColor = ContextCompat.getColor(this.itemView.context, R.color.gray)
+                hhStatusText = "IN-COMPLETE"
                 hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.red_overlay)
             }
         }

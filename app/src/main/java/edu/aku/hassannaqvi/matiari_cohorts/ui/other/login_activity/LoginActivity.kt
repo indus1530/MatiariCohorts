@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity
+package edu.aku.hassannaqvi.matiari_cohorts.ui.other.login_activity
 
 import android.Manifest
 import android.animation.Animator
@@ -27,16 +27,14 @@ import edu.aku.hassannaqvi.matiari_cohorts.core.MainApp
 import edu.aku.hassannaqvi.matiari_cohorts.databinding.ActivityLoginBinding
 import edu.aku.hassannaqvi.matiari_cohorts.location.GPSLocationListener
 import edu.aku.hassannaqvi.matiari_cohorts.models.Users
-import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
-import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus.*
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.Main2Activity
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.GeneralRepository
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.ResponseStatus.*
 import edu.aku.hassannaqvi.matiari_cohorts.ui.other.SyncActivity
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.repository.LoginUISource
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.viewmodel.LoginViewModel
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.mainActivity.MainActivity
+import edu.aku.hassannaqvi.matiari_cohorts.ui.other.login_activity.login_view.LoginUISource
+import edu.aku.hassannaqvi.matiari_cohorts.base.viewmodel.LoginViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.ui.other.main_activity.MainActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.gotoActivity
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.obtainViewModel
-import edu.aku.hassannaqvi.matiari_cohorts.utils.getIMEIInfo
 import edu.aku.hassannaqvi.matiari_cohorts.utils.isGPSEnabled
 import edu.aku.hassannaqvi.matiari_cohorts.utils.isNetworkConnected
 import edu.aku.hassannaqvi.matiari_cohorts.utils.showGPSAlert

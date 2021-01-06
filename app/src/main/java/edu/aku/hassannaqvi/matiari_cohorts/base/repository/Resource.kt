@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.repository
+package edu.aku.hassannaqvi.matiari_cohorts.base.repository
 
 enum class ResponseStatus {
     SUCCESS,

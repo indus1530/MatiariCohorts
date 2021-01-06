@@ -1,11 +1,11 @@
-package edu.aku.hassannaqvi.matiari_cohorts.base
+package edu.aku.hassannaqvi.matiari_cohorts.base.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.loginActivity.viewmodel.LoginViewModel
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.mainActivity.viewmodel.MainViewModel
-import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.viewmodel.DashboardViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.GeneralRepository
+import edu.aku.hassannaqvi.matiari_cohorts.base.viewmodel.LoginViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.base.viewmodel.MainViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.base.viewmodel.DashboardViewModel
 
 /*
 * @author Ali Azaz Alam dt. 12.18.20

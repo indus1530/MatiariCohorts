@@ -1,4 +1,4 @@
-package edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.fragments
+package edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboard_activity.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -14,10 +14,10 @@ import androidx.lifecycle.lifecycleScope
 import edu.aku.hassannaqvi.matiari_cohorts.R
 import edu.aku.hassannaqvi.matiari_cohorts.core.DatabaseHelper
 import edu.aku.hassannaqvi.matiari_cohorts.models.VillageModel
-import edu.aku.hassannaqvi.matiari_cohorts.repository.GeneralRepository
-import edu.aku.hassannaqvi.matiari_cohorts.repository.ResponseStatus
-import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.DashboardActivity
-import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboardActivity.viewmodel.DashboardViewModel
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.GeneralRepository
+import edu.aku.hassannaqvi.matiari_cohorts.base.repository.ResponseStatus
+import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.dashboard_activity.DashboardActivity
+import edu.aku.hassannaqvi.matiari_cohorts.base.viewmodel.DashboardViewModel
 import edu.aku.hassannaqvi.matiari_cohorts.utils.extension.obtainViewModel
 import kotlinx.android.synthetic.main.fragment_selection.*
 import kotlinx.coroutines.Dispatchers

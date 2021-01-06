@@ -24,7 +24,7 @@ import com.jakewharton.threetenabp.AndroidThreeTen;
 
 import edu.aku.hassannaqvi.matiari_cohorts.models.Forms;
 import edu.aku.hassannaqvi.matiari_cohorts.models.Users;
-import edu.aku.hassannaqvi.matiari_cohorts.ui.other.EndingActivity;
+import edu.aku.hassannaqvi.matiari_cohorts.ui.sections.EndingActivity;
 import edu.aku.hassannaqvi.matiari_cohorts.utils.LocationUtils;
 
 
