@@ -345,8 +345,7 @@ public class Forms extends LiveData<Forms> {
 
 
     public String getProjectName() {
-        String projectName = "matiari_cohorts";
-        return projectName;
+        return "matiari_cohorts";
     }
 
 
@@ -631,7 +630,7 @@ public class Forms extends LiveData<Forms> {
             json.put(FormsTable.COLUMN_SYSDATE, this.sysdate == null ? JSONObject.NULL : this.sysdate);
             json.put(FormsTable.COLUMN_USERNAME, this.username == null ? JSONObject.NULL : this.username);
             json.put(FormsTable.COLUMN_ISTATUS, this.istatus == null ? JSONObject.NULL : this.istatus);
-            json.put(FormsTable.COLUMN_ISTATUS96x, this.istatus96x == null ? JSONObject.NULL : this.istatus96x);
+//            json.put(FormsTable.COLUMN_ISTATUS96x, this.istatus96x == null ? JSONObject.NULL : this.istatus96x);
             json.put(FormsTable.COLUMN_ENDINGDATETIME, this.endingdatetime == null ? JSONObject.NULL : this.endingdatetime);
             json.put(FormsTable.COLUMN_SA, new JSONObject(sAtoString()));
             json.put(FormsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);

@@ -413,7 +413,7 @@
                         android:hint="@string/mc09"
                         app:dateFormat="dd-MM-yyyy"
                         app:maxDate="CR_DATE"
-                        app:minDate="15/12/2020" />
+                        app:minDate="11/01/2021" />
 
                 </LinearLayout>
 
