@@ -37,7 +37,8 @@ class ChildViewHolder(private val bi: ItemChildLayoutBinding) :
                 hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.green_overlay)
             }
             2 -> {
-                bi.parentLayout.isEnabled = false
+                //Reopen form when incomplete filled
+//                bi.parentLayout.isEnabled = false
                 backgroundColor = ContextCompat.getColor(this.itemView.context, R.color.gray)
                 hhStatusText = "IN-COMPLETE"
                 hhStatusColor = ContextCompat.getColor(this.itemView.context, R.color.red_overlay)
