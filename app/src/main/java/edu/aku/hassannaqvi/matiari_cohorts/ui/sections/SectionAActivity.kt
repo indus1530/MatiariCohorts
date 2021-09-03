@@ -234,4 +234,6 @@ class SectionAActivity : AppCompatActivity(), EndSectionActivity {
         super.onBackPressed()
         scope.cancel()
     }
+
+    fun BtnContinue(view: android.view.View) {}
 }

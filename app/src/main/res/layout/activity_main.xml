@@ -74,7 +74,7 @@
                         android:layout_margin="10dp"
                         android:background="@drawable/buttonshapewhitebg1"
                         android:drawableStart="@drawable/open_form"
-                        android:onClick="@{callback::openSpecificActivity}"
+                        android:onClick="openSpecificActivity"
                         android:padding="8dp"
                         android:text="OPEN FORM"
                         android:textAppearance="@style/TextAppearance.AppCompat.Large"

@@ -1421,7 +1421,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:background="@color/red_overlay"
-                    android:onClick="@{() -> callback.BtnEnd()}"
+                    android:onClick="BtnEnd"
                     android:padding="10dp"
                     android:text="Cancel"
                     android:textColor="@color/white" />
@@ -1432,7 +1432,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:background="@color/green_overlay"
-                    android:onClick="@{() -> callback.BtnContinue()}"
+                    android:onClick="BtnContinue2"
                     android:padding="10dp"
                     android:text="Save"
                     android:textColor="@color/white" />
